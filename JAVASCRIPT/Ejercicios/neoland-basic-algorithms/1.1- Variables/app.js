@@ -18,21 +18,3 @@ let h = 5,
 let z = h + y;
 
 console.log(myFavoriteHero, x, h, y, z);
-
-//! --- Variables Avanzadas
-
-//1.1 Dado el siguiente javascript, cambia el valor de la propiedad age a 25.
-
-const character = { name: "Jack Sparrow", age: 10 };
-
-character.age = 25;
-
-console.log(character);
-
-//1.2 Declara 3 variables con los nombres y valores siguientes
-
-firstName = "Jon";
-lastName = "Snow";
-age = 24;
-
-console.log(`Soy ${firstName}`);
