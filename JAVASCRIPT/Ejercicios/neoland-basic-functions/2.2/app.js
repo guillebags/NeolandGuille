@@ -10,13 +10,13 @@ const avengers = [
   "Captain M.",
 ];
 
-const findLongestWord = (param) => {
+const findLongestWord = (arrStr) => {
   let longest = 0;
   let longestWord = "";
-  for (let i = 0; i < param.length; i++) {
-    if (param[i].length > longest) {
-      longestWord = param[i];
-      longest = param[i].length;
+  for (let i = 0; i < arrStr.length; i++) {
+    if (arrStr[i].length > longest) {
+      longestWord = arrStr[i];
+      longest = arrStr[i].length;
     }
   }
   return longestWord;

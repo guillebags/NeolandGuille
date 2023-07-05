@@ -3,9 +3,9 @@
 
 const numbers = [1, 2, 3, 5, 45, 37, 58];
 
-const sumAll = (param) => {
+const sumAll = (arr) => {
   let sum = 0;
-  for (const number of param) {
+  for (const number of arr) {
     sum += number;
   }
   return sum;
