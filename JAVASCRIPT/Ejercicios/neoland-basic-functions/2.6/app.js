@@ -23,3 +23,4 @@ const removeDuplicates = (arr) => {
 };
 
 console.log(removeDuplicates(duplicates));
+//? con sort y redux
