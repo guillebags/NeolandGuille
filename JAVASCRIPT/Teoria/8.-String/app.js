@@ -35,7 +35,7 @@ console.log(year.includes("2")); // true
 console.log(year.includes("j")); // fal/*style*/`
 
 // 5) repeat
-console.log(year.repeat(3));
+console.log(year.repeat(3)); // devuelve 201320132013
 
 // 6) replace all:
 
@@ -51,7 +51,7 @@ console.log(bootcamp.slice(0, 4));
 
 console.log(bootcamp);
 
-// 8) Split
+// 8) Split convierte str en arr. se suele utilizar para elminar palabras, lo convierto array, veo la posición de la palabra, la elimino y lo vuelvo a convertir a str
 
 const quixote = "En un lugar de la mancha...";
 console.log(quixote.split(" "));
