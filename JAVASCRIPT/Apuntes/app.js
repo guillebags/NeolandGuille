@@ -150,3 +150,55 @@ alumns.concat(saludo);
 console.log(saludo.slice(1, 2));
 
 //indexOf solo funciona con arrays
+
+//? Toda la familia Math repasar
+
+//! DIFERENCIAS DE LAS ARROW CON LAS FUNCTION
+
+// Arrow no pueden utilizar this
+// Arrow no pueden ser utilizadas como constructores
+// Arrow no pueden utilizar el método para sacar los ARGUMENTS
+// Arrow no pueden ser utilizadas como métodos
+
+const obj = {
+  name: "Pedro",
+  sayHi: () => console.log("Buenos días" + this.name),
+}; // no acepta this, sale undefined
+
+//! CLASES
+
+class Rectangulo {
+  constructor(alto, ancho) {
+    this.alto = alto;
+    this.ancho = ancho;
+  }
+  //getter
+  get area() {
+    return this.calcularArea();
+  }
+  calcularArea() {
+    return this.alto * this.ancho;
+  }
+}
+//instanciamos la clase, el nuevo object-position:
+const rectangulo = new Rectangulo(10, 20);
+console.log("area del rectangulo", rectangulo.area);
+
+//! Arguments
+// es un método que te crea un array de los argumentos que le pases a la función. NO FUNCIONA CON ARROWS
+function argumentos(a, b, c) {
+  console.log(arguments[0]);
+  console.log(arguments[1]);
+  console.log(arguments[2]);
+}
+
+//! FOR OF
+// for (const movie of movies){};
+
+//! FOR IN
+
+for (const key in object) {
+  if (Object.hasOwnProperty.call(object, key)) {
+    const element = object[key];
+  }
+}
