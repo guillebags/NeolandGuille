@@ -19,7 +19,7 @@ console.log(avengers.length);
 
 let rickAndMortyCharacters = ["Rick", "Beth", "Jerry"];
 
-//rickAndMortyCharacters.push("Morty", "Summer");
+rickAndMortyCharacters.push("Morty", "Summer");
 
 console.log(rickAndMortyCharacters[rickAndMortyCharacters.length - 1]);
 //? podría hacerlo con .pop() pero entonces modifico el array
