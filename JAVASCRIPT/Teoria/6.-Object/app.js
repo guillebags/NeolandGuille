@@ -69,3 +69,14 @@ Object.values(car);
 
 //para hacer una copia
 const copyCar = { ...car, year: 1999 }; //para cambiar directamente una propiedad de la copia del objeto
+
+//! Objects
+//object.entries, o hacer un arr con un obj
+
+const person = {
+  name: "Guille",
+  adress: "Barcelona",
+  age: 26,
+};
+
+const arrObj = Object.entries(person); // crea tuplas (tipo de dato en typescript arr de clave - valor)
