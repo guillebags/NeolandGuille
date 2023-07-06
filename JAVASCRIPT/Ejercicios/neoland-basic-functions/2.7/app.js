@@ -16,7 +16,7 @@ const nameFinder = [
 ];
 
 const finderName = (arr, name) => {
-  return arr.includes(name);
+  return arr.includes(name) && [true, `${arr.indexOf(name)}`];
 };
 
 console.log(finderName(nameFinder, "Xabier"));
