@@ -17,7 +17,7 @@ const rateAlumns = (arrObj) => {
     alumn.T1 && grades++; // compruebo si el T1 está aprobado
     alumn.T2 && grades++; // compruebo si el T2 está aprobado
     alumn.T3 && grades++; // compruebo si el T3 está aprobado
-    grades >= 2 ? (alumn.isApproved = true) : (alumn.isApproved = false); // si hay 2 o más T aprobados, isApproved es igual a true;
+    alumn.isApproved = grades >= 2 ? true : false; // si hay 2 o más T aprobados, isApproved es igual a true;
   });
 
   return arrObj;
