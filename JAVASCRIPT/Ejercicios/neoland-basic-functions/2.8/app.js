@@ -14,4 +14,12 @@ const counterWords = [
   "upgrade",
   "code",
 ];
-function repeatCounter(param) {}
+const repeatCounter = (arr) => {
+  let counted = {};
+  arr.forEach((word) => {
+    counted.hasOwnProperty(word) ? (counted[word] += 1) : (counted[word] = 1);
+    //si tiene la clave, le suma uno a su valor, si no la tiene, la crea con valor 1
+  });
+  return counted;
+};
+console.log(repeatCounter(counterWords));
