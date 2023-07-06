@@ -7,7 +7,7 @@ const averageWord = (arr) => {
   let sumStr = 0; //suma total de los caracteres de los strings
   let countNum = 0; //total de números en array
   let countStr = 0; //total de strings en array
-  for (let i = 0; i < arr.length; i++) {
+  for (i = 0; i < arr.length; i++) {
     if (isNaN(arr[i])) {
       sumStr += arr[i].length;
       countStr++;

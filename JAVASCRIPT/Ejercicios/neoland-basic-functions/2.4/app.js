@@ -4,7 +4,7 @@
 const numbers = [12, 21, 38, 5, 45, 37, 6];
 const average = (arr) => {
   let sum = 0;
-  for (const number of arr) {
+  for (number of arr) {
     sum += number;
   }
   return sum / arr.length;

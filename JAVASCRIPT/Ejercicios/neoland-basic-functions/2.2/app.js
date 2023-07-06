@@ -13,7 +13,7 @@ const avengers = [
 const findLongestWord = (arrStr) => {
   let longest = 0;
   let longestWord = "";
-  for (let i = 0; i < arrStr.length; i++) {
+  for (i = 0; i < arrStr.length; i++) {
     if (arrStr[i].length > longest) {
       longestWord = arrStr[i];
       longest = arrStr[i].length;

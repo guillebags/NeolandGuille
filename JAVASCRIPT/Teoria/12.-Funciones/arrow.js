@@ -66,10 +66,10 @@ class Rectangulo {
 const rectangulo = new Rectangulo(10, 20);
 console.log("area del rectangulo", rectangulo.area);
 
-/// ARGUMENTS-------------------
+/// -------------------
 
 function argumentos(a, b, c) {
-  console.log(arguments[0]);
+  console.log(arguments[0]); // arguments lee los argumentos como array
   console.log(arguments[1]);
   console.log(arguments[2]);
 }
