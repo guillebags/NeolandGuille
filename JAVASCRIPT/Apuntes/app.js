@@ -8,3 +8,7 @@ console.log("🚀 ~ file: app.js:27 ~ veterinario:", "veterinario"); // ctrl + a
 
 // ctrl + k + c = comenta la línea
 // ctrl + ç = descomenta
+
+//! .THIS no funciona con las ARROW
+
+//! INCLUDES siempre mejor utilizarlo con un toLowerCase() antes
