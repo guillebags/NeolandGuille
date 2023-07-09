@@ -42,6 +42,6 @@ const copyColor = [...colors, ...colors];
 copyColor[2] = "prueba";
 console.log(copyColor);
 
-// si queremos meter algo al font-variant-ligatures:
+// si queremos meter algo al final:
 const copyFinal = [...colors, "yellow"];
 console.log(copyFinal);
