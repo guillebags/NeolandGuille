@@ -4,9 +4,7 @@
 const mandalorian = ["Grogu", "Mando", "Bo-Katan", "Boba Fett", "Kuiil"];
 
 const swap = (arr, i1, i2) => {
-  let save = arr[i1];
-  arr[i1] = arr[i2];
-  arr[i2] = save;
+  [arr[i1], arr[i2]] = [arr[i2], arr[i1]];
   return arr;
 };
 
