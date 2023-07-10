@@ -22,7 +22,7 @@ console.log(sum);
 
 const sumApproved = exams.reduce((acc, student) => {
   if (student.score >= 5) {
-    acc += student.score;
+    return acc + student.score;
   }
   return acc;
 }, 0); //tengo que inicializar el acc porque si no, coge el primer elemento(en este caso un objeto) como primer valor de acc
@@ -30,6 +30,5 @@ console.log(sumApproved);
 
 //7.3 Dado el mismo array, haz la media de las notas de todos los examenes .reduce().
 
-const average =
-  exams.reduce((acc, student) => acc + student.score, 0) / exams.length;
+const average = exams.reduce((acc, { score }) => acc + score, 0) / exams.length;
 console.log(average);
