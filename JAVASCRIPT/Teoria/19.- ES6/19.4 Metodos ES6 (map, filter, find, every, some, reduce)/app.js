@@ -102,7 +102,7 @@ console.log("🚀 ~ file: app.js:98 ~ isVeganTrue:", isVeganTrue);
 ///! ----------------------------------------------------------------------------
 
 const numbers = [5, 5, 5, 5, 5, 5];
-// el 20 es desde node quiero empezar a contar
+// el 20 es desde donde quiero empezar a contar
 const total = numbers.reduce((acumulador, num) => acumulador + num, 20);
 console.log("🚀 ~ file: app.js:108 ~ total:", total);
 
