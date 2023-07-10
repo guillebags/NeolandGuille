@@ -35,14 +35,14 @@ console.log(uStreamers);
 
 //5.5 utiliza .filter() para generar un nuevo array con los streamers que incluyan el caracter 'Legends' en su propiedad .gameMorePlayed. Recomendamos usar la funcion .includes() para la comprobación. Además, pon el valor de la propiedad .gameMorePlayed a MAYUSCULAS cuando .age sea mayor que 35.
 
-const legendsStreamers = streamers.filter((streamer) =>
-  streamer.gameMorePlayed.includes("Legends")
-);
-for (streamer of legendsStreamers) {
-  if (streamer.age > 35) {
-    streamer.gameMorePlayed = streamer.gameMorePlayed.toUpperCase();
-  }
-}
+const legendsStreamers = streamers
+  .filter((streamer) => streamer.gameMorePlayed.includes("Legends"))
+  .map((streamer) => {
+    if (streamer.age > 35) {
+      streamer.gameMorePlayed = streamer.gameMorePlayed.toUpperCase();
+    }
+    return streamer;
+  });
 
 console.log(legendsStreamers);
 
