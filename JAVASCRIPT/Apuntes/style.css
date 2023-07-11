@@ -1,0 +1,12 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: black;
+  background-image: "https://cdn-hogwartslegacy.warnerbrosgames.com/static/game-info-panel-02.jpg";
+}
+
+header > ul {
+  display: flex;
+}
