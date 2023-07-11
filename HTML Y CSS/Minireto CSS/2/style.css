@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(52, 52, 52);
+  & header {
+    & h1 {
+      color: white;
+    }
+  }
+  & main {
+    & p {
+      color: skyblue;
+    }
+    & > ol li {
+      color: whitesmoke;
+    }
+  }
+}
