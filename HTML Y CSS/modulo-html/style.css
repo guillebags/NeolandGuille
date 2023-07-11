@@ -1,0 +1,22 @@
+& body {
+  min-height: 20vh;
+  padding: 8vw;
+  width: 100vw;
+
+  & #project__images {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+    }
+  }
+}
