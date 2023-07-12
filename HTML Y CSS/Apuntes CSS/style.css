@@ -1,0 +1,3 @@
+/* no meter margin en header porque haría scroll horizontal
+/* Al principio del css, resetear con *{margin:0, padding:0, box-sizing: border-box}
+/* por recursos está el cssmatic que es un generador de sombras mejor hacerlo con eso si queremos meterle sombras
