@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  & header {
+    height: 20vh;
+  }
+  & body {
+    height: 70vh;
+  }
+  & footer {
+    height: 10vh;
+  }
+}

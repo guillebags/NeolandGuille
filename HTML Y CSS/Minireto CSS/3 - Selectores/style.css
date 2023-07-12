@@ -11,14 +11,26 @@ body {
     color: black;
     & ul,
     ol {
+      color: crimson;
       padding-left: 2rem;
       .like {
         color: green;
       }
+      .thunder {
+        color: purple;
+      }
+    }
+    & a {
+      color: plum;
+      font-style: italic;
+    }
+    & h3 {
+      font-style: italic;
+    }
+    & img {
+      border-radius: 1rem;
     }
   }
 }
 
-ol {
-  color: crimson;
-}
+/*El anchor tiene que tener un color “plum” y un font-style: italic.

@@ -1,3 +1,7 @@
-/* no meter margin en header porque haría scroll horizontal
-/* Al principio del css, resetear con *{margin:0, padding:0, box-sizing: border-box}
-/* por recursos está el cssmatic que es un generador de sombras mejor hacerlo con eso si queremos meterle sombras
+/*
+* no meter margin en header porque haría scroll horizontal
+* Al principio del css, resetear con *{margin:0, padding:0, box-sizing: border-box}
+* por recursos está el cssmatic que es un generador de sombras mejor hacerlo con eso si queremos meterle sombras
+* los min y max (width height) hacen referencia a la vista general de la pagina, se usa para la responsividad 
+* El flex-wrap es lo que hace que los elementos inline, en fila, se vayan cayendo a medida que encoge la pagina
+*/
