@@ -1,0 +1,16 @@
+h1 {
+  color: #a61e4d;
+}
+
+h2 {
+  color: #c92a2a;
+}
+
+.first,
+.second {
+  color: #364fc7;
+}
+
+.second {
+  border-bottom: 1px solid #a61e4d;
+}
