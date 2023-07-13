@@ -1,6 +1,6 @@
 //! --- APUNTES
 
-console.log("🚀 ~ file: app.js:27 ~ veterinario:", "veterinario"); // ctrl + alt + l para hacer console.log sobre lo seleccionado con el TurboConsole
+// console.log("🚀 ~ file: app.js:27 ~ veterinario:", "veterinario"); // ctrl + alt + l para hacer console.log sobre lo seleccionado con el TurboConsole
 
 //! RETURN IMPLÍCITO
 // ES EN LAS ARROWS CUANDO NO LLEVEN LLAVE. EJ:

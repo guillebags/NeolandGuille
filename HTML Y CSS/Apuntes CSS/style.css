@@ -4,4 +4,63 @@
 * por recursos está el cssmatic que es un generador de sombras mejor hacerlo con eso si queremos meterle sombras
 * los min y max (width height) hacen referencia a la vista general de la pagina, se usa para la responsividad 
 * El flex-wrap es lo que hace que los elementos inline, en fila, se vayan cayendo a medida que encoge la pagina
+* siempre lo más específico arriba y lo más general abajo
+* el grid no se usa mucho, sobretodo se usa para una serie de imágenes o cosas así, se suele utilizar la unidad de medida 1fr
 */
+
+/* MEDIAS QUERY */
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  /* CSS */
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+}
+
+/* CSS */
