@@ -6,6 +6,8 @@
 * El flex-wrap es lo que hace que los elementos inline, en fila, se vayan cayendo a medida que encoge la pagina
 * siempre lo más específico arriba y lo más general abajo
 * el grid no se usa mucho, sobretodo se usa para una serie de imágenes o cosas así, se suele utilizar la unidad de medida 1fr
+* para el grid, no te olvides del object-fit: cover para las img y con el autofill se rellenan las columnas. autofill == flex-wrap
+* 
 */
 
 /* MEDIAS QUERY */
