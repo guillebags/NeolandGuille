@@ -1,3 +1,7 @@
-const dataDefaultExport = () => {};
 
-module.exports = { dataDefaultExport };
+
+const dataDefaultExport = () => {
+
+}
+
+module.exports = { dataDefaultExport }

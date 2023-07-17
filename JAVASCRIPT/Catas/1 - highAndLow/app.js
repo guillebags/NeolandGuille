@@ -5,10 +5,10 @@
 // Output string must be two numbers separated by a single space, and highest number is first.
 
 const highAndLow = (str) => {
-  let array = [...str.split(" ")].sort();
-  let max = array.pop();
-  let min = array.shift();
-  console.log(max, min);
+  let array = [...str.split(" ")];
+  let max = Math.max(...array);
+  let min = Math.min(...array);
+  return `${max} ${min}`;
 };
 
 highAndLow("1 2 3 4 5"); // return "5 1"

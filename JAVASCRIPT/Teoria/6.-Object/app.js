@@ -14,69 +14,69 @@ alumno.name = "Igor";
 
 console.log(alumno);
 
+
 ///! voy a asignar el valor de otro obvjeto a uno nuevo
-console.log("💌-------------------");
+console.log("💌-------------------")
 let federicoAlumno = alumno;
-federicoAlumno.name = "Federico";
-console.log("alumno", alumno);
+federicoAlumno.name = "Federico"
+console.log("alumno", alumno)
 console.log("fede", federicoAlumno);
 console.log("💌-------------------");
 
 //! copia del objeto original  ------SPREAD OPERATOR ES6
 
-const copyAlumno = { ...alumno, edad: 45 };
-copyAlumno.name = "Ruben";
-console.log("🚀 ~ file: app.js:23 ~ copyAlumno:", copyAlumno);
+const copyAlumno = { ...alumno, edad: 45 }
+copyAlumno.name = "Ruben"
+console.log("🚀 ~ file: app.js:23 ~ copyAlumno:", copyAlumno)
+
 
 //! sacar las kEYS
 
-const keysAlumnos = Object.keys(copyAlumno);
+const keysAlumnos = Object.keys(copyAlumno)
+
 
 for (let i = 0; i < keysAlumnos.length; i++) {
-  console.log(
-    `Esta clave ${keysAlumnos[i]} tiene el valor  ${
-      copyAlumno[keysAlumnos[i]]
-    }:`
-  );
+    console.log(`Esta clave ${keysAlumnos[i]} tiene el valor  ${copyAlumno[keysAlumnos[i]]}:`);
 }
 
+
+//! sacar los valores
 const valuesArray = Object.values(copyAlumno);
 
-//! ------ teorio de los arrays paralelos-----------------------------
-console.log(" -------------------------------------");
 
-console.log(valuesArray);
-console.log(keysAlumnos);
 
-for (let i = 0; i < valuesArray.length; i++) {
-  console.log(
-    `Esta clave ${keysAlumnos[i]} tiene el valor  ${valuesArray[i]}:`
-  );
-}
-
-//Repaso objetos
-
-const car = {
-  year: 2000,
-  marca: "renault",
-  modelo: "clio",
-  cv: 120,
-};
-
-//métodos object
-Object.keys(car);
-Object.values(car);
-
-//para hacer una copia
-const copyCar = { ...car, year: 1999 }; //para cambiar directamente una propiedad de la copia del objeto
-
-//! Objects
-//object.entries, o hacer un arr con un obj
+//! hacer un array con un object-position: 
 
 const person = {
-  name: "Guille",
-  adress: "Barcelona",
-  age: 26,
-};
+    name: "Pedro",
+    adress: "Madrid",
+    age: 30
+}
+console.log("--------------------")
+const arrayObject = Object.entries(person)
+console.log("🚀 ~ file: app.js:57 ~ arrayObject:", arrayObject)
+console.log("--------------------")
 
-const arrObj = Object.entries(person); // crea tuplas (tipo de dato en typescript arr de clave - valor)
+//! delete de una clave con su valor 
+
+delete person.age
+console.log("--------------------")
+console.log(person)
+console.log("--------------------")
+
+
+//! ------ teorio de los arrays paralelos----------------------------- 
+console.log(" -------------------------------------")
+
+console.log(valuesArray)
+console.log(keysAlumnos)
+
+
+for (let i = 0; i < valuesArray.length; i++) {
+    console.log(`Esta clave ${keysAlumnos[i]} tiene el valor  ${valuesArray[i]}:`);
+}
+
+
+
+
+
