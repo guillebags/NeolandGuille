@@ -149,6 +149,10 @@ body {
         text-transform: none;
       }
       & .mailSubmit {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
         & input {
           background-color: #131313;
           padding: 1em;
