@@ -48,4 +48,16 @@ console.log(legendsStreamers);
 
 //5.6 Dado el siguiente html y javascript, utiliza .filter() para mostrar por consola los streamers que incluyan la palabra introducida en el input. De esta forma, si introduzco 'Ru' me deberia de mostrar solo el streamer 'Rubius'. Si introduzco 'i', me deberia de mostrar el streamer 'Rubius' e 'Ibai'.
 
+const inputValue = document.querySelector("input").value;
+const filterStreamers = (arr, value) => {
+  arr.filter(({ name }) => name.includes(value));
+};
+
 //5.7 Dado el siguiente html y javascript, utiliza .filter() para mostrar por consola los streamers que incluyan la palabra introducida en el input. De esta forma, si introduzco 'Ru' me deberia de mostrar solo el streamer 'Rubius'. Si introduzco 'i', me deberia de mostrar el streamer 'Rubius' e 'Ibai'.En este caso, muestra solo los streamers filtrados cuando hagamos click en el button.
+
+const filterButton = document.querySelector("button");
+const filterClick = () => {
+  filterButton.addEventListener("click", () =>
+    filterStreamers(streamers, input)
+  );
+};
