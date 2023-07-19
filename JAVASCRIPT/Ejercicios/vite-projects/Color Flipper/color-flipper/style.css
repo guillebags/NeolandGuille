@@ -1,0 +1,52 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  background-color: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+* {
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100vh;
+  & #app {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    & .block {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #242424;
+      color: rgba(255, 255, 255, 0.87);
+      padding: 1rem;
+      width: 100vw;
+      text-align: center;
+      min-height: 12vh;
+
+      & #color-name {
+        text-transform: capitalize;
+      }
+      & #color-picker {
+        min-width: 12.5rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
