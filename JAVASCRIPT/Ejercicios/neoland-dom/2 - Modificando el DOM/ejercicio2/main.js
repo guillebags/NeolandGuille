@@ -26,3 +26,8 @@ p.appendChild(textoP);
 main.appendChild(p);
 
 //2.5 Inserta en el h2 con la clase .fn-insert-here el texto 'Wubba Lubba dub dub'.
+
+const textoH2 = document.createTextNode("Wubba Lubba dub dub");
+const h2 = document.h2.getElementsByClassName("fn-insert-here");
+
+h2.innerText += "Wubba Lubba dub dub";
