@@ -1,10 +1,10 @@
-import './style.css'
-import { hello, initControler, initTemplate } from './utils'
+import "./style.css";
+import { hello, initControler, initTemplate } from "./utils";
 
-hello()
+hello();
 
 //! ---------------------------> renderizamos las etiquetas de la estructura inicial
-initTemplate()
+initTemplate();
 
 //! ---------------------------> lo ponemos sin parametro para que salte al caso de switch de undefined para evaluar el user
-initControler()
+initControler();
