@@ -1,5 +1,7 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
+import { printTemplateDashboard } from "../pages/Dashboard/Dashboard";
+
 export const initControler = (path) => {
   switch (path) {
     case undefined:
@@ -10,8 +12,8 @@ export const initControler = (path) => {
       "Pokemon()";
       break;
 
-    case "Dashboard()":
-      "Dashboard()";
+    case "Dashboard":
+      printTemplateDashboard();
       break;
   }
 };
