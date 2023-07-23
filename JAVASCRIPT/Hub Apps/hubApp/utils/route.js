@@ -1,6 +1,6 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
-import { printTemplateDashboard } from "../pages/Dashboard/Dashboard";
+import { printTemplateDashboard } from "../pages";
 
 export const initControler = (path) => {
   switch (path) {
