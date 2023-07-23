@@ -12,4 +12,5 @@ const template = () => `
 
 export const printTemplateDashboard = () => {
   document.querySelector("main").innerHTML = template();
+  document.querySelector(".navHeader").style.display = "flex";
 };

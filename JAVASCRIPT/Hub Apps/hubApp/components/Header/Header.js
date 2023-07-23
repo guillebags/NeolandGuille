@@ -1,3 +1,4 @@
+import { getUser } from "../../Global/state/globalState";
 import { initControler } from "../../utils/route";
 import "./Header.css";
 
@@ -28,17 +29,23 @@ const template = () => `
 `;
 
 const addListeners = () => {
-  // const changeTeam = document.getElementById("changeTeam");
-  // changeTeam.addEventListener("click", (e) => {});
-
   const buttonDashboard = document.getElementById("buttonDashboard");
   buttonDashboard.addEventListener("click", () => {
-    console.log("entro");
     initControler("Dashboard");
   });
 
-  // const buttonLogout = document.getElementById("buttonLogout");
-  // buttonLogout.addEventListener("click", (e) => {});
+  const buttonLogout = document.getElementById("buttonLogout");
+  buttonLogout.addEventListener("click", () => {
+    const userState = getUser().name;
+    const currentUser = localStorage.getItem(userState);
+    const parsedCurrentUser = JSON.parse(currentUser);
+    const updateUser = { ...parsedCurrentUser, token: false };
+    const stringUpdateUser = JSON.stringify(updateUser);
+    localStorage.removeItem(userState);
+    sessionStorage.removeItem("currentUser");
+    localStorage.setItem(userState, stringUpdateUser);
+    initControler("Login");
+  });
 };
 
 export const printTemplate = () => {

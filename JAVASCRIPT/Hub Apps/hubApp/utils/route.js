@@ -1,11 +1,12 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
-import { printTemplateDashboard } from "../pages";
+import { getUser } from "../Global/state/globalState";
+import { Login, printTemplateDashboard } from "../pages";
 
 export const initControler = (path) => {
   switch (path) {
     case undefined:
-      localStorage.getItem("user") ? "Dashboard()" : "Login()";
+      localStorage.getItem(getUser().name) ? printTemplateDashboard() : Login();
       break;
 
     case "Pokemon":
@@ -14,6 +15,9 @@ export const initControler = (path) => {
 
     case "Dashboard":
       printTemplateDashboard();
+      break;
+    case "Login":
+      Login();
       break;
   }
 };

@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: ease-in-out 0.7s;
 }
 
 & main {
@@ -16,4 +15,8 @@
 
 & #app {
   min-height: 100vh;
+}
+
+& body {
+  transition: ease-in-out 0.7s;
 }
