@@ -1,7 +1,7 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
 import { getUser } from "../Global/state/globalState";
-import { Login, printTemplateDashboard } from "../pages";
+import { Login, PrintPokemonPage, printTemplateDashboard } from "../pages";
 
 export const initControler = (path) => {
   switch (path) {
@@ -10,7 +10,7 @@ export const initControler = (path) => {
       break;
 
     case "Pokemon":
-      "Pokemon()";
+      PrintPokemonPage();
       break;
 
     case "Dashboard":
