@@ -1,3 +1,10 @@
+#loadingDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #41c19e;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;

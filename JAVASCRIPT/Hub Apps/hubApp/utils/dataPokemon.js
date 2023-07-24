@@ -1,3 +1,4 @@
+import { cardsPokemons } from "../components";
 import { getByIdPokemon } from "../services/pokemon.service";
 import { typePokemon } from "./typePokemon";
 let dataGlobal;
@@ -26,4 +27,35 @@ const dataMap = (data) => {
     type: types,
   };
   return dataGlobal;
+};
+
+export const filterPokemon = (filter, element) => {
+  switch (element) {
+    case "type":
+      const filterData = dataGlobal.pokemonData.filter((pokemon) =>
+        pokemon.type[0].type.name.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filterData.length === 0) {
+        const filterData = dataGlobal.pokemonData.filter((pokemon) =>
+          pokemon.type[1]?.type.name
+            .toLowerCase()
+            .includes(filter.toLowerCase())
+        );
+        cardsPokemons(filterData);
+      } else {
+        cardsPokemons(filterData);
+      }
+
+      break;
+
+    case "name":
+      {
+        const filterData = dataGlobal.pokemonData.filter((pokemon) =>
+          pokemon.name.toLowerCase().includes(filter.toLowerCase())
+        );
+        cardsPokemons(filterData);
+      }
+
+      break;
+  }
 };

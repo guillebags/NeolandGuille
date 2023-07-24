@@ -9,7 +9,7 @@ const template = () => `
     <form class="login">
       <div class="login__field">
         <i class="login__icon fas fa-user"></i>
-        <input type="text" name="username" id="username" placeholder="User Name"/>
+        <input type="text" name="username" required id="username" placeholder="User Name" />
 
       </div>
       <button class="button login__submit" id = "buttonLogin" >

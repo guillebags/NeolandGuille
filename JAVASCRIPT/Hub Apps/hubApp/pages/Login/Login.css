@@ -13,11 +13,11 @@
   justify-content: center;
   min-height: 70vh;
   min-width: 100vw;
-  background: linear-gradient(90deg, #9f9086, #ff6606);
+  background: linear-gradient(90deg, #363537, #ff6606);
 }
 
 .screen {
-  background: linear-gradient(90deg, #ff6407, #3f3e40);
+  background: linear-gradient(90deg, #ff6407, #363537);
   position: relative;
   display: flex;
   flex-direction: column;

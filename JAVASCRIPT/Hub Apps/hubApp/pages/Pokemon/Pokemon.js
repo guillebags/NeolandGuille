@@ -1,4 +1,4 @@
-import { cardsPokemons } from "../../components";
+import { cardsPokemons, PrintButton } from "../../components";
 import { PrintSpinner } from "../../components/Spinner/Spinner";
 import { dataPokemon } from "../../utils";
 import "./Pokemon.css";
@@ -6,13 +6,9 @@ import "./Pokemon.css";
 const template = () => `
   <div id="pokemon">
     <div id="containerFilter">
-      <div id="spinnerButtonFilter"></div>
       <div id="filterButton"></div>
-      <input
-        type="text"
-        id="inputPokemon"
-        placeholder="Busca tu pokemon favorito"
-      />
+
+      <input type="text" id="inputPokemon" placeholder="Search..." />
     </div>
     <div id="paginacion"></div>
     <div id="spinner"></div>
@@ -28,6 +24,7 @@ const dataService = async () => {
   cardsPokemons(pokemonData);
 
   document.getElementById("spinner").innerHTML = "";
+  PrintButton(type);
 };
 
 const addListeners = () => {};

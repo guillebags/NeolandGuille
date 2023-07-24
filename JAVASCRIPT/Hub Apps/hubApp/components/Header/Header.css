@@ -19,12 +19,13 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-family: "Tektur", cursive;
+
     & figure {
       height: 20vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Tektur", cursive;
       text-transform: uppercase;
       color: #363537;
       letter-spacing: 3px;

@@ -16,13 +16,13 @@ const template = () => `
   </figure>
   <nav class="navHeader">
     <img
-      src="https://res.cloudinary.com/dluwybogp/image/upload/v1690216555/3990-19536-pokemon-go-agrandir-le-sac-objet-orig-1-article_image_d-1_qtbee6.webp"
+      src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/pokedex1_nofgat.png"
       alt="navigate to dashboard"
       id="buttonDashboard"
     />
 
     <img
-      src="https://cdn-icons-png.flaticon.com/128/10309/10309341.png"
+      src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232724/logout1_tm5olv.png"
       alt="log out"
       id="buttonLogout"
     />
