@@ -31,3 +31,7 @@ export const cardsPokemons = (data) => {
     document.getElementById("galleryPokemon").innerHTML += templateFigure;
   });
 };
+
+/*${pokemon.type[0].type.name} ${
+  pokemon.type[1]?.type.name
+}*/

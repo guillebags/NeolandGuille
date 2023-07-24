@@ -1,4 +1,5 @@
 import { cardsPokemons } from "../../components";
+import { PrintSpinner } from "../../components/Spinner/Spinner";
 import { dataPokemon } from "../../utils";
 import "./Pokemon.css";
 
@@ -21,14 +22,18 @@ const template = () => `
 
 const dataService = async () => {
   const getData = await dataPokemon();
-  console.log(getData);
+
   const { pokemonData, type } = getData;
+
   cardsPokemons(pokemonData);
+
+  document.getElementById("spinner").innerHTML = "";
 };
 
 const addListeners = () => {};
 
 export const PrintPokemonPage = () => {
   document.querySelector("main").innerHTML = template();
+  PrintSpinner();
   dataService();
 };

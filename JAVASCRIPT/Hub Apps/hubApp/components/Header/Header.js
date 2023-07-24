@@ -16,7 +16,7 @@ const template = () => `
   </figure>
   <nav class="navHeader">
     <img
-      src="https://cdn.icon-icons.com/icons2/851/PNG/512/Bag_icon-icons.com_67588.png"
+      src="https://res.cloudinary.com/dluwybogp/image/upload/v1690216555/3990-19536-pokemon-go-agrandir-le-sac-objet-orig-1-article_image_d-1_qtbee6.webp"
       alt="navigate to dashboard"
       id="buttonDashboard"
     />
