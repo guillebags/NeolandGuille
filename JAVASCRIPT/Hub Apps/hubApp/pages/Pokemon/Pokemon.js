@@ -1,5 +1,6 @@
 import { cardsPokemons } from "../../components";
 import { dataPokemon } from "../../utils";
+import "./Pokemon.css";
 
 const template = () => `
   <div id="pokemon">
