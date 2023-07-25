@@ -2,6 +2,7 @@
 
 import { getUser } from "../Global/state/globalState";
 import { Login, PrintPokemonPage, printTemplateDashboard } from "../pages";
+import { PrintQuizPage } from "../pages/Quiz/quiz";
 
 export const initControler = (path) => {
   switch (path) {
@@ -16,8 +17,13 @@ export const initControler = (path) => {
     case "Dashboard":
       printTemplateDashboard();
       break;
+
     case "Login":
       Login();
+      break;
+
+    case "Quiz":
+      PrintQuizPage();
       break;
   }
 };

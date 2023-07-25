@@ -1,0 +1,10 @@
+#quizContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & #startButtonQuiz {
+    width: 200px;
+    height: 40px;
+    margin: 1em;
+  }
+}

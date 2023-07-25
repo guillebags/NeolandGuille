@@ -1,4 +1,3 @@
-import { cardsPokemons } from "../components";
 import { getByIdPokemon } from "../services/pokemon.service";
 import { Paginacion } from "./paginacion";
 import { typePokemon } from "./typePokemon";
