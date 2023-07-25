@@ -31,14 +31,15 @@ export const PrintQuiz = (data) => {
   answersArray.sort((a, b) => (a.name < b.name ? -1 : 1));
   console.log(answersArray);
   const answerElements = answersArray.reduce(
-    (acc, { name }) => acc + `<li><button>${name}</button></li>`,
+    (acc, { name }) =>
+      acc + `<li><button class="answerButton">${name}</button></li>`,
     ""
   );
 
   const templateQuestion = `<figure id="questionPokemon">
     <img
       src=${correctPokemon.image}
-      alt="Who's this pokemon?"
+      alt="Who's that pokemon?"
       class="questionImage"
     />
     <h2>Who's this pokemon?</h2>
@@ -50,7 +51,27 @@ export const PrintQuiz = (data) => {
         ${answerElements}
       </ul>
     </div>
+
   `;
   document.getElementById("question").innerHTML = templateQuestion;
   document.getElementById("answer").innerHTML = templateAnswer;
+
+  const buttons = document.querySelectorAll(".answerButton");
+  console.log(buttons);
+  buttons.forEach((answer) => {
+    answer.setAttribute(
+      "isCorrect",
+      `${answer.textContent == correctPokemon.name}`
+    );
+  });
+
+  const templateButton = `
+    <div id="buttonContainer">
+      <button id="nextQuestion" type="button">Try again!</button>
+    </div>
+  `;
+
+  document
+    .getElementById("answer")
+    .insertAdjacentHTML("afterend", templateButton);
 };
