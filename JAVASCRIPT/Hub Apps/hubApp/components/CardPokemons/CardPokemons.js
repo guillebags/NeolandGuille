@@ -8,11 +8,7 @@ export const cardsPokemons = (data) => {
       class=${classCustomType}
       id="figurePokemon"
     >
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/3334/3334338.png"
-        alt="add to favs"
-        id="addFavIcon"
-      />
+      <button id="addFavIcon"></button>
       <div class="card-front">
         <img src=${pokemon.image} alt=${pokemon.name} class="pokemonImage" />
         <section>
