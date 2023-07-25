@@ -1,5 +1,6 @@
 import { cardsPokemons } from "../components";
 import { getByIdPokemon } from "../services/pokemon.service";
+import { Paginacion } from "./paginacion";
 import { typePokemon } from "./typePokemon";
 let dataGlobal;
 export const dataPokemon = async () => {
@@ -41,9 +42,9 @@ export const filterPokemon = (filter, element) => {
             .toLowerCase()
             .includes(filter.toLowerCase())
         );
-        cardsPokemons(filterData);
+        Paginacion(filterData, 9);
       } else {
-        cardsPokemons(filterData);
+        Paginacion(filterData, 9);
       }
 
       break;
@@ -53,7 +54,11 @@ export const filterPokemon = (filter, element) => {
         const filterData = dataGlobal.pokemonData.filter((pokemon) =>
           pokemon.name.toLowerCase().includes(filter.toLowerCase())
         );
-        cardsPokemons(filterData);
+        if (filter == "") {
+          Paginacion(filterData, 12);
+        } else {
+          Paginacion(filterData, 12);
+        }
       }
 
       break;

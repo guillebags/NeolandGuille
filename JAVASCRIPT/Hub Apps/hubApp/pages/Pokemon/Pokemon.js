@@ -1,6 +1,6 @@
 import { cardsPokemons, PrintButton } from "../../components";
 import { PrintSpinner } from "../../components/Spinner/Spinner";
-import { dataPokemon } from "../../utils";
+import { dataPokemon, filterPokemon, Paginacion } from "../../utils";
 import "./Pokemon.css";
 
 const template = () => `
@@ -25,9 +25,16 @@ const dataService = async () => {
 
   document.getElementById("spinner").innerHTML = "";
   PrintButton(type);
+  addListeners();
+  Paginacion(pokemonData, 9);
 };
 
-const addListeners = () => {};
+const addListeners = () => {
+  const inputPokemon = document.getElementById("inputPokemon");
+  inputPokemon.addEventListener("input", (e) => {
+    filterPokemon(e.target.value, "name");
+  });
+};
 
 export const PrintPokemonPage = () => {
   document.querySelector("main").innerHTML = template();
