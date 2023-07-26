@@ -20,7 +20,16 @@ const template = () => `
       alt="navigate to dashboard"
       id="buttonDashboard"
     />
-
+    <img
+    src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/ajustes1_yijfdd.png"
+    alt="disabled for now"
+    id="buttonSettings"
+  />
+  <img
+      src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/huevo1_jxk7d4.png"
+      alt="disabled for now"
+      id="buttonEgg"
+    />
     <img
       src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232724/logout1_tm5olv.png"
       alt="log out"

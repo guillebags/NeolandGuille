@@ -3,7 +3,8 @@ import { initControler } from "../../utils/route";
 import "./Login.css/";
 
 const template = () => `
-<div class="container" id="containerLogin">
+
+<div class="container bg" id="containerLogin">
 <div class="screen">
   <div class="screen__content">
     <form class="login">
@@ -19,7 +20,7 @@ const template = () => `
     </form>
   </div>
   <div class="screen__background">
-    <img src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/a5/latest/20160604220739/Rotom.png/200px-Rotom.png" alt="rotom login" class="screen__background__shape" id="rotomLogin">
+    <img src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/a/a5/latest/20160604220739/Rotom.png/300px-Rotom.png" alt="rotom login"  id="rotomLogin">
     <span class="screen__background__shape screen__background__shape1"></span>
   </div>		
 </div>

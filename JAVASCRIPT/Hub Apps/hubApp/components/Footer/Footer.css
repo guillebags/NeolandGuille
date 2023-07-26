@@ -1,5 +1,6 @@
 footer {
   & #footer {
+    transition: 0.4s;
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -16,6 +17,7 @@ footer {
       height: 8vh;
       margin: 0.8em;
       transition: ease-in-out 0.3s;
+      transition: 1s;
 
       &:hover {
         transform: scale(1.2);

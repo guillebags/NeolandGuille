@@ -1,17 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Raleway, sans-serif;
 }
 
 #containerLogin {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 70vh;
+  height: 70vh;
+
   min-width: 100vw;
   background: linear-gradient(90deg, #363537, #ff6606);
 }
@@ -19,19 +17,16 @@
 .screen {
   background: linear-gradient(90deg, #ff6407, #363537);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 50vh;
+
+  height: 40vh;
   width: 50vw;
   box-shadow: 0px 0px 24px #625b56;
-  border-radius: 10%;
+  border-radius: 20px;
 }
 
 .screen__content {
   z-index: 1;
   position: relative;
-  height: 100%;
 }
 
 .screen__background {
@@ -51,24 +46,38 @@
 }
 
 .screen__background__shape1 {
-  height: 70%;
-  width: 70%;
+  height: 60vh;
+  transform: rotate(140deg);
+  width: 40vw;
   background: #eef0f255;
-  top: -50px;
-  right: 120px;
+  top: -200px;
+  right: 200px;
   border-radius: 72px;
 }
 
 #rotomLogin {
-  top: 40em;
-  right: 50em;
-  transform: none;
+  position: relative;
+  width: 200px;
+  transition: 0.2s;
+  margin: 2em;
+  animation: rebota 1s alternate infinite ease-in;
+  transition: all 1s ease-in-out;
+
+  @media (max-width: 800px) {
+    width: 125px;
+    top: 40px;
+  }
 }
 
 .login {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   width: 300px;
   padding: 30px;
-  padding-top: 156px;
+  padding-top: 250px;
   & ::placeholder {
     color: rgba(245, 245, 245, 0.657);
   }
@@ -83,6 +92,11 @@
   font-weight: 700;
   width: 75%;
   transition: 0.2s;
+  @media (max-width: 800px) {
+    font-size: small;
+    width: 50%;
+    padding-left: 15px;
+  }
 }
 
 #username:active,
@@ -108,10 +122,22 @@
   box-shadow: 0px 2px 2px #625b56;
   cursor: pointer;
   transition: 0.2s;
+  @media (max-width: 800px) {
+    font-size: small;
+    width: 50%;
+    align-content: center;
+    place-self: start;
+  }
 }
 
 .login__submit:active,
 .login__submit:focus,
 .login__submit:hover {
   background-color: #fabf98;
+}
+
+@keyframes rebota {
+  100% {
+    transform: translateY(10px);
+  }
 }

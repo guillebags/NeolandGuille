@@ -10,20 +10,21 @@ header {
   -moz-box-shadow: 0px 8px 30px -3px rgba(0, 0, 0, 0.61);
   box-shadow: 0px 8px 30px -3px rgba(0, 0, 0, 0.61);
   z-index: 100;
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
 
   & #header {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     font-family: "Tektur", cursive;
-
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
     & figure {
       height: 20vh;
+      margin-left: 10em;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-transform: uppercase;
@@ -32,6 +33,7 @@ header {
       font-size: 20px;
       @media (max-width: 600px) {
         font-size: 12px;
+        height: 10vh;
       }
     }
     & #logoRotom {
@@ -46,21 +48,27 @@ header {
   }
 
   & nav {
-    width: 40vw;
+    margin-right: 10em;
+    height: 20vh;
+    width: 20rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30%;
+    gap: 20%;
     & img {
       width: 20vw;
       margin: 1em;
       transition: ease-in-out 0.3s;
-      @media (min-width: 1300px) {
-        width: 5vw;
-      }
+
       &:hover {
         transform: scale(1.2);
       }
+    }
+    & #buttonLogout {
+      max-width: 2em;
+      align-self: flex-start;
+      padding: 0;
+      margin-top: 1em;
     }
   }
 }
