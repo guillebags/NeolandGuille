@@ -1,39 +1,40 @@
 #figurePokemon {
   width: 240px;
-  height: 300px;
-  border-radius: 12px;
+  height: 340px;
+  border-radius: 18px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   margin: 1rem;
-  padding: 1em;
 
   & #addFavIcon {
-    width: 40px;
-    height: 40px;
-    place-self: flex-end;
+    padding: 2em 1em 0 0;
+    position: relative;
+
+    left: -0.5em;
+    width: 30px;
+    height: 30px;
+    place-self: end;
     border-radius: 50%;
-    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690330439/fav4_etakrj.png");
+    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690233094/fav0_trlvzj.png");
     background-position: center;
     background-size: cover;
     border: none;
+    background-color: transparent;
   }
 
   .card-front {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 0.5em;
-    text-align: center;
-    text-transform: capitalize;
-    height: 180px;
-    width: 164px;
-    & section {
-      display: flex;
-      flex-direction: column;
-    }
+    justify-content: space-evenly;
+    width: 232px;
+    height: 350px;
+    gap: 1rem;
+    box-shadow: 0 8px 15px 0 rgba(46, 50, 114, 0.37);
+    border-radius: 10px;
+    border: none;
   }
 }
 
@@ -46,32 +47,35 @@
 }
 
 & .pokemonImage {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
 }
 
 .grass {
   background-color: #63bb5b75;
 }
 figure.grass {
-  border: 10px solid #63bb5b;
+  border-top: 10px double #63bb5b75;
+  border-right: 2px double #63bb5b75;
+  border-bottom: 10px double #63bb5b75;
+  border-left: 2px double #63bb5b75;
 }
 
 figure.bug {
-  border: 10px solid #8fc12c;
+  border: 10px solid #8fc12c80;
 }
 .bug {
   background-color: #8fc12c80;
 }
 
 figure.dark {
-  border: 10px solid #5a5366;
+  border: 10px solid #5a536687;
 }
 .dark {
   background-color: #5a536687;
 }
 figure.dragon {
-  border: 10px solid #0a6dc4;
+  border: 10px solid #0a6dc482;
 }
 .dragon {
   background-color: #0a6dc482;

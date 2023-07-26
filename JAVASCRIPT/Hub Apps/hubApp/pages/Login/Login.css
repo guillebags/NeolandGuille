@@ -11,11 +11,11 @@
   height: 70vh;
 
   min-width: 100vw;
-  background: linear-gradient(90deg, #363537, #ff6606);
+  background: linear-gradient(90deg, #363537, #41c19e);
 }
 
 .screen {
-  background: linear-gradient(90deg, #ff6407, #363537);
+  background: linear-gradient(90deg, #ff660724, #41c19f6e);
   position: relative;
 
   height: 40vh;

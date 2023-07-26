@@ -1,10 +1,8 @@
-main {
+#quizContainer {
   background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690331631/pokeball-pokemon-minimal_dnrfqt.jpg");
   background-size: cover;
   display: flex;
   width: 100vw;
-}
-& #quizContainer {
   display: flex;
   justify-content: center;
   align-items: center;

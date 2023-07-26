@@ -1,7 +1,12 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
 import { getUser } from "../Global/state/globalState";
-import { Login, PrintPokemonPage, printTemplateDashboard } from "../pages";
+import {
+  Login,
+  PrintMemoryGame,
+  PrintPokemonPage,
+  printTemplateDashboard,
+} from "../pages";
 import { PrintQuizPage } from "../pages/Quiz/quiz";
 
 export const initControler = (path) => {
@@ -24,6 +29,10 @@ export const initControler = (path) => {
 
     case "Quiz":
       PrintQuizPage();
+      break;
+
+    case "Memory":
+      PrintMemoryGame();
       break;
   }
 };

@@ -7,7 +7,6 @@ export const changeTeam = (e) => {
     case "changeTeamInstinct":
       PrintTemplateFooter();
       document.getElementById("changeTeamInstinct").style.display = "none";
-      document.getElementById("changeTeamInstinct").style.trans;
       document.getElementById("logoRotom").src =
         "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/yellow_bzc7g6.png";
       document.getElementById("logoText").innerText = "Team Instinct";
@@ -31,7 +30,7 @@ export const changeTeam = (e) => {
       document.getElementById("logoRotom").src =
         "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/red_qi3wpb.png";
       document.getElementById("logoText").innerText = "Team Valor";
-      document.getElementById("footer").style.backgroundColor = "#f3150a";
+      document.getElementById("footer").style.backgroundColor = "#f3150";
   }
 };
 //por cada click, hacer un bucle para que con cada click se pinte un tema diferente
