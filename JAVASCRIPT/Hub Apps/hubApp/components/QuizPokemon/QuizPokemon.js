@@ -1,7 +1,7 @@
 import "./QuizPokemon.css";
 
 export const PrintQuiz = (data) => {
-  document.getElementById("spinner").innerHTML = "";
+  document.getElementById("quizSpinner").innerHTML = "";
 
   const getRandom = (min, max) => {
     min = Math.ceil(min);

@@ -4,12 +4,12 @@ import { PrintQuizSpinner } from "../../components/QuizSpinner/QuizSpinner";
 import "./quiz.css";
 
 const template = () => `<div id="quizContainer">
-  <div id="spinner"></div>
+  <div id="quizSpinner"></div>
   <div id="startButtonContainer">
-    <button type="button" id="startButtonQuiz">Get Started!</button>
-  </div>
+    <button type="button" id="startButtonQuiz"><h2>Get Started!</h2></button>
+  </div><div id="quizActive">
   <div id="question"></div>
-  <div id="answer"></div>
+  <div id="answer"></div></div>
 </div> `;
 
 const dataGetter = async () => {
