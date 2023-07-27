@@ -2,9 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
-  padding-bottom: 10vh;
-
+  height: 70vh;
   background-color: #41c19f57;
 
   & img {
@@ -18,7 +16,7 @@
     width: 100vw;
     list-style: none;
     gap: 4em;
-    padding: 2em;
+
     & li figure {
       width: 250px;
       height: 250px;

@@ -1,17 +1,23 @@
+#memoryContainer {
+  background: linear-gradient(#e62723, #67c5e1);
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 h3 {
   text-align: center;
   padding: 2em;
 }
 
 .memory-game {
-  width: 100vw;
-  height: 60vh;
-  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(#e62723, #67c5e1);
 }
 
 .containerEnd {
@@ -19,18 +25,30 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   gap: 2rem;
 }
 .memory-card {
   width: 200px;
   height: 230px;
-  margin: 5px;
+
   position: relative;
-  transform: scale(1);
+
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+  border: none;
+  &:hover {
+    transform: scale(0.95);
+  }
+  @media (max-width: 900px) {
+    width: 150px;
+    height: 180px;
+  }
+  @media (max-width: 500px) {
+    width: 100px;
+    height: 130px;
+  }
 }
 
 .memory-card:active {
@@ -48,15 +66,29 @@ h3 {
 
 .front-face,
 .back-face {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
+  padding: 1em;
+  width: 200px;
+  height: 230px;
   position: absolute;
-  border-radius: 5px;
-  background: #1ccccc;
+  background-color: transparent;
   backface-visibility: hidden;
+  @media (max-width: 900px) {
+    width: 150px;
+    height: 180px;
+  }
+  @media (max-width: 500px) {
+    width: 100px;
+    height: 130px;
+  }
 }
 
 .front-face {
   transform: rotateY(180deg);
+  background-color: transparent;
+  border-radius: 5px;
+  object-fit: contain;
+  place-items: center;
+}
+.back-face {
+  object-fit: contain;
 }

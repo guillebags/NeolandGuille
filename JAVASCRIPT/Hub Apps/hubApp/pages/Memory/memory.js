@@ -3,159 +3,159 @@ import "./memory.css";
 import JSConfetti from "js-confetti";
 
 const template = () => `
-<div id="#gameMemory">
-  <div id="time"></div>
-  <section class="memory-game">
-    <div class="memory-card" id="lavado" data-framework="lavado">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_lavado_HOME_gfvcqs.png"
-        alt="Rotom Lavado"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="lavado" data-framework="lavado">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_lavado_HOME_gfvcqs.png"
-        alt="Rotom Lavado"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
+  <div id="memoryContainer">
+    <div id="time"></div>
+    <section class="memory-game">
+      <div class="memory-card" id="lavado" data-framework="lavado">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_lavado_HOME_gfvcqs.png"
+          alt="Rotom Lavado"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="lavado" data-framework="lavado">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_lavado_HOME_gfvcqs.png"
+          alt="Rotom Lavado"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
 
-    <div class="memory-card" id="ventilador" data-framework="ventilador">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_ventilador_HOME_vc0xcw.png"
-        alt="Rotom ventilador"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="ventilador" data-framework="ventilador">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_ventilador_HOME_vc0xcw.png"
-        alt="Rotom ventilador"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
+      <div class="memory-card" id="ventilador" data-framework="ventilador">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_ventilador_HOME_vc0xcw.png"
+          alt="Rotom ventilador"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="ventilador" data-framework="ventilador">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_ventilador_HOME_vc0xcw.png"
+          alt="Rotom ventilador"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
 
-    <div class="memory-card" id="corte" data-framework="corte">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_corte_HOME_koypwn.png"
-        alt="Rotom Corte"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="corte" data-framework="corte">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_corte_HOME_koypwn.png"
-        alt="Rotom Corte"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
+      <div class="memory-card" id="corte" data-framework="corte">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_corte_HOME_koypwn.png"
+          alt="Rotom Corte"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="corte" data-framework="corte">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_corte_HOME_koypwn.png"
+          alt="Rotom Corte"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
 
-    <div class="memory-card" id="rotom" data-framework="rotom">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_HOME_ypkpoj.png"
-        alt="Rotom normal"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="rotom" data-framework="rotom">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_HOME_ypkpoj.png"
-        alt="Rotom normal"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
+      <div class="memory-card" id="rotom" data-framework="rotom">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_HOME_ypkpoj.png"
+          alt="Rotom normal"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="rotom" data-framework="rotom">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375981/240px-Rotom_HOME_ypkpoj.png"
+          alt="Rotom normal"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
 
-    <div class="memory-card" id="frio" data-framework="frio">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_fr%C3%ADo_HOME_qsu9bf.png"
-        alt="Rotom frio"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="frio" data-framework="frio">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_fr%C3%ADo_HOME_qsu9bf.png"
-        alt="Rotom frio"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
+      <div class="memory-card" id="frio" data-framework="frio">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_fr%C3%ADo_HOME_qsu9bf.png"
+          alt="Rotom frio"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="frio" data-framework="frio">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_fr%C3%ADo_HOME_qsu9bf.png"
+          alt="Rotom frio"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
 
-    <div class="memory-card" id="calor" data-framework="calor">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_calor_HOME_oeayeb.png"
-        alt="Rotom calor"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-    <div class="memory-card" id="calor" data-framework="calor">
-      <img
-        class="front-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_calor_HOME_oeayeb.png"
-        alt="Rotom calor"
-      />
-      <img
-        class="back-face"
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
-        alt="Card Pokemon"
-      />
-    </div>
-  </section>
+      <div class="memory-card" id="calor" data-framework="calor">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_calor_HOME_oeayeb.png"
+          alt="Rotom calor"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+      <div class="memory-card" id="calor" data-framework="calor">
+        <img
+          class="front-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690375980/240px-Rotom_calor_HOME_oeayeb.png"
+          alt="Rotom calor"
+        />
+        <img
+          class="back-face"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          alt="Card Pokemon"
+        />
+      </div>
+    </section>
   </div>
 `;
 

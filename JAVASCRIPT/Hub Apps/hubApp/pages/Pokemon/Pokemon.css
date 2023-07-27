@@ -25,6 +25,9 @@
   padding: 10px;
   border: none;
   border-bottom: solid 2px #41c19e;
+  &:focus-visible {
+    outline-style: none;
+  }
 }
 
 #spinner {

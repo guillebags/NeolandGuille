@@ -45,6 +45,7 @@ const addListeners = () => {
     initControler();
   });
 };
+//to do, revisar cómo subo el user, para subir el array de Ids de pokemon favoritos al localstorage
 
 export const Login = () => {
   document.querySelector(".navHeader").style.display = "none";
