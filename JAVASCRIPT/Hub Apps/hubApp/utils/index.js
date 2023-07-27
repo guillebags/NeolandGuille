@@ -6,3 +6,4 @@ export * from "./dataPokemon";
 export * from "./typePokemon";
 export * from "./printTypeIcon";
 export * from "./paginacion";
+export * from "./timeout";

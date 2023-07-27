@@ -1,15 +1,13 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
-
+import "./style.css";
+import javascriptLogo from "./javascript.svg";
+import viteLogo from "/vite.svg";
+import { setupCounter } from "./counter.js";
 
 const handleresize = () => {
-  console.log("me estoy cambiando de tamaño")
+  console.log("me estoy cambiando de tamaño");
   if (window.innerWidth > 600) {
-    console.log("entro")
-    document.querySelector('#app').innerHTML = `
+    console.log("entro");
+    document.querySelector("#app").innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
@@ -25,21 +23,17 @@ const handleresize = () => {
       Click on the Vite logo to learn more
     </p>
   </div>
-`
+`;
 
-    document.querySelector('#app').innerHTML += `<h1> Hola caracola</h1>`
-
+    document.querySelector("#app").innerHTML += `<h1> Hola caracola</h1>`;
   } else {
-    document.querySelector('#app').innerHTML = ""
-
+    document.querySelector("#app").innerHTML = "";
   }
-
-
-}
-window.addEventListener("resize", handleresize)
+};
+window.addEventListener("resize", handleresize);
 if (window.innerWidth > 600) {
-  console.log("entro")
-  document.querySelector('#app').innerHTML = `
+  console.log("entro");
+  document.querySelector("#app").innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
@@ -55,12 +49,10 @@ if (window.innerWidth > 600) {
       Click on the Vite logo to learn more
     </p>
   </div>
-`
-
+`;
 }
 
-
-setupCounter(document.querySelector('#counter'))
+setupCounter(document.querySelector("#counter"));
 
 window.onbeforeunload = function () {
   return "Hay cambios sin guardar. ¿Salir ahora?";

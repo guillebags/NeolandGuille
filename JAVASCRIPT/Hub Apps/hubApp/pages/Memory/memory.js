@@ -1,3 +1,4 @@
+import { intervalos, limpiadorTiempos } from "../../utils/timeout";
 import "./memory.css";
 import JSConfetti from "js-confetti";
 
@@ -194,6 +195,7 @@ const disableCards = (numberFlip) => {
   numberFlip[1].classList.remove("flip");
 
   resetBoard();
+  ok === 6 && (segundos = 1);
 };
 
 const unflipCards = (numberFlip) => {
@@ -222,7 +224,7 @@ const shuffle = () => {
   });
   addListeners(cards);
   segundos = 30;
-  intervalo = setInterval(time, 1000);
+  intervalo = intervalos(time, 1000);
 };
 
 const addListeners = (cards) => {
@@ -241,7 +243,7 @@ const time = () => {
 
 const checkInterval = () => {
   if (segundos === 0) {
-    clearInterval(intervalo);
+    limpiadorTiempos(intervalo, "intervalo");
     const timer = document.getElementById("time");
     timer.innerHTML = "";
     const memory = document.querySelector(".memory-game");

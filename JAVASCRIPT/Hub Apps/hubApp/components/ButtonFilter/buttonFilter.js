@@ -20,4 +20,21 @@ const addListeners = (types) => {
       filterPokemon(type, "type");
     });
   });
+
+  const buttonResize = () => {
+    let containerFilter = document.querySelector("#filterButton");
+
+    containerFilter.innerHTML = "";
+    containerFilter.innerHTML = `
+      <select id="selectType"></select>`;
+    let selectorType = document.querySelector("#selectType");
+    types.forEach((type) => {
+      selectorType.innerHTML += `<option>${type}</option>`;
+    });
+  };
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 630) {
+      buttonResize();
+    }
+  });
 };

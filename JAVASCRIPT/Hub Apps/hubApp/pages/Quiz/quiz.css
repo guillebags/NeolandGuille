@@ -1,7 +1,8 @@
 #quizContainer {
   background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690331631/pokeball-pokemon-minimal_dnrfqt.jpg");
-  background-size: contain;
-
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 100%;
   width: 100vw;
   display: flex;
   padding-left: 60px;
@@ -10,10 +11,11 @@
   min-height: 70vh;
 
   & #startButtonQuiz {
+    height: 80%;
     letter-spacing: 8px;
     width: 400px;
     height: 80px;
-    margin: 1em;
+    margin-top: 40px;
     margin-left: 100px;
     border-radius: 18px;
     -webkit-box-shadow: 47px 56px 180px 58px rgba(54, 53, 55, 0.48);
@@ -31,11 +33,16 @@
     align-items: center;
     gap: 3em;
     text-align: center;
-
-    & .questionImage {
-      width: 400px;
-      height: 400px;
-      animation: rebota 1.5s alternate infinite ease-in-out;
+    & #question {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: aliceblue;
+      & .questionImage {
+        width: 400px;
+        height: 400px;
+        animation: rebota 1.5s alternate infinite ease-in-out;
+        margin-bottom: 5em;
+      }
     }
     & ul {
       list-style: none;
@@ -44,7 +51,10 @@
       display: flex;
       background-color: transparent;
       gap: 3em;
+
       & button {
+        text-transform: capitalize;
+        background-color: #eef0f2b5;
         width: 12em;
         height: 5em;
         border-radius: 10px;
@@ -55,6 +65,13 @@
         }
       }
     }
+  }
+  & #nextQuestion {
+    margin-left: 13.8em;
+    margin-top: 2em;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
   }
 }
 

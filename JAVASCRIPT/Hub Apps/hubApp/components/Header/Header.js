@@ -1,4 +1,5 @@
 import { getUser } from "../../Global/state/globalState";
+import { fulminarTiempos } from "../../utils";
 import { initControler } from "../../utils/route";
 import "./Header.css";
 
@@ -42,11 +43,13 @@ const template = () => `
 const addListeners = () => {
   const buttonDashboard = document.getElementById("buttonDashboard");
   buttonDashboard.addEventListener("click", () => {
+    fulminarTiempos();
     initControler("Dashboard");
   });
 
   const buttonLogout = document.getElementById("buttonLogout");
   buttonLogout.addEventListener("click", () => {
+    fulminarTiempos();
     const userState = getUser().name;
     const currentUser = localStorage.getItem(userState);
     const parsedCurrentUser = JSON.parse(currentUser);

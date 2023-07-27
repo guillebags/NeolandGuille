@@ -21,6 +21,7 @@ const dataGetter = async () => {
 
   addListeners();
 };
+let counter = 0;
 
 const addListeners = () => {
   const buttons = document.querySelectorAll(".answerButton");
@@ -28,6 +29,7 @@ const addListeners = () => {
     let attribute = answer.getAttribute("iscorrect");
     answer.addEventListener("click", () => {
       if (attribute == "true") {
+        counter++;
         answer.style.background = "#419b45";
         answer.setAttribute("disabled", "");
         buttons.forEach((answer) => {

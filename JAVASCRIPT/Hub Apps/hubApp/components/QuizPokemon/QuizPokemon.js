@@ -72,6 +72,6 @@ export const PrintQuiz = (data) => {
   `;
 
   document
-    .getElementById("answer")
+    .getElementById("quizActive")
     .insertAdjacentHTML("afterend", templateButton);
 };
