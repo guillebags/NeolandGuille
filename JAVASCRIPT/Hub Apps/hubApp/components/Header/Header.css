@@ -33,6 +33,11 @@ header {
       letter-spacing: 3px;
       font-size: 20px;
       @media (max-width: 1200px) {
+        font-size: 18px;
+        height: 12vh;
+        margin: 0;
+      }
+      @media (max-width: 800px) {
         font-size: 12px;
         height: 10vh;
         margin: 0;
@@ -43,6 +48,10 @@ header {
       height: 70%;
       object-fit: contain;
       @media (max-width: 1200px) {
+        width: 150px;
+        height: 50%;
+      }
+      @media (max-width: 800px) {
         width: 100px;
         height: 30%;
       }

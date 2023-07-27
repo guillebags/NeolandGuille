@@ -18,7 +18,9 @@ export const cardsPokemons = (data) => {
       </div>
       <div class="card-back">
         <div class="pokemonDescription">
-          <p class="height"><span>Height</span> ${pokemon.height / 10}m</p>
+          <p class="height"><span>Height</span> ${
+            pokemon.height / 10
+          }m</p><span>|</span>
           <p class="weight"><span> Weight</span> ${pokemon.weight / 10}kg</p>
         </div>
       </div>
