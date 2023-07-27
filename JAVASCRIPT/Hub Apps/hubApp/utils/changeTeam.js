@@ -10,7 +10,7 @@ export const changeTeam = (e) => {
       document.getElementById("logoRotom").src =
         "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/yellow_bzc7g6.png";
       document.getElementById("logoText").innerText = "Team Instinct";
-      document.getElementById("footer").style.backgroundColor = "#ffd200";
+      document.getElementById("footer").style.backgroundColor = "#f4e8a1";
       break;
 
     case "changeTeamMystic":
@@ -20,7 +20,7 @@ export const changeTeam = (e) => {
       document.getElementById("logoRotom").src =
         "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/blue_sbdpmg.png";
       document.getElementById("logoText").innerText = "Team Mystic";
-      document.getElementById("footer").style.backgroundColor = "#0677ee";
+      document.getElementById("footer").style.backgroundColor = "#E0FFFF";
       break;
 
     case "changeTeamValor":
@@ -30,7 +30,7 @@ export const changeTeam = (e) => {
       document.getElementById("logoRotom").src =
         "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/red_qi3wpb.png";
       document.getElementById("logoText").innerText = "Team Valor";
-      document.getElementById("footer").style.backgroundColor = "#f3150";
+      document.getElementById("footer").style.backgroundColor = "#f0a8a9";
   }
 };
 //por cada click, hacer un bucle para que con cada click se pinte un tema diferente

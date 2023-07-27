@@ -9,6 +9,7 @@
   margin: 1rem;
   text-transform: capitalize;
   text-align: center;
+  transition: 0.5s;
 
   & #addFavIcon {
     position: relative;

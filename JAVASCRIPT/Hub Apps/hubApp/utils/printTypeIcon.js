@@ -1,4 +1,4 @@
-export const printTypeIcon = (typeIcon, type) => {
+export const printTypeIcon = (type) => {
   switch (type) {
     case "grass":
       typeIcon.alt = type;
