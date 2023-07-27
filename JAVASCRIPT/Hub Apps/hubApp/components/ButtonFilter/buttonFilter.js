@@ -29,7 +29,16 @@ const addListeners = (types) => {
       <select id="selectType"></select>`;
     let selectorType = document.querySelector("#selectType");
     types.forEach((type) => {
-      selectorType.innerHTML += `<option>${type}</option>`;
+      const option = document.createElement("option");
+      // option.classList.add(`${type}`);
+      selectorType.appendChild(option);
+
+      option.classList.add(`${type}`);
+      option.innerText = `${type}`;
+    });
+    selectorType.addEventListener("change", (e) => {
+      console.log("entro", e.target.value);
+      filterPokemon(e.target.value, "type");
     });
   };
   window.addEventListener("resize", () => {

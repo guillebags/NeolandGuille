@@ -1,9 +1,17 @@
+h3 {
+  text-align: center;
+  padding: 2em;
+}
+
 .memory-game {
-  width: 80vw;
-  height: 70vh;
+  width: 100vw;
+  height: 60vh;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#e62723, #67c5e1);
 }
 
 .containerEnd {
@@ -15,8 +23,8 @@
   gap: 2rem;
 }
 .memory-card {
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
+  width: 200px;
+  height: 230px;
   margin: 5px;
   position: relative;
   transform: scale(1);

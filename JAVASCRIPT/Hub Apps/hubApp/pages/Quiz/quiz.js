@@ -1,6 +1,7 @@
 import { PrintQuiz } from "../../components";
-import { dataPokemon } from "../../utils";
+import { dataPokemon, printEndQuiz } from "../../utils";
 import { PrintQuizSpinner } from "../../components/QuizSpinner/QuizSpinner";
+
 import "./quiz.css";
 
 const template = () => `<div id="quizContainer">
@@ -12,7 +13,7 @@ const template = () => `<div id="quizContainer">
   <div id="answer"></div></div>
 </div> `;
 
-const dataGetter = async () => {
+export const dataGetter = async () => {
   const getData = await dataPokemon();
 
   const { pokemonData } = getData;
@@ -21,26 +22,35 @@ const dataGetter = async () => {
 
   addListeners();
 };
+
 let counter = 0;
+let counterTrue = 0;
 
 const addListeners = () => {
   const buttons = document.querySelectorAll(".answerButton");
   buttons.forEach((answer) => {
     let attribute = answer.getAttribute("iscorrect");
     answer.addEventListener("click", () => {
+      counter++;
       if (attribute == "true") {
-        counter++;
-        answer.style.background = "#419b45";
+        counterTrue++;
+        answer.style.background = "#c9e8cb";
         answer.setAttribute("disabled", "");
         buttons.forEach((answer) => {
           answer.setAttribute("disabled", "");
         });
       } else {
-        answer.style.background = "#eb0004";
+        answer.style.background = "#ffb3b3";
         buttons.forEach((answer) => {
           answer.setAttribute("disabled", "");
         });
+        let correctAnswer = document.querySelector('[iscorrect="true"]');
+        correctAnswer.style.border = "5px solid #a6d9a9";
       }
+      counter === 5 &&
+        setTimeout(() => {
+          printEndQuiz(counter, counterTrue);
+        }, 1000);
     });
   });
   const tryAgainButton = document.getElementById("nextQuestion");
@@ -54,6 +64,9 @@ const addListeners = () => {
 };
 
 export const PrintQuizPage = () => {
+  counterTrue = 0;
+  counter = 0;
+  document.querySelector("main").innerHTML = "";
   document.querySelector("main").innerHTML = template();
 
   const startButtonQuiz = document.getElementById("startButtonQuiz");
