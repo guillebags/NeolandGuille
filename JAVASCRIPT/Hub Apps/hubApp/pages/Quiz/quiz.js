@@ -34,23 +34,25 @@ const addListeners = () => {
       counter++;
       if (attribute == "true") {
         counterTrue++;
-        answer.style.background = "#c9e8cb";
+        answer.style.background = "#7BF984";
+        answer.style.color = "#363537";
         answer.setAttribute("disabled", "");
         buttons.forEach((answer) => {
           answer.setAttribute("disabled", "");
         });
       } else {
-        answer.style.background = "#ffb3b3";
+        answer.style.background = "#FF846C";
         buttons.forEach((answer) => {
           answer.setAttribute("disabled", "");
         });
         let correctAnswer = document.querySelector('[iscorrect="true"]');
-        correctAnswer.style.border = "5px solid #a6d9a9";
+        correctAnswer.style.border = "8px solid #7BF984";
+        correctAnswer.style.color = "#363537";
       }
       counter === 5 &&
         setTimeout(() => {
           printEndQuiz(counter, counterTrue);
-        }, 1000);
+        }, 500);
     });
   });
   const tryAgainButton = document.getElementById("nextQuestion");
