@@ -1,0 +1,5 @@
+export const setUserName = () => {
+  const user = localStorage.setItem(name);
+  const parsedUser = JSON.parse(user);
+  return parsedUser;
+};

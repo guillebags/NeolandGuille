@@ -2,9 +2,21 @@ const currentUser = {
   name: sessionStorage.getItem("currentUser")
     ? sessionStorage.getItem("currentUser")
     : "",
-  favorites: sessionStorage.getItem("favorite")
-    ? sessionStorage.getItem("favorites")
-    : "",
+};
+
+// export let userData = {
+//   fav: [],
+//   name: "",
+//   token: false,
+// };
+
+export const setUserData = (userData) => {
+  localStorage.setItem(`${userData.name}`, JSON.stringify(userData));
+};
+
+export const getUserData = () => {
+  const userData = localStorage.getItem(currentUser.name);
+  return JSON.parse(userData);
 };
 
 //tenemos que tener en los estados, una función seteadora, que cambie el valor de los elementos
@@ -15,14 +27,6 @@ export const setUser = (username) => {
 
 //luego una función geteadora
 
-export const getUser = () => {
+export const getCurrentUser = () => {
   return currentUser;
-};
-
-export const setFavs = (pokemon) => {
-  currentUser.favorites = pokemon;
-};
-
-export const getFavs = () => {
-  return currentUser.favorites;
 };

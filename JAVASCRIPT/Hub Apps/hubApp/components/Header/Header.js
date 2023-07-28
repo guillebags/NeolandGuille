@@ -1,4 +1,4 @@
-import { getUser } from "../../Global/state/globalState";
+import { getCurrentUser } from "../../Global/state/globalState";
 import { fulminarTiempos } from "../../utils";
 import { initControler } from "../../utils/route";
 import "./Header.css";
@@ -64,13 +64,14 @@ const addListeners = (team) => {
       document.getElementById("pokedex").style.backgroundColor = "#C2150C";
       document.getElementById("quiz").style.backgroundColor = "#C2150C";
       document.getElementById("memory").style.backgroundColor = "#C2150C";
+      document.getElementById("ticTacToe").style.backgroundColor = "#C2150C";
     }
   });
 
   const buttonLogout = document.getElementById("buttonLogout");
   buttonLogout.addEventListener("click", () => {
     fulminarTiempos();
-    const userState = getUser().name;
+    const userState = getCurrentUser().name;
     const currentUser = localStorage.getItem(userState);
     const parsedCurrentUser = JSON.parse(currentUser);
     const updateUser = { ...parsedCurrentUser, token: false };

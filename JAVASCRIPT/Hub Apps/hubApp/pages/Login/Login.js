@@ -1,4 +1,4 @@
-import { setUser } from "../../Global/state/globalState";
+import { setUser, setUserData } from "../../Global/state/globalState";
 import { initControler } from "../../utils/route";
 import "./Login.css/";
 
@@ -35,13 +35,11 @@ const addListeners = () => {
     const userToLocalStorage = {
       token: true,
       name: valueInput,
-      fav: [""],
+      fav: [],
     };
     //al trabajar con el local lo tengo que convertir a str
-    const stringUser = JSON.stringify(userToLocalStorage);
-    localStorage.setItem(`${valueInput}USER`, stringUser);
-    sessionStorage.setItem("currentUser", `${valueInput}USER`);
-    setUser(`${valueInput}USER`);
+    setUserData(userToLocalStorage);
+    sessionStorage.setItem("currentUser", `${valueInput}`);
     initControler();
   });
 };

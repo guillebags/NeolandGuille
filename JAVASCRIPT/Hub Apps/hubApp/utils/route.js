@@ -1,10 +1,11 @@
 //! cómo nuestra app se va a comportar, controlador de lo que se renderiza en cada momento
 
-import { getUser } from "../Global/state/globalState";
+import { getCurrentUser } from "../Global/state/globalState";
 import {
   Login,
   PrintMemoryGame,
   PrintPokemonPage,
+  PrintTicTacToe,
   printTemplateDashboard,
 } from "../pages";
 import { PrintQuizPage } from "../pages/Quiz/quiz";
@@ -12,7 +13,9 @@ import { PrintQuizPage } from "../pages/Quiz/quiz";
 export const initControler = (path) => {
   switch (path) {
     case undefined:
-      localStorage.getItem(getUser().name) ? printTemplateDashboard() : Login();
+      localStorage.getItem(getCurrentUser().name)
+        ? printTemplateDashboard()
+        : Login();
       break;
 
     case "Pokemon":
@@ -33,6 +36,10 @@ export const initControler = (path) => {
 
     case "Memory":
       PrintMemoryGame();
+      break;
+
+    case "TicTacToe":
+      PrintTicTacToe();
       break;
   }
 };

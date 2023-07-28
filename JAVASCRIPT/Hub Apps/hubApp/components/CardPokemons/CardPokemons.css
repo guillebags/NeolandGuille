@@ -11,7 +11,7 @@
   text-align: center;
   transition: 0.5s;
 
-  & #addFavIcon {
+  & .addFavIcon {
     position: relative;
     margin: 1em 2em 0 0;
     object-fit: contain;
@@ -21,11 +21,17 @@
     height: 30px;
     place-self: end;
     border-radius: 50%;
-    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690233094/fav0_trlvzj.png");
+    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/fav1_ypc2gz.png");
     background-position: center;
     background-size: cover;
     border: none;
     background-color: transparent;
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:visited {
+      background-color: #0a6dc4;
+    }
   }
 
   .card-front {

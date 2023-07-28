@@ -1,49 +1,39 @@
-//imports
+import { dataPokemon, filterPokemon } from "../../utils";
+import { cardsPokemons, PrintButton } from "../../components";
+import { PrintSpinner } from "../../components";
+import { arrayFavIds } from "../Pokemon/Pokemon";
+import "./favorites.css";
+//! template
+const template = () => `
+  <div id="favoritesPage">
+    <div id="spinner"></div>
+    <div id="galleryPokemon"></div>
+  </div>
+`;
 
-//!Aquí iría el template
-// const template = () => `
-//   <div id="pokemon">
-//     <div id="containerFilter">
-//       <div id="filterButton"></div>
-
-//       <input type="text" id="inputPokemon" placeholder="Search..." />
-//     </div>
-//     <div id="paginacion"></div>
-//     <div id="spinner"></div>
-//     <div id="galleryPokemon"></div>
-//   </div>
-// `;
-
-//!Hacer una función similar a dataService pero haciendo un .filter de pokemonData para que coja SOLO los pokemon cuyos ID se INCLUYAN en el array guardado en el localStorage
+//?Hacer una función similar a dataService pero haciendo un .filter de pokemonData para que coja SOLO los pokemon cuyos ID se INCLUYAN en el array guardado en el localStorage
 //?En el evento click de la estrella de favoritos pintada en las cartas, parsearlo, hacer push, y meterlo en el localStorage haciendo stringify
 
-// const dataService = async () => {
-//     const getData = await dataPokemon();
+const dataFavorite = async () => {
+  const getDataForFav = await dataPokemon();
 
-//     const { pokemonData, type } = getData;
+  const { pokemonData, type } = getDataForFav;
 
-//     cardsPokemons(pokemonData);
-//     document.getElementById("spinner").innerHTML = "";
-//     PrintButton(type);
-//     addListeners(type);
-//     Paginacion(pokemonData, 9);
-//   };
+  let pokemonFavorites = pokemonData.filter((pokemon) => {
+    if (arrayFavIds.includes(pokemon.id)) {
+      arrayFavIds.push(pokemon);
+    }
+  });
 
-//!Con esta función de la página Login reviso la manera de meter al LocalStorage
-// const addListeners = () => {
-//     const buttonLogin = document.getElementById("buttonLogin");
-//     const username = document.getElementById("username");
-//     buttonLogin.addEventListener("click", () => {
-//       const valueInput = username.value;
-//       const userToLocalStorage = {
-//         token: true,
-//         name: valueInput,
-//         fav: [""],
-//       };
-//       const stringUser = JSON.stringify(userToLocalStorage);
-//       localStorage.setItem(`${valueInput}USER`, stringUser);
-//       sessionStorage.setItem("currentUser", `${valueInput}USER`);
-//       setUser(`${valueInput}USER`);
-//       initControler();
-//     });
-//   };
+  cardsPokemons(pokemonFavorites);
+  //     document.getElementById("spinner").innerHTML = "";
+  PrintButton(type);
+};
+
+//? le añado el evento click y lo meto al local storage
+
+export const PrintFavoritesPage = () => {
+  document.querySelector("main").innerHTML = template();
+  PrintSpinner();
+  dataFavorite();
+};
