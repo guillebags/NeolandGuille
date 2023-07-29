@@ -1,6 +1,10 @@
-#galleryPokemon {
-  background: linear-gradient(#e6262355, #67c4e180);
+#pokemon {
+  width: 100vw;
+  min-height: 70vh;
+  background: linear-gradient(#e6262338, #67c4e128);
+}
 
+#galleryPokemon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,11 +13,11 @@
 }
 
 #containerFilter {
-  background: linear-gradient(#e6262355, #67c4e180);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0 0 1rem 0;
 
   #pokemon {
     min-height: 70vh;
@@ -22,7 +26,6 @@
 }
 
 #inputPokemon {
-  background-color: #eef0f2;
   margin-top: 1em;
   width: 300px;
   height: 2rem;
@@ -41,8 +44,7 @@
 }
 
 #paginacion {
-  background: linear-gradient(#67c4e180, #e6262355);
-  padding: 1.5em 0em;
+  padding: 1.5em;
   display: flex;
   align-items: center;
   justify-content: center;

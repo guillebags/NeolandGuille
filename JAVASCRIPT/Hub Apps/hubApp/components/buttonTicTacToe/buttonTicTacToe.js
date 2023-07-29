@@ -56,7 +56,7 @@ export const PrintButtonTicTacToe = () => {
       let winStatus = 0;
 
       const areEquals = (...args) => {
-        let values = args.map(button, button.innerHTML);
+        values = args.map((button) => button.innerHTML);
         if (
           values[0] != "" &&
           values.every((button, i, arr) => button === arr[0])
@@ -92,35 +92,12 @@ export const PrintButtonTicTacToe = () => {
       return winStatus;
     };
 
-    const changeTurn = () => {
-      turn == 1 ? (turn = 0) : (turn = 1);
-    };
-
-    const ia = () => {
-      const getRandom = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      };
-      let values = ticButtons.map((button) => button.innerHTML);
-      let position = -1;
-
-      if (values[4] == "") {
-        position = 4;
-      } else {
-        let n = getRandom(0, ticButtons.length - 1);
-        while (values[n] != "") {
-          n = getRandom(0, ticButtons.length - 1);
-        }
-        position = n;
-      }
-      ticButtons[position].innerHTML = "O";
-      //to do meter psyduck
-      return position;
-    };
-
     if (clickedButton.classList.contains("clicked")) {
       clickedButton.style.background = `#eef0f2b4 url(${players[1].src}) center`;
       clickedButton.style.backgroundSize = "contain";
+
       placed++;
+      console.log("placed", placed);
 
       let roundStatus = status();
 
@@ -131,15 +108,43 @@ export const PrintButtonTicTacToe = () => {
           roundStatus = status();
           placed++;
           changeTurn();
-        } else if (roundStatus == 1) {
-          PrintEndTicTacToe("win");
-          isFinished = true;
-        } else if (roundStatus == -1) {
-          PrintEndTicTacToe("lost");
-          isFinished = true;
         }
       }
-      /* if (clickedButton.innerHtml == "") {
+
+      if (roundStatus == 1) {
+        PrintEndTicTacToe("win");
+        isFinished = true;
+      } else if (roundStatus == -1) {
+        PrintEndTicTacToe("lost");
+        isFinished = true;
+      }
+
+      const changeTurn = () => {
+        turn == 1 ? (turn = 0) : (turn = 1);
+      };
+
+      const ia = () => {
+        const getRandom = (min, max) => {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        let values = ticButtons.map((button) => button.innerHTML);
+        let position = -1;
+
+        if (values[4] == "") {
+          position = 4;
+        } else {
+          let n = getRandom(0, ticButtons.length - 1);
+          while (values[n] != "") {
+            n = getRandom(0, ticButtons.length - 1);
+          }
+          position = n;
+        }
+        ticButtons[position].innerHTML = "O";
+        //to do meter psyduck
+        return position;
+      };
+    }
+    /* if (clickedButton.innerHtml == "") {
       clickedButton.innerHtml = token[turn];
       //to do meter player.token
       placed++;
@@ -230,12 +235,11 @@ export const PrintButtonTicTacToe = () => {
         return winStatus;
       };
     } */
-    }
-
-    ticButtons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        setToken(e);
-      });
-    });
   };
+
+  ticButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      setToken(e);
+    });
+  });
 };
