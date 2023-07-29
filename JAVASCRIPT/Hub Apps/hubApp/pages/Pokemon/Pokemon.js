@@ -39,7 +39,7 @@ const addListeners = (type) => {
     PrintButton(type);
   });
   const favIcons = document.getElementsByClassName("addFavIcon");
-  debugger;
+
   for (const element of favIcons) {
     element.addEventListener("click", (e) => {
       favoriteService.addFavorite(e.target.attributes["pokemon-id"].value);

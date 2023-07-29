@@ -1,0 +1,35 @@
+#ticPageContainer {
+  background: linear-gradient(#e62723, #67c5e1);
+  width: 100vw;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & h2 {
+    font-size: 40px;
+    color: #363537;
+    padding: 2em 2em 0 2em;
+  }
+  & #boardTic {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 750px;
+    max-width: 100%;
+
+    & button {
+      width: 250px;
+      height: 250px;
+      max-width: 33.33%;
+      font-size: 10em;
+      border-radius: 8px;
+      background-color: #eef0f2b4;
+      border: 1px solid #363537;
+      transition: 0.2s;
+      &:hover {
+        background-color: #ccd0d2b4;
+      }
+    }
+  }
+}

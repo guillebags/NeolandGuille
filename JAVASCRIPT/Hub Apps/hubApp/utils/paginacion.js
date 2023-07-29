@@ -25,13 +25,7 @@ export const Paginacion = (data, numberElement) => {
   cardsPokemons(data.slice(0, numberElement));
 };
 
-const addListeners = (
-  buttonNumber,
-  data,
-  numberElement,
-  i,
-  numberDigitOfPage
-) => {
+const addListeners = (buttonNumber, data, numberElement, i) => {
   buttonNumber.addEventListener("click", () => {
     const allButtonPag = document.querySelectorAll(".buttonPaginacion");
     allButtonPag.forEach((pag) => {
