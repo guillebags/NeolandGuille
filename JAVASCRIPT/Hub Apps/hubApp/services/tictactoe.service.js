@@ -149,8 +149,14 @@ const iaWin = () => {
 };
 
 const checkEnd = (placed) => {
-  if (placed === 8) {
+  if (placed === 8 && document.getElementById("ticText").innerText == "") {
     document.getElementById("ticText").innerText = "Nobody wins!";
+
+    const ticButtons = Array.from(document.getElementsByClassName("ticButton"));
+
+    ticButtons.forEach((button) => {
+      button.disabled = true;
+    });
   }
 };
 

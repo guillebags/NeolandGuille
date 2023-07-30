@@ -13,11 +13,11 @@ export const PrintButtonTicTacToe = () => {
 
     placed++;
 
-    tictactoeService.checkEnd(placed);
-
     tictactoeService.iaMove(ticButtons, placed);
 
     placed++;
+
+    tictactoeService.checkEnd(placed);
   };
 
   ticButtons.forEach((button) => {

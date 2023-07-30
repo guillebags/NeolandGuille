@@ -1,0 +1,19 @@
+#favoritesPage {
+  width: 100vw;
+  min-height: 70vh;
+  background: linear-gradient(#e6262338, #67c4e128);
+  & #spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+  }
+  & #galleryPokemon {
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+}
