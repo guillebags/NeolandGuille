@@ -16,6 +16,7 @@ export const changeTeam = (e) => {
       document.getElementById("pokedex").style.backgroundColor = "#F2CB07";
       document.getElementById("quiz").style.backgroundColor = "#F2CB07";
       document.getElementById("memory").style.backgroundColor = "#F2CB07";
+      document.getElementById("ticTacToe").style.backgroundColor = "#F2CB07";
       break;
 
     case "changeTeamMystic":
@@ -31,6 +32,7 @@ export const changeTeam = (e) => {
       document.getElementById("pokedex").style.backgroundColor = "#077AF5";
       document.getElementById("quiz").style.backgroundColor = "#077AF5";
       document.getElementById("memory").style.backgroundColor = "#077AF5";
+      document.getElementById("ticTacToe").style.backgroundColor = "#077AF5";
       break;
 
     case "changeTeamValor":
@@ -46,6 +48,7 @@ export const changeTeam = (e) => {
       document.getElementById("pokedex").style.backgroundColor = "#C2150C";
       document.getElementById("quiz").style.backgroundColor = "#C2150C";
       document.getElementById("memory").style.backgroundColor = "#C2150C";
+      document.getElementById("ticTacToe").style.backgroundColor = "#C2150C";
   }
 };
 //por cada click, hacer un bucle para que con cada click se pinte un tema diferente

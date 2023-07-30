@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  min-height: 70vh;
   background-color: #41c19f57;
+  padding: 2em 0;
 
   & img {
     width: 200px;
@@ -44,6 +45,11 @@
       }
       & img {
         width: 60%;
+      }
+      @media (max-height: 900px) {
+        width: 200px;
+        height: 200px;
+        font-size: 10px;
       }
     }
   }

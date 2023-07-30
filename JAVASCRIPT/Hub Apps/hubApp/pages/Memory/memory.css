@@ -1,7 +1,7 @@
 #memoryContainer {
   background: linear-gradient(#e62723, #67c5e1);
   width: 100vw;
-  height: 70vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
