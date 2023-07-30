@@ -4,8 +4,9 @@ import "./tictactoe.css";
 
 const template = `
   <div id="ticPageContainer">
-    <h2>Tic Tac Toe</h2>
+    <h1>Tic Tac Toe</h1>
     <div id="chooseContainer"></div>
+    <h2 id="ticText"></h2>
     <div id="boardTic">
       <button class="ticButton" id="square1"></button
       ><button class="ticButton" id="square2"></button
@@ -17,15 +18,16 @@ const template = `
       ><button class="ticButton" id="square8"></button
       ><button class="ticButton" id="square9"></button>
     </div>
+    <button id="ticRestart">Restart</button>
   </div>
 `;
-
-const addListeners = () => {};
 
 export const PrintTicTacToe = () => {
   document.querySelector("main").innerHTML = "";
   document.querySelector("main").innerHTML = template;
   PrintButtonTicTacToe();
+  const restart = document.getElementById("ticRestart");
+  restart.addEventListener("click", PrintTicTacToe());
 };
 
 //!to do choose player icon
