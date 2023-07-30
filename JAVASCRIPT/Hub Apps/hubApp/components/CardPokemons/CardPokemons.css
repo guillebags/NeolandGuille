@@ -15,17 +15,20 @@
     position: relative;
     margin: 1em 2em 0 0;
     object-fit: contain;
-
     left: -0.5em;
     width: 30px;
     height: 30px;
     place-self: end;
     border-radius: 50%;
-    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/fav1_ypc2gz.png");
     background-position: center;
     background-size: cover;
     border: none;
     background-color: transparent;
+    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/fav1_ypc2gz.png");
+    &.isFavorite {
+      background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690387399/fav0_ofulwn.png");
+    }
+
     &:hover {
       transform: scale(1.05);
     }

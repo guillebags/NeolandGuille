@@ -8,7 +8,6 @@ export const dataPokemon = async () => {
   for (let i = 252; i < 387; i++) {
     data.push(await getByIdPokemon(i));
   }
-  console.log(data);
   return dataMap(data);
 };
 

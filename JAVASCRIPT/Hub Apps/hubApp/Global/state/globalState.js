@@ -4,18 +4,13 @@ const currentUser = {
     : "",
 };
 
-// export let userData = {
-//   fav: [],
-//   name: "",
-//   token: false,
-// };
-
 export const setUserData = (userData) => {
   localStorage.setItem(`${userData.name}`, JSON.stringify(userData));
 };
 
 export const getUserData = () => {
   const userData = localStorage.getItem(currentUser.name);
+
   return JSON.parse(userData);
 };
 
@@ -29,4 +24,17 @@ export const setUser = (username) => {
 
 export const getCurrentUser = () => {
   return currentUser;
+};
+
+export const createUserData = (username) => {
+  if (localStorage.getItem(username)) {
+    return;
+  } else {
+    const userToLocalStorage = {
+      token: true,
+      name: username,
+      fav: [],
+    };
+    setUserData(userToLocalStorage);
+  }
 };

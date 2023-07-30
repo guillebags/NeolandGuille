@@ -29,6 +29,10 @@ const addListeners = () => {
   tictactoe.addEventListener("click", () => {
     initControler("TicTacToe");
   });
+  const favorites = document.getElementById("favorites");
+  favorites.addEventListener("click", () => {
+    initControler("Favorites");
+  });
 };
 
 export const printTemplateDashboard = () => {

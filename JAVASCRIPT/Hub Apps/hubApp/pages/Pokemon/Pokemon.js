@@ -1,6 +1,5 @@
 import { cardsPokemons, PrintButton } from "../../components";
 import { PrintSpinner } from "../../components/Spinner/Spinner";
-import { favoriteService } from "../../services/favorite.service";
 import { dataPokemon, filterPokemon, Paginacion } from "../../utils";
 import "./Pokemon.css";
 
@@ -38,13 +37,6 @@ const addListeners = (type) => {
   window.addEventListener("resize", () => {
     PrintButton(type);
   });
-  const favIcons = document.getElementsByClassName("addFavIcon");
-
-  for (const element of favIcons) {
-    element.addEventListener("click", (e) => {
-      favoriteService.addFavorite(e.target.attributes["pokemon-id"].value);
-    });
-  }
 };
 
 export const PrintPokemonPage = () => {

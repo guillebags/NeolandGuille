@@ -1,8 +1,8 @@
 import { dataPokemon, filterPokemon } from "../../utils";
 import { cardsPokemons, PrintButton } from "../../components";
 import { PrintSpinner } from "../../components";
-import { arrayFavIds } from "../Pokemon/Pokemon";
 import "./favorites.css";
+import { favoriteService } from "../../services/favorite.service";
 //! template
 const template = () => `
   <div id="favoritesPage">
@@ -15,19 +15,16 @@ const template = () => `
 //?En el evento click de la estrella de favoritos pintada en las cartas, parsearlo, hacer push, y meterlo en el localStorage haciendo stringify
 
 const dataFavorite = async () => {
-  const getDataForFav = await dataPokemon();
+  const getData = await dataPokemon();
 
-  const { pokemonData, type } = getDataForFav;
-
-  let pokemonFavorites = pokemonData.filter((pokemon) => {
-    if (arrayFavIds.includes(pokemon.id)) {
-      arrayFavIds.push(pokemon);
-    }
-  });
+  const { pokemonData } = getData;
+  const arrayFavIds = favoriteService.getFavorites();
+  const pokemonFavorites = pokemonData.filter(({ id }) =>
+    arrayFavIds.includes(String(id))
+  );
 
   cardsPokemons(pokemonFavorites);
-  //     document.getElementById("spinner").innerHTML = "";
-  PrintButton(type);
+  document.getElementById("spinner").innerHTML = "";
 };
 
 //? le añado el evento click y lo meto al local storage

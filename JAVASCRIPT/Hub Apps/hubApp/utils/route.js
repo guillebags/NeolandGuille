@@ -8,6 +8,7 @@ import {
   PrintTicTacToe,
   printTemplateDashboard,
 } from "../pages";
+import { PrintFavoritesPage } from "../pages/Favorites/favorites";
 import { PrintQuizPage } from "../pages/Quiz/quiz";
 
 export const initControler = (path) => {
@@ -40,6 +41,10 @@ export const initControler = (path) => {
 
     case "TicTacToe":
       PrintTicTacToe();
+      break;
+
+    case "Favorites":
+      PrintFavoritesPage();
       break;
   }
 };

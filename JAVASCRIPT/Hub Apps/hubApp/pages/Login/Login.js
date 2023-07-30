@@ -1,4 +1,8 @@
-import { setUser, setUserData } from "../../Global/state/globalState";
+import {
+  createUserData,
+  setUser,
+  setUserData,
+} from "../../Global/state/globalState";
 import { initControler } from "../../utils/route";
 import "./Login.css/";
 
@@ -32,13 +36,7 @@ const addListeners = () => {
   const username = document.getElementById("username");
   buttonLogin.addEventListener("click", () => {
     const valueInput = username.value;
-    const userToLocalStorage = {
-      token: true,
-      name: valueInput,
-      fav: [],
-    };
-    //al trabajar con el local lo tengo que convertir a str
-    setUserData(userToLocalStorage);
+    createUserData(valueInput);
     sessionStorage.setItem("currentUser", `${valueInput}`);
     initControler();
   });
