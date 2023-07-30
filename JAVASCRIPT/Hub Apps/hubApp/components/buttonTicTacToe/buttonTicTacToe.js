@@ -1,4 +1,3 @@
-import { PrintTicTacToe } from "../../pages/Tic Tac Toe/tictactoe";
 import { tictactoeService } from "../../services/tictactoe.service";
 import "./buttonTicTacToe.css";
 

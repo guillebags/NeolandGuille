@@ -27,7 +27,9 @@ export const PrintTicTacToe = () => {
   document.querySelector("main").innerHTML = template;
   PrintButtonTicTacToe();
   const restart = document.getElementById("ticRestart");
-  restart.addEventListener("click", PrintTicTacToe());
+  restart.addEventListener("click", () => {
+    PrintTicTacToe();
+  });
 };
 
 //!to do choose player icon
