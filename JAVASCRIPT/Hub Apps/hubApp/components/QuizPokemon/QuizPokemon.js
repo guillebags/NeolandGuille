@@ -42,7 +42,7 @@ export const PrintQuiz = (data) => {
       alt="Who's that pokemon?"
       class="questionImage"
     />
-    <h2>Who's this pokemon?</h2>
+    <h2>Who's that pokemon?</h2>
   </figure> `;
 
   const templateAnswer = `
