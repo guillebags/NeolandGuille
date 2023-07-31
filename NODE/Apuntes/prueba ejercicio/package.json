@@ -1,0 +1,13 @@
+{
+  "name": "prueba-ejercicio",
+  "version": "1.0.0",
+  "description": "esto es una prueba de la explicacion de esta mañana",
+  "main": "index.js",
+  "scripts": {
+    "write": "node write.js",
+    "read": "node read.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

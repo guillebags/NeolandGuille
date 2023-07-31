@@ -1,6 +1,12 @@
 const fs = require("fs");
 
 fs.readFile("./players.json", (error, data) => {
-  error ? console.log("error", error) : error;
-  console.log("data", JSON.parse(data));
+  const player = [];
+  error ? console.log("error", error) : player.push(JSON.parse(data));
+
+  printPlayer(JSON.parse(data));
 });
+
+const printPlayer = (player) => {
+  console.log("player", player);
+};
