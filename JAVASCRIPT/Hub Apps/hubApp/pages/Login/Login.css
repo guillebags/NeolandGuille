@@ -67,6 +67,11 @@
     width: 125px;
     top: 40px;
   }
+  @media (max-height: 740px) {
+    width: 125px;
+    top: 40px;
+    margin: 1em;
+  }
 }
 
 .login {
