@@ -30,10 +30,12 @@ const addEventListenerToColorPicker = () => {
 
     document.body.style.backgroundColor = newColor;
     //Le aplicamos el background color con el código de color seleccionado
-
+    console.log(newColor);
     colorName.innerText = COLOR_PALETTE[newColor];
+    console.log(colorName);
     //Le asignamos a nuestro h2 el valor de la clave que hay almacenada en newColor al igual que hemos hecho en la primera función
     const colorNameText = `${COLOR_PALETTE[newColor]} | ${newColor}`;
+    console.log(colorNameText);
     colorName.innerText = COLOR_PALETTE[newColor] ? colorNameText : "-";
   });
 };
