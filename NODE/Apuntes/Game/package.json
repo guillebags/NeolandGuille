@@ -1,0 +1,16 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "ejemplo web scrapping",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^20.9.0"
+  }
+}

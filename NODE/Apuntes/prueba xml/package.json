@@ -1,0 +1,17 @@
+{
+  "name": "prueba-xml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "xml_write": "node write.js",
+    "xml_read": "node read.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fast-xml-parser": "^4.2.7",
+    "install": "^0.13.0"
+  }
+}
