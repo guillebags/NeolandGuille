@@ -1,0 +1,26 @@
+#footer {
+  height: 10vh;
+  background: #363537;
+  transition: 0.4s;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  -webkit-box-shadow: 0px -34px 35px -29px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 0px -34px 35px -29px rgba(0, 0, 0, 0.58);
+  box-shadow: 0px -34px 35px -29px rgba(0, 0, 0, 0.58);
+
+  & img {
+    height: 8vh;
+    padding: 1em;
+    transition: ease-in-out 0.3s;
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

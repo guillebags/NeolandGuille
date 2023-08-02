@@ -1,0 +1,280 @@
+#figurePokemon {
+  width: 260px;
+  height: 377px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem;
+  text-transform: capitalize;
+  text-align: center;
+  transition: 0.5s;
+
+  & .addFavIcon {
+    position: relative;
+    margin: 1em 2em 0 0;
+    object-fit: contain;
+    left: -0.5em;
+    width: 30px;
+    height: 30px;
+    place-self: end;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/fav1_ypc2gz.png");
+    &.isFavorite {
+      background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690387399/fav0_ofulwn.png");
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:visited {
+      background-color: #0a6dc4;
+    }
+  }
+
+  .card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 260px;
+    height: 340px;
+    transition: 0.2s;
+    gap: 1rem;
+    box-shadow: 0 15px 0 rgba(46, 50, 114, 0.37);
+    border-radius: 18px;
+    padding-bottom: 0.5em;
+
+    &:hover {
+      -webkit-animation: slide-top 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+      animation: slide-top 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+  }
+}
+
+.pokemonDescription {
+  display: flex;
+  margin: 20px 0;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  color: #4c4e4b;
+  font-size: 12px;
+}
+
+& .pokemonImage {
+  height: 130px;
+  width: 130px;
+}
+
+.grass {
+  background-color: #eef0f2;
+}
+figure.grass {
+  border-top: 20px solid #63bb5b;
+  border-right: 20px solid #63bb5b;
+  border-bottom: 12px double #63bb5b;
+  border-left: 20px solid #63bb5b;
+}
+
+figure.bug {
+  border-top: 20px solid #8fc12c;
+  border-right: 20px solid #8fc12c;
+  border-bottom: 12px double #8fc12c;
+  border-left: 20px solid #8fc12c;
+}
+.bug {
+  background-color: #eef0f2;
+}
+
+figure.dark {
+  border-top: 20px solid #5a5366;
+  border-right: 20px solid #5a5366;
+  border-bottom: 12px double #5a5366;
+  border-left: 20px solid #5a5366;
+}
+.dark {
+  background-color: #eef0f2;
+}
+figure.dragon {
+  border-top: 20px solid #0a6dc4;
+  border-right: 20px solid #0a6dc4;
+  border-bottom: 12px double #0a6dc4;
+  border-left: 20px solid #0a6dc4;
+}
+.dragon {
+  background-color: #eef0f2;
+}
+figure.electric {
+  border-top: 20px solid #f3d13b;
+  border-right: 20px solid #f3d13b;
+  border-bottom: 12px double #f3d13b;
+  border-left: 20px solid #f3d13b;
+}
+.electric {
+  background-color: #eef0f2;
+}
+
+figure.fairy {
+  border-top: 20px solid #ec8fe6;
+  border-right: 20px solid #ec8fe6;
+  border-bottom: 12px double #ec8fe6;
+  border-left: 20px solid #ec8fe6;
+}
+.fairy {
+  background-color: #eef0f2;
+}
+figure.fighting {
+  border-top: 20px solid #ce4068;
+  border-right: 20px solid #ce4068;
+  border-bottom: 12px double #ce4068;
+  border-left: 20px solid #ce4068;
+}
+.fighting {
+  background-color: #eef0f2;
+}
+
+figure.fire {
+  border-top: 20px solid #ff9b54;
+  border-right: 20px solid #ff9b54;
+  border-bottom: 12px double #ff9b54;
+  border-left: 20px solid #ff9b54;
+}
+.fire {
+  background-color: #eef0f2;
+}
+
+figure.flying {
+  border-top: 20px solid #8fa8dd;
+  border-right: 20px solid #8fa8dd;
+  border-bottom: 12px double #8fa8dd;
+  border-left: 20px solid #8fa8dd;
+}
+.flying {
+  background-color: #eef0f2;
+}
+figure.ghost {
+  border-top: 20px solid #5269ac;
+  border-right: 20px solid #5269ac;
+  border-bottom: 12px double #5269ac;
+  border-left: 20px solid #5269ac;
+}
+.ghost {
+  background-color: #eef0f2;
+}
+
+figure.ground {
+  border-top: 20px solid #b75524;
+  border-right: 20px solid #b75524;
+  border-bottom: 12px double #b75524;
+  border-left: 20px solid #b75524;
+}
+.ground {
+  background-color: #eef0f2;
+}
+figure.ice {
+  border-top: 20px solid #74cec1;
+  border-right: 20px solid #74cec1;
+  border-bottom: 12px double #74cec1;
+  border-left: 20px solid #74cec1;
+}
+.ice {
+  background-color: #eef0f2;
+}
+figure.normal {
+  border-top: 20px solid #9099a1;
+  border-right: 20px solid #9099a1;
+  border-bottom: 12px double #9099a1;
+  border-left: 20px solid #9099a1;
+}
+.normal {
+  background-color: #eef0f2;
+}
+
+figure.poison {
+  border-top: 20px solid #aa6ac8;
+  border-right: 20px solid #aa6ac8;
+  border-bottom: 12px double #aa6ac8;
+  border-left: 20px solid #aa6ac8;
+}
+.poison {
+  background-color: #eef0f2;
+}
+
+figure.psychic {
+  border-top: 20px solid #f97176;
+  border-right: 20px solid #f97176;
+  border-bottom: 12px double #f97176;
+  border-left: 20px solid #f97176;
+}
+.psychic {
+  background-color: #eef0f2;
+}
+figure.rock {
+  border-top: 20px solid #c7b78b;
+  border-right: 20px solid #c7b78b;
+  border-bottom: 12px double #c7b78b;
+  border-left: 20px solid #c7b78b;
+}
+.rock {
+  background-color: #eef0f2;
+}
+
+figure.steel {
+  border-top: 20px solid #5a8ea1;
+  border-right: 20px solid #5a8ea1;
+  border-bottom: 12px double #5a8ea1;
+  border-left: 20px solid #5a8ea1;
+}
+.steel {
+  background-color: #eef0f2;
+}
+figure.water {
+  border-top: 20px solid #4d91d5;
+  border-right: 20px solid #4d91d5;
+  border-bottom: 12px double #4d91d5;
+  border-left: 20px solid #4d91d5;
+}
+.water {
+  background-color: #eef0f2;
+}
+
+/*keyframes
+/* ----------------------------------------------
+ * Generated by Animista on 2023-7-27 1:51:59
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}

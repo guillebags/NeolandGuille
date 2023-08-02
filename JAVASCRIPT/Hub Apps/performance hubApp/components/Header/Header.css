@@ -1,0 +1,94 @@
+header {
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  background: #eef0f2;
+  -webkit-box-shadow: 0px 8px 30px -3px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 0px 8px 30px -3px rgba(0, 0, 0, 0.61);
+  box-shadow: 0px 8px 30px -3px rgba(0, 0, 0, 0.61);
+  z-index: 100;
+
+  & #header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Tektur", cursive;
+    @media (max-width: 1200px) {
+      flex-direction: column;
+    }
+
+    & figure {
+      height: 20vh;
+      margin-left: 10em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      color: #363537;
+      letter-spacing: 3px;
+      font-size: 20px;
+      @media (max-width: 1200px) {
+        font-size: 18px;
+        height: 12vh;
+        margin: 0;
+      }
+      @media (max-width: 800px) {
+        font-size: 12px;
+        height: 10vh;
+        margin: 0;
+      }
+    }
+    & #logoRotom {
+      width: 200px;
+      height: 70%;
+      object-fit: contain;
+      @media (max-width: 1200px) {
+        width: 150px;
+        height: 50%;
+      }
+      @media (max-width: 800px) {
+        width: 100px;
+        height: 50%;
+      }
+    }
+  }
+
+  & nav {
+    margin-right: 10em;
+    height: 20vh;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    & img {
+      width: 20vw;
+      margin: 1em;
+      transition: ease-in-out 0.3s;
+      @media (max-width: 1200px) {
+        width: 2em;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    & #buttonLogout {
+      max-width: 2em;
+      align-self: flex-start;
+      padding: 0;
+      margin-top: 1em;
+    }
+    @media (max-width: 1200px) {
+      align-self: center;
+      height: 60%;
+      margin: 0;
+      gap: 10%;
+    }
+  }
+}

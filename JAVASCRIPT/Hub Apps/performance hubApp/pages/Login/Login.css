@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#containerLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+
+  min-width: 100vw;
+  background: linear-gradient(90deg, #363537, #41c19e);
+}
+
+.screen {
+  background: linear-gradient(90deg, #ff660724, #41c19f6e);
+  position: relative;
+
+  height: 40vh;
+  width: 50vw;
+  box-shadow: 0px 0px 24px #625b56;
+  border-radius: 20px;
+}
+
+.screen__content {
+  z-index: 1;
+  position: relative;
+}
+
+.screen__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.screen__background__shape {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.screen__background__shape1 {
+  height: 60vh;
+  transform: rotate(140deg);
+  width: 40vw;
+  background: #eef0f255;
+  top: -200px;
+  right: 200px;
+  border-radius: 72px;
+}
+
+#rotomLogin {
+  position: relative;
+  width: 200px;
+  transition: 0.2s;
+  margin: 2em;
+  animation: rebota 1s alternate infinite ease-in;
+  transition: all 1s ease-in-out;
+
+  @media (max-width: 800px) {
+    width: 125px;
+    top: 40px;
+  }
+  @media (max-height: 740px) {
+    width: 125px;
+    top: 40px;
+    margin: 1em;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 30px;
+  padding-top: 250px;
+  & ::placeholder {
+    color: rgba(245, 245, 245, 0.657);
+  }
+}
+
+#username {
+  border: none;
+  border-bottom: 2px solid #d1d1d4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  font-weight: 700;
+  width: 75%;
+  transition: 0.2s;
+  @media (max-width: 800px) {
+    font-size: small;
+    width: 50%;
+    padding-left: 15px;
+  }
+}
+
+#username:active,
+#username:focus,
+#username:hover {
+  outline: none;
+  border-bottom-color: #ff6407;
+}
+
+.login__submit {
+  background: #fff;
+  font-size: 14px;
+  margin-top: 30px;
+  padding: 16px 20px;
+  border-radius: 26px;
+  border: 1px solid #ff6407;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #625b56;
+  box-shadow: 0px 2px 2px #625b56;
+  cursor: pointer;
+  transition: 0.2s;
+  @media (max-width: 800px) {
+    font-size: small;
+    width: 50%;
+    align-content: center;
+    place-self: start;
+  }
+}
+
+.login__submit:active,
+.login__submit:focus,
+.login__submit:hover {
+  background-color: #fabf98;
+}
+
+@keyframes rebota {
+  100% {
+    transform: translateY(10px);
+  }
+}
