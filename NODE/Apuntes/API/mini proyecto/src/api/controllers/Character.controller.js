@@ -31,4 +31,54 @@ const createCharacter = async (req, res, next) => {
   }
 };
 
-module.exports = { createCharacter };
+//!Get by id
+
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const characterById = await Character.findById(id);
+
+    if (characterById) {
+      return res.status(200).json({ data: characterById });
+    } else {
+      res.status(404).json("no se encuentra el character 🔍❌");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//!Get all
+
+const getAll = async (req, res, next) => {
+  try {
+    const characterAll = await Character.find();
+
+    if (characterAll.length > 0) {
+      return res.status(200).json({ data: characterAll });
+    } else {
+      res.status(404).json("no se encuentra el character de all 👪❌");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//!Get by name
+
+const getByName = async (req, res, next) => {
+  try {
+    const { name } = req.query;
+    const characterByName = await Character.find({ name });
+
+    if (characterByName.length > 0) {
+      return res.status(200).json({ data: characterByName });
+    } else {
+      res.status(404).json("no se encuentra el character por name 🅰️❌");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = { createCharacter, getById, getAll, getByName };
