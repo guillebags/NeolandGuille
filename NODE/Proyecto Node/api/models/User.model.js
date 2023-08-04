@@ -36,5 +36,14 @@ const UserSchema = new mongoose.Schema(
 UserSchema.pre("save", async function (next) {
   try {
     this.password = await bcrypt.hash(this.password, 10);
-  } catch (error) {}
+    next();
+  } catch (error) {
+    next("Failed hashing password ❌", error);
+  }
 });
+
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;
+
+//!añadir en cada controlador(try) await User.syncIndexes();

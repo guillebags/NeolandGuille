@@ -39,5 +39,3 @@ app.listen(PORT, () => {
     `Servidor escuchando en el puerto: ${PORT}, en http://localhost:${PORT}`
   );
 });
-
-const hola = "ignore";
