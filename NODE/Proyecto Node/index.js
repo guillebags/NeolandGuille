@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { configCloudinary } = require("./middleware/files.middleware");
 const { connect } = require("./utils/DB.JS");
+const UserRoutes = require("./api/routes/User.routes");
 
 dotenv.config();
 
@@ -39,3 +40,5 @@ app.listen(PORT, () => {
     `Servidor escuchando en el puerto: ${PORT}, en http://localhost:${PORT}`
   );
 });
+
+app.use("/api/v1/users", UserRoutes);

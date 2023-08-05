@@ -7,6 +7,7 @@ const randomCode = require("../../utils/randomCode");
 const sendEmail = require("../../utils/sendEmail");
 const User = require("../models/User.model");
 
+//! REGISTER CONTROLLER
 const register = async (req, res, next) => {
   let catchImg = req.file?.path;
   try {
@@ -61,3 +62,5 @@ const register = async (req, res, next) => {
     return next(error);
   }
 };
+
+module.exports = register;
