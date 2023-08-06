@@ -1,10 +1,24 @@
 const { isAuth, isAuthAdmin } = require("../../middleware/auth.middleware");
 const { upload } = require("../../middleware/files.middleware");
-const register = require("../controllers/User.controller");
+const {
+  register,
+  checkNewUser,
+  resendCode,
+  login,
+  autoLogin,
+  changePassword,
+  sendPassword,
+} = require("../controllers/User.controller");
 
 const express = require("express");
 const UserRoutes = express.Router();
 
 UserRoutes.post("/register", upload.single("image"), register);
+UserRoutes.post("/check", checkNewUser);
+UserRoutes.post("/resend", resendCode);
+UserRoutes.post("/login", login);
+UserRoutes.post("/login/autologin", autoLogin);
+UserRoutes.patch("/forgotpassword", changePassword);
+UserRoutes.patch("/sendPassword/:id", sendPassword);
 
 module.exports = UserRoutes;
