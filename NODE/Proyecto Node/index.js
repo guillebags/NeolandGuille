@@ -7,7 +7,7 @@ const UserRoutes = require("./api/routes/User.routes");
 
 dotenv.config();
 
-configCloudinary;
+configCloudinary();
 
 connect();
 

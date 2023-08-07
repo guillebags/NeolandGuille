@@ -20,6 +20,8 @@ const BASE_URL_COMPLETE = `${BASE_URL}${PORT}`;
 const register = async (req, res, next) => {
   let catchImg = req.file?.path;
   try {
+    console.log("entro");
+
     await User.syncIndexes();
     let confirmationCode = randomCode();
     const { email, name } = req.body;
@@ -30,6 +32,8 @@ const register = async (req, res, next) => {
     );
 
     if (!userExist) {
+      console.log("entro");
+
       const newUser = new User({ ...req.body, confirmationCode });
       if (req.file) {
         newUser.image = req.file.path;
@@ -42,6 +46,7 @@ const register = async (req, res, next) => {
         const userSave = await newUser.save();
 
         if (userSave) {
+          console.log("entro");
           sendEmail(email, name, confirmationCode);
           setTimeout(() => {
             if (getTestEmailSend()) {
@@ -320,6 +325,65 @@ const modifyPassword = async (req, res, next) => {
   }
 };
 
+//! UPDATE
+const update = async (req, res, next) => {
+  let catchImg = req.file?.path;
+  console.log("catchImg", catchImg);
+  try {
+    await User.syncIndexes();
+    const patchUser = new User(req.body);
+    if (req.file) {
+      patchUser.image = req.file.path;
+    }
+
+    patchUser._id = req.user._id;
+    patchUser.password = req.user.password;
+    patchUser.rol = req.user.rol;
+    patchUser.confirmationCode = req.user.confirmationCode;
+    patchUser.check = req.user.check;
+    patchUser.email = req.user.email;
+    try {
+      await User.findByIdAndUpdate(req.user._id, patchUser);
+      if (req.file) {
+        deleteImgCloudinary(req.user.image);
+      }
+      const updateUser = await User.findById(req.user._id);
+      const updateKeys = Object.keys(req.body);
+
+      const testUpdate = [];
+      updateKeys.forEach((item) => {
+        if (updateUser[item] == req.body[item]) {
+          testUpdate.push({
+            [item]: true,
+          });
+        } else {
+          testUpdate.push({
+            [item]: false,
+          });
+        }
+      });
+
+      if (req.file) {
+        updateUser.image == req.file.path
+          ? testUpdate.push({
+              file: true,
+            })
+          : testUpdate.push({
+              file: false,
+            });
+      }
+      return res.status(200).json({
+        testUpdate,
+      });
+    } catch (error) {
+      return res.status(404).json(error.message);
+    }
+  } catch (error) {
+    if (req.file) deleteImgCloudinary(catchImg);
+    return next(error);
+  }
+};
+
 module.exports = {
   register,
   checkNewUser,
@@ -329,4 +393,5 @@ module.exports = {
   changePassword,
   sendPassword,
   modifyPassword,
+  update,
 };
