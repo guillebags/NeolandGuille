@@ -8,6 +8,7 @@ const {
   autoLogin,
   changePassword,
   sendPassword,
+  modifyPassword,
 } = require("../controllers/User.controller");
 
 const express = require("express");
@@ -18,7 +19,8 @@ UserRoutes.post("/check", checkNewUser);
 UserRoutes.post("/resend", resendCode);
 UserRoutes.post("/login", login);
 UserRoutes.post("/login/autologin", autoLogin);
-UserRoutes.patch("/forgotpassword", changePassword);
+UserRoutes.patch("/forgotpassword/forgotpassword", changePassword);
 UserRoutes.patch("/sendPassword/:id", sendPassword);
+UserRoutes.patch("/changepassword", [isAuth], modifyPassword);
 
 module.exports = UserRoutes;

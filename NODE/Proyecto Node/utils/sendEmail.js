@@ -16,6 +16,9 @@ const sendEmail = (userEmail, name, confirmationCode) => {
       user: email,
       pass: password,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   const mailOptions = {
@@ -27,7 +30,7 @@ const sendEmail = (userEmail, name, confirmationCode) => {
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log(error);
+      console.log(error, "error ❌");
       setTestEmailSend(false);
     } else {
       console.log("Email sent: " + info.response);

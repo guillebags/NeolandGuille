@@ -130,6 +130,9 @@ const resendCode = async (req, res, next) => {
         user: email,
         pass: password,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
     //comprobamos que el user exista
     const userExists = await User.findOne({ email: req.body.email });
@@ -238,6 +241,9 @@ const sendPassword = async (req, res, next) => {
         user: email,
         pass: password,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
 
     //generamos la password
@@ -283,6 +289,37 @@ const sendPassword = async (req, res, next) => {
   }
 };
 
+//! MODIFY PASSWORD
+const modifyPassword = async (req, res, next) => {
+  try {
+    const { password, newPassword } = req.body;
+    const { _id } = req.user;
+    if (bcrypt.compareSync(password, req.user.password)) {
+      const newPasswordHashed = bcrypt.hashSync(newPassword, 10);
+
+      try {
+        await User.findByIdAndUpdate(_id, { password: newPasswordHashed });
+        const userUpdate = await User.findById(_id);
+        if (bcrypt.compareSync(newPassword, userUpdate.password)) {
+          return res.status(200).json({
+            updateUser: true,
+          });
+        } else {
+          return res.status(200).json({
+            updateUser: false,
+          });
+        }
+      } catch (error) {
+        return res.status(404).json(error.message);
+      }
+    } else {
+      return res.status(404).json("passwords don't match");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   register,
   checkNewUser,
@@ -291,4 +328,5 @@ module.exports = {
   autoLogin,
   changePassword,
   sendPassword,
+  modifyPassword,
 };

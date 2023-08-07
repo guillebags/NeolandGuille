@@ -239,6 +239,33 @@ const toggleMovie = async (req, res, next) => {
   }
 };
 
+//! Delete Character
+
+const deleteCharacter = async (req, res, next) => {
+  try {
+    // este id es el id del character que quiero borrar
+    const { id } = req.params;
+    await Character.findByIdAndDelete(id);
+    try {
+      // updateOne le tengo que dar el elemento exacto que quiero actualizar el cual lo busco antes por id
+      // updateMany lo que hace es apuntar al modelo general y todos los que cumplan la condicion se modifican
+
+      const test = await Movie.updateMany(
+        { characters: id },
+        { $pull: { characters: id } }
+      );
+
+      return res.status(200).json({
+        test: test.modifiedCount === test.matchedCount ? true : false,
+      });
+    } catch (error) {
+      return res.status(404).json("error deleting character");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createCharacter,
   getById,
@@ -246,4 +273,5 @@ module.exports = {
   getByName,
   updateCharacter,
   toggleMovie,
+  deleteCharacter,
 };
