@@ -10,6 +10,7 @@ const {
   sendPassword,
   modifyPassword,
   update,
+  deleteUser,
 } = require("../controllers/User.controller");
 
 const express = require("express");
@@ -24,5 +25,6 @@ UserRoutes.patch("/forgotpassword/forgotpassword", changePassword);
 UserRoutes.patch("/sendPassword/:id", sendPassword);
 UserRoutes.patch("/changepassword", [isAuth], modifyPassword);
 UserRoutes.patch("/update/update", [isAuth], upload.single("image"), update);
+UserRoutes.delete("/", [isAuth], deleteUser);
 
 module.exports = UserRoutes;
