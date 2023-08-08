@@ -12,6 +12,7 @@ const bcrypt = require("bcrypt");
 const { generateToken } = require("../../utils/token");
 const nodemailer = require("nodemailer");
 const randomPassword = require("../../utils/randomPassword");
+const setError = require("../../helpers/handle-error");
 const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
 const BASE_URL_COMPLETE = `${BASE_URL}${PORT}`;
@@ -46,9 +47,9 @@ const register = async (req, res, next) => {
         const userSave = await newUser.save();
 
         if (userSave) {
-          console.log("entro");
           sendEmail(email, name, confirmationCode);
           setTimeout(() => {
+            //si no dieramos feedback, el settimeout no nos haria falta
             if (getTestEmailSend()) {
               setTestEmailSend(false);
               return res.status(200).json({
@@ -62,7 +63,7 @@ const register = async (req, res, next) => {
                 confirmationCode: "error, resend code",
               });
             }
-          }, 1100);
+          }, 1200);
         }
       } catch (error) {
         return res.status(404).json(error.message);
