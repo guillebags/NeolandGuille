@@ -16,6 +16,7 @@ const setError = require("../../helpers/handle-error");
 const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
 const BASE_URL_COMPLETE = `${BASE_URL}${PORT}`;
+const validator = require("validator");
 
 //! REGISTER CONTROLLER
 const register = async (req, res, next) => {
@@ -300,26 +301,31 @@ const modifyPassword = async (req, res, next) => {
   try {
     const { password, newPassword } = req.body;
     const { _id } = req.user;
-    if (bcrypt.compareSync(password, req.user.password)) {
-      const newPasswordHashed = bcrypt.hashSync(newPassword, 10);
+    const validated = validator.isStrongPassword(newPassword);
+    if (validated) {
+      if (bcrypt.compareSync(password, req.user.password)) {
+        const newPasswordHashed = bcrypt.hashSync(newPassword, 10);
 
-      try {
-        await User.findByIdAndUpdate(_id, { password: newPasswordHashed });
-        const userUpdate = await User.findById(_id);
-        if (bcrypt.compareSync(newPassword, userUpdate.password)) {
-          return res.status(200).json({
-            updateUser: true,
-          });
-        } else {
-          return res.status(200).json({
-            updateUser: false,
-          });
+        try {
+          await User.findByIdAndUpdate(_id, { password: newPasswordHashed });
+          const userUpdate = await User.findById(_id);
+          if (bcrypt.compareSync(newPassword, userUpdate.password)) {
+            return res.status(200).json({
+              updateUser: true,
+            });
+          } else {
+            return res.status(200).json({
+              updateUser: false,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json(error.message);
         }
-      } catch (error) {
-        return res.status(404).json(error.message);
+      } else {
+        return res.status(404).json("passwords don't match");
       }
     } else {
-      return res.status(404).json("passwords don't match");
+      return res.status(404).json("password is not strong enough");
     }
   } catch (error) {
     return next(error);
@@ -354,9 +360,15 @@ const update = async (req, res, next) => {
       const testUpdate = [];
       updateKeys.forEach((item) => {
         if (updateUser[item] == req.body[item]) {
-          testUpdate.push({
-            [item]: true,
-          });
+          if (updateUser[item] != req.user[item]) {
+            testUpdate.push({
+              [item]: true,
+            });
+          } else {
+            testUpdate.push({
+              [item]: "same as before",
+            });
+          }
         } else {
           testUpdate.push({
             [item]: false,
@@ -373,9 +385,7 @@ const update = async (req, res, next) => {
               file: false,
             });
       }
-      return res.status(200).json({
-        testUpdate,
-      });
+      return res.status(200).json({ updateUser, testUpdate });
     } catch (error) {
       return res.status(404).json(error.message);
     }
@@ -399,6 +409,13 @@ const deleteUser = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+};
+
+//! ADD ACQUIRED GAME
+const addAcquiredGame = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+  } catch (error) {}
 };
 
 module.exports = {
