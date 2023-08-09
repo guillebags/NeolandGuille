@@ -38,8 +38,9 @@ const uploadPlatform = multer({ storage: storagePlatform });
 const deleteImgCloudinary = (imgUrl) => {
   const imgSplited = imgUrl.split("/");
   const nameSplited = imgSplited[imgSplited.length - 1].split(".");
-  const folderSplited = imgSplited[imgSplited.length - 2];
-  const public_id = `${folderSplited}/${nameSplited[0]}`;
+  const folderSplited = imgSplited[imgSplited.length - 3];
+  const subFolderSplited = imgSplited[imgSplited.length - 2];
+  const public_id = `${folderSplited}/${subFolderSplited}/${nameSplited[0]}`;
 
   cloudinary.uploader.destroy(public_id, () => {
     console.log("Image deleted in cloudinary");

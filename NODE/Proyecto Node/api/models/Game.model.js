@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 //definimos el modelo de datos
 const GameSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     genre: {
       type: String,
       enum: [
@@ -45,7 +45,6 @@ const GameSchema = new Schema(
           "Singleplayer",
           "Multiplayer",
           "MMO",
-          //? to do: puedo meterlo como array?
         ],
       },
     ],
