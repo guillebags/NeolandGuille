@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors");
 const dotenv = require("dotenv");
 const { configCloudinary } = require("./middleware/files.middleware");
 const { connect } = require("./utils/DB.JS");
@@ -15,7 +15,7 @@ connect();
 const PORT = process.env.PORT;
 
 const app = express();
-
+app.use(cors());
 //limitacion de datos
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ limit: "5mb", extended: false }));

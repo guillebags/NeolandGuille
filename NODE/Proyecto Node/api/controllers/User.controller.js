@@ -17,6 +17,7 @@ const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
 const BASE_URL_COMPLETE = `${BASE_URL}${PORT}`;
 const validator = require("validator");
+const Game = require("../models/Game.model");
 
 //! REGISTER CONTROLLER
 const register = async (req, res, next) => {
@@ -400,6 +401,15 @@ const deleteUser = async (req, res, next) => {
   try {
     const { _id, image } = req.user;
     await User.findByIdAndDelete(_id);
+    try {
+      try {
+        await Game.updateMany({ players: _id }, { $pull: { players: _id } });
+      } catch (error) {
+        return res.status(404).json("error deleting game", error.message);
+      }
+    } catch (error) {
+      return res.status(404).json("error deleting platform", error.message);
+    }
     if (await User.findById(_id)) {
       return res.status(404).json("User not deleted");
     } else {

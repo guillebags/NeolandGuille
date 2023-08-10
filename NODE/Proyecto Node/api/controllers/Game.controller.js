@@ -51,11 +51,12 @@ const getById = async (req, res, next) => {
 const getByName = async (req, res, next) => {
   try {
     const { name } = req.body;
-    const gameByName = await Game.find({ name: name });
-    //? TO DO FIND ALL WITH SAME NAME
-    console.log("name", gameByName);
-    if (gameByName.length > 0) {
-      return res.status(200).json({ data: gameByName });
+    const gameByName = await Game.find();
+    const filterGame = gameByName.filter((element) =>
+      element.name.includes(name)
+    );
+    if (filterGame.length > 0) {
+      return res.status(200).json({ data: filterGame });
     } else {
       res.status(404).json("game not found");
     }
