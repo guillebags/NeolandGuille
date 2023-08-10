@@ -134,4 +134,78 @@ const updateGame = async (req, res, next) => {
   }
 };
 
+//! TOGGLE GAME
+/* const togglePlatform = async (req, res, next) => {
+  try {
+    let arrayPlatforms;
+    const { id } = req.params;
+    const { movies } = req.body;
+
+    const characterById = await Character.findById(id);
+
+    if (characterById) {
+      let updateCharacter;
+      let updateMovie;
+      arrayPlatforms = movies.split(",");
+      arrayPlatforms.forEach(async (element) => {
+        if (characterById.movies.includes(element)) {
+          console.log("💅😁");
+          try {
+            await Character.findByIdAndUpdate(id, {
+              $pull: { movies: element },
+            });
+            updateCharacter = await Character.findById(id);
+            try {
+              await Movie.findByIdAndUpdate(element, {
+                $pull: { characters: id },
+              });
+
+              updateMovie = await Movie.findById(element);
+            } catch (error) {
+              return res.status(404).json(error);
+              //meter mensaje de movie not found?
+            }
+          } catch (error) {
+            return res.status(404).json(error);
+          }
+        } else {
+          console.log("💙😁");
+          try {
+            await Character.findByIdAndUpdate(id, {
+              $push: { movies: element },
+            });
+            updateCharacter = await Character.findById(id);
+            try {
+              await Movie.findByIdAndUpdate(element, {
+                $push: { characters: id },
+              });
+              updateMovie = await Character.findById(element);
+            } catch (error) {
+              return res.status(404).json(error);
+            }
+          } catch (error) {
+            return res.status(404).json(error);
+          }
+        }
+      });
+
+      setTimeout(async () => {
+        return res.status(200).json({
+          update: await Character.findById(id).populate({
+            path: "movies",
+            populate: {
+              path: "characters",
+            },
+          }),
+        });
+      }, 500);
+
+    } else {
+      return res.status(404).json("character not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+}; */
+
 module.exports = { postGame, getById, getByName, updateGame };
