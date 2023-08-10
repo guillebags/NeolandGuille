@@ -3,7 +3,6 @@ const {
   addCharacter,
   changeView,
   deleteMovie,
-  toggleMovie,
 } = require("../controllers/Movie.controllers");
 
 const MovieRoutes = require("express").Router();

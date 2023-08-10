@@ -1,5 +1,5 @@
 //! ---------- nos requerimos mongoose
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 //! ---------- nos traemos de la libreria mongoose schema
 const Schema = mongoose.Schema;
@@ -15,17 +15,17 @@ const CharacterSchema = new Schema(
     name: { type: String, required: false, unique: true },
     gender: {
       type: String,
-      enum: ["hombre", "mujer", "otros"],
+      enum: ['hombre', 'mujer', 'otros'],
       required: false,
     },
     image: {
       type: String,
       required: false,
     },
-    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
+    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
     userFav: {
       type: [mongoose.Schema.Types.ObjectId],
-      ref: "User",
+      ref: 'User',
       default: [],
     },
   },
@@ -35,7 +35,7 @@ const CharacterSchema = new Schema(
 );
 //! ---------- creamos el modelo
 
-const Character = mongoose.model("Character", CharacterSchema);
+const Character = mongoose.model('Character', CharacterSchema);
 
 //! ----------- exportamos el modelo
 module.exports = Character;

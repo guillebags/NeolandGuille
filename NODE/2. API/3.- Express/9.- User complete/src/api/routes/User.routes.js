@@ -1,5 +1,5 @@
-const { isAuth, isAuthAdmin } = require("../../middleware/auth.moddleware");
-const { upload } = require("../../middleware/files.middleware");
+const { isAuth } = require('../../middleware/auth.moddleware');
+const { upload } = require('../../middleware/files.middleware');
 const {
   register,
   registerSlow,
@@ -15,29 +15,31 @@ const {
   update,
   addFavCharacter,
   addFavMovie,
-} = require("../controllers/User.controllers");
+  deleteUser,
+} = require('../controllers/User.controllers');
 
-const UserRoutes = require("express").Router();
+const UserRoutes = require('express').Router();
 
-UserRoutes.post("/registerUtil", upload.single("image"), register);
-UserRoutes.post("/register", upload.single("image"), registerSlow);
+UserRoutes.post('/registerUtil', upload.single('image'), register);
+UserRoutes.post('/register', upload.single('image'), registerSlow);
 UserRoutes.post(
-  "/registerRedirect",
-  upload.single("image"),
+  '/registerRedirect',
+  upload.single('image'),
   registerWithRedirect
 );
-UserRoutes.post("/login", login);
-UserRoutes.post("/login/autologin", autoLogin);
-UserRoutes.post("/resend", resendCode);
-UserRoutes.post("/check", checkNewUser);
-UserRoutes.patch("/forgotpassword/forgotpassword", changePassword);
-UserRoutes.patch("/changepassword", [isAuth], modifyPassword);
-UserRoutes.patch("/update/update", [isAuth], upload.single("image"), update);
-UserRoutes.patch("/addFavCharacter", [isAuth], addFavCharacter);
-UserRoutes.patch("/addFavMovie", [isAuth], addFavMovie);
+UserRoutes.post('/login', login);
+UserRoutes.post('/login/autologin', autoLogin);
+UserRoutes.post('/resend', resendCode);
+UserRoutes.post('/check', checkNewUser);
+UserRoutes.patch('/forgotpassword/forgotpassword', changePassword);
+UserRoutes.patch('/changepassword', [isAuth], modifyPassword);
+UserRoutes.patch('/update/update', [isAuth], upload.single('image'), update);
+UserRoutes.patch('/addFavCharacter', [isAuth], addFavCharacter);
+UserRoutes.patch('/addFavMovie', [isAuth], addFavMovie);
+UserRoutes.delete('/', [isAuth], deleteUser);
 
 //! --------------------- rutas que sirven como un redirects ---------------------
-UserRoutes.post("/register/sendMail/:id", sendCode);
-UserRoutes.patch("/sendPassword/:id", sendPassword);
+UserRoutes.post('/register/sendMail/:id', sendCode);
+UserRoutes.patch('/sendPassword/:id', sendPassword);
 
 module.exports = UserRoutes;

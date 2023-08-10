@@ -1,6 +1,5 @@
 const Character = require("../models/Character.model");
 const { deleteImgCloudinary } = require("../../middleware/files.middleware");
-const Movie = require("../models/Movie.model");
 
 //! ---------------------------------------------------------------------
 //? -------------------------------POST create ---------------------------------
@@ -163,115 +162,10 @@ const updateCharacter = async (req, res, next) => {
 //? -------------------------------POST ---------------------------------
 //! ---------------------------------------------------------------------
 
-//! Toggle movie by character
-const toggleMovie = async (req, res, next) => {
-  try {
-    let arrayMovies;
-    const { id } = req.params;
-    const { movies } = req.body;
-
-    const characterById = await Character.findById(id);
-
-    if (characterById) {
-      let updateCharacter;
-      let updateMovie;
-      arrayMovies = movies.split(",");
-      arrayMovies.forEach(async (element) => {
-        if (characterById.movies.includes(element)) {
-          console.log("💅😁");
-          try {
-            await Character.findByIdAndUpdate(id, {
-              $pull: { movies: element },
-            });
-            updateCharacter = await Character.findById(id);
-            try {
-              await Movie.findByIdAndUpdate(element, {
-                $pull: { characters: id },
-              });
-
-              updateMovie = await Movie.findById(element);
-            } catch (error) {
-              return res.status(404).json(error);
-              //meter mensaje de movie not found?
-            }
-          } catch (error) {
-            return res.status(404).json(error);
-          }
-        } else {
-          console.log("💙😁");
-          try {
-            await Character.findByIdAndUpdate(id, {
-              $push: { movies: element },
-            });
-            updateCharacter = await Character.findById(id);
-            try {
-              await Movie.findByIdAndUpdate(element, {
-                $push: { characters: id },
-              });
-              updateMovie = await Character.findById(element);
-            } catch (error) {
-              return res.status(404).json(error);
-            }
-          } catch (error) {
-            return res.status(404).json(error);
-          }
-        }
-      });
-
-      setTimeout(async () => {
-        return res.status(200).json({
-          update: await Character.findById(id).populate({
-            path: "movies",
-            populate: {
-              path: "characters",
-            },
-          }),
-        });
-      }, 500);
-
-      // POPULATE DE VARIAS CLAVES DEL MODELO CON PUNTOS: https://res.cloudinary.com/dhkbe6djz/image/upload/v1691401628/POPULATE_CON_PUNTOS_mfbngz.jpg
-      // POPULATE EN LINEA DE VARIAS CLAVES DEL MODELO: https://res.cloudinary.com/dhkbe6djz/image/upload/v1691401628/POPULATE_EN_LINEA_kmmnid.jpg
-    } else {
-      return res.status(404).json("character not found");
-    }
-  } catch (error) {
-    return next(error);
-  }
-};
-
-//! Delete Character
-
-const deleteCharacter = async (req, res, next) => {
-  try {
-    // este id es el id del character que quiero borrar
-    const { id } = req.params;
-    await Character.findByIdAndDelete(id);
-    try {
-      // updateOne le tengo que dar el elemento exacto que quiero actualizar el cual lo busco antes por id
-      // updateMany lo que hace es apuntar al modelo general y todos los que cumplan la condicion se modifican
-
-      const test = await Movie.updateMany(
-        { characters: id },
-        { $pull: { characters: id } }
-      );
-
-      return res.status(200).json({
-        test: test.modifiedCount === test.matchedCount ? true : false,
-      });
-    } catch (error) {
-      return res.status(404).json("error deleting character");
-    }
-  } catch (error) {
-    return next(error);
-  }
-};
-
 module.exports = {
   createCharacter,
   getById,
   getAll,
   getByName,
   updateCharacter,
-  toggleMovie,
-  deleteCharacter,
 };

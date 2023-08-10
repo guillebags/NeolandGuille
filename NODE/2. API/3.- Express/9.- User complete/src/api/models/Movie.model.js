@@ -1,5 +1,5 @@
 //! ---------- nos requerimos mongoose
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 //! ---------- creamos el schema
 
@@ -11,11 +11,11 @@ const MovieSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     year: { type: Number, required: true },
-    characters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Character" }],
+    characters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Character' }],
     view: { type: Boolean, default: false },
     userFav: {
       type: [mongoose.Schema.Types.ObjectId],
-      ref: "User",
+      ref: 'User',
       default: [],
     },
   },
@@ -25,7 +25,7 @@ const MovieSchema = new mongoose.Schema(
 );
 //! ---------- creamos el modelo
 
-const Movie = mongoose.model("Movie", MovieSchema);
+const Movie = mongoose.model('Movie', MovieSchema);
 
 //! ----------- exportamos el modelo
 module.exports = Movie;
