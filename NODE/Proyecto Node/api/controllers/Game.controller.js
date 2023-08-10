@@ -65,4 +65,73 @@ const getByName = async (req, res, next) => {
   }
 };
 
-module.exports = { postGame, getById, getByName };
+//! UPDATE GAME
+const updateGame = async (req, res, next) => {
+  let catchImg = req.file?.path;
+  try {
+    const { id } = req.params;
+
+    const gameById = await Game.findById(id);
+    if (gameById) {
+      const oldImg = gameById.image;
+      const customBody = {
+        _id: gameById._id,
+        name: gameById.name,
+        image: req.file?.path ? req.file?.path : oldImg,
+        genre: req.body?.genre ? req.body?.genre : gameById.genre,
+        theme: req.body?.theme ? req.body?.theme : gameById.theme,
+      };
+      await Game.findByIdAndUpdate(id, customBody);
+      if (req.file?.path) {
+        deleteImgCloudinary(oldImg);
+      }
+
+      const updatedNewGame = await Game.findById(id);
+      const keysUpdate = Object.keys(req.body);
+
+      let test = {};
+      keysUpdate.forEach((item) => {
+        if (gameById[item] !== updatedNewGame[item]) {
+          test[item] = true;
+        } else {
+          test[item] = false;
+        }
+
+        if (req.file) {
+          updatedNewGame.image == req.file?.path
+            ? (test = { ...test, file: true })
+            : (test = { ...test, file: false });
+        }
+      });
+
+      if (req.body?._id || req.body?.name) {
+        test._id = "id cannot be changed";
+        test.name = "name cannot be changed";
+      }
+
+      let acc = 0;
+      for (let key in test) {
+        if (test[key] == false) acc++;
+      }
+
+      if (acc > 0) {
+        return res.status(404).json({
+          dataTest: test,
+          update: "some items have not updated",
+        });
+      } else {
+        return res.status(200).json({
+          dataTest: test,
+          update: updatedNewGame,
+        });
+      }
+    } else {
+      return res.status(404).json("game not found");
+    }
+  } catch (error) {
+    if (req.file) deleteImgCloudinary(catchImg);
+    return next(error);
+  }
+};
+
+module.exports = { postGame, getById, getByName, updateGame };
