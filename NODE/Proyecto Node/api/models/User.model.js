@@ -33,8 +33,6 @@ const UserSchema = new mongoose.Schema(
     confirmationCode: { type: Number },
     check: { type: Boolean, default: false },
     image: { type: String },
-    characterFavs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Character" }],
-    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
   },
   { timestamps: true }
 );

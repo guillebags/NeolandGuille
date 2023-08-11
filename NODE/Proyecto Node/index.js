@@ -5,6 +5,7 @@ const { configCloudinary } = require("./middleware/files.middleware");
 const { connect } = require("./utils/DB.JS");
 const UserRoutes = require("./api/routes/User.routes");
 const GameRoutes = require("./api/routes/Game.routes");
+const PlatformRoutes = require("./api/routes/Platform.routes");
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ limit: "5mb", extended: false }));
 //rutas
 app.use("/api/v1/users", UserRoutes);
 app.use("/api/v1/games", GameRoutes);
+app.use("/api/v1/platforms", PlatformRoutes);
 
 app.use("*", (req, res, next) => {
   const error = new Error("Route not found ❌");
