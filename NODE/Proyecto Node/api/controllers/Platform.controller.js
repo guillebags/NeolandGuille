@@ -3,6 +3,8 @@ const Game = require("../models/Game.model");
 const Platform = require("../models/Platform.model");
 const User = require("../models/User.model");
 
+//! CREATE PLATFORM
+
 const postPlatform = async (req, res, next) => {
   let catchImage = req.file?.path;
   try {
@@ -30,4 +32,38 @@ const postPlatform = async (req, res, next) => {
   }
 };
 
-module.exports = { postPlatform };
+//! GET BY ID
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const platformById = await Platform.findById(id);
+
+    if (platformById) {
+      return res.status(200).json({ data: platformById });
+    } else {
+      res.status(404).json("platform not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! GET BY NAME
+const getByName = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const platformByName = await Platform.find();
+    const filterPlatform = platformByName.filter((element) =>
+      element.name.includes(name)
+    );
+    if (filterPlatform.length > 0) {
+      return res.status(200).json({ data: filterPlatform });
+    } else {
+      res.status(404).json("platform not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = { postPlatform, getById, getByName };

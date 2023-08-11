@@ -2,7 +2,7 @@ const { deleteImgCloudinary } = require("../../middleware/files.middleware");
 const Game = require("../models/Game.model");
 const Platform = require("../models/Platform.model");
 
-//! POST GAME
+//! CREATE GAME
 
 const postGame = async (req, res, next) => {
   let catchImage = req.file?.path;
