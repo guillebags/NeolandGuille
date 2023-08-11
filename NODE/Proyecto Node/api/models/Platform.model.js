@@ -20,9 +20,10 @@ const PlatformSchema = new Schema(
         ],
       },
     ],
-    developer: { type: String, required: false },
-    year: { type: Number },
-    programmed: { type: String },
+    developer: { type: String, default: "Unknown" },
+    year: { type: Number, default: "Unknown" },
+    programmed: { type: String, default: "Unknown" },
+    image: { type: String },
   },
   { timestamps: true }
 );

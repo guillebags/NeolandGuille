@@ -80,6 +80,7 @@ const updateGame = async (req, res, next) => {
         image: req.file?.path ? req.file?.path : oldImg,
         genre: req.body?.genre ? req.body?.genre : gameById.genre,
         theme: req.body?.theme ? req.body?.theme : gameById.theme,
+        year: req.body?.year ? req.body?.year : gameById.year,
       };
       await Game.findByIdAndUpdate(id, customBody);
       if (req.file?.path) {

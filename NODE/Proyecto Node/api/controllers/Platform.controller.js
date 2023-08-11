@@ -16,7 +16,7 @@ const postPlatform = async (req, res, next) => {
       newPlatform.image = catchImage;
     } else {
       newPlatform.image =
-        "https://res.cloudinary.com/dluwybogp/image/upload/v1691748536/descarga_yxekgn.png";
+        "https://res.cloudinary.com/dluwybogp/image/upload/v1691762145/proyectoNodeNeoland/platformStorage/descarga_hw3o9x.png";
     }
 
     const savedPlatform = await newPlatform.save();
@@ -66,4 +66,74 @@ const getByName = async (req, res, next) => {
   }
 };
 
-module.exports = { postPlatform, getById, getByName };
+//! UPDATE PLATFORM
+const updatePlatform = async (req, res, next) => {
+  let catchImg = req.file?.path;
+  try {
+    const { id } = req.params;
+
+    const platformById = await Platform.findById(id);
+    if (platformById) {
+      const oldImg = platformById.image;
+      const customBody = {
+        _id: platformById._id,
+        name: req.body?.name ? req.body?.name : platformById.name,
+        image: req.file?.path ? req.file?.path : oldImg,
+        developer: req.body?.developer
+          ? req.body?.developer
+          : platformById.developer,
+        devices: req.body?.devices ? req.body?.devices : platformById.devices,
+      };
+      await Platform.findByIdAndUpdate(id, customBody);
+      if (req.file?.path) {
+        deleteImgCloudinary(oldImg);
+      }
+
+      const updatedNewPlatform = await Platform.findById(id);
+      const keysUpdate = Object.keys(req.body);
+
+      let test = {};
+      keysUpdate.forEach((item) => {
+        if (platformById[item] !== updatedNewPlatform[item]) {
+          test[item] = true;
+        } else {
+          test[item] = false;
+        }
+
+        if (req.file) {
+          updatedNewPlatform.image == req.file?.path
+            ? (test = { ...test, file: true })
+            : (test = { ...test, file: false });
+        }
+      });
+
+      if (req.body?._id) {
+        test._id = "id cannot be changed";
+      }
+
+      let acc = 0;
+      for (let key in test) {
+        if (test[key] == false) acc++;
+      }
+
+      if (acc > 0) {
+        return res.status(404).json({
+          dataTest: test,
+          update: "some items have not updated",
+        });
+      } else {
+        return res.status(200).json({
+          dataTest: test,
+          update: updatedNewPlatform,
+        });
+      }
+    } else {
+      return res.status(404).json("platform not found");
+    }
+  } catch (error) {
+    if (req.file) deleteImgCloudinary(catchImg);
+    return next(error);
+  }
+};
+
+module.exports = { postPlatform, getById, getByName, updatePlatform };
