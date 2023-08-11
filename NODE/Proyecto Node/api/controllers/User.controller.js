@@ -18,13 +18,12 @@ const BASE_URL = process.env.BASE_URL;
 const BASE_URL_COMPLETE = `${BASE_URL}${PORT}`;
 const validator = require("validator");
 const Game = require("../models/Game.model");
+const Platform = require("../models/Platform.model");
 
-//! REGISTER CONTROLLER
+//! REGISTER
 const register = async (req, res, next) => {
   let catchImg = req.file?.path;
   try {
-    console.log("entro");
-
     await User.syncIndexes();
     let confirmationCode = randomCode();
     const { email, name } = req.body;
@@ -35,8 +34,6 @@ const register = async (req, res, next) => {
     );
 
     if (!userExist) {
-      console.log("entro");
-
       const newUser = new User({ ...req.body, confirmationCode });
       if (req.file) {
         newUser.image = req.file.path;
@@ -65,7 +62,7 @@ const register = async (req, res, next) => {
                 confirmationCode: "error, resend code",
               });
             }
-          }, 1200);
+          }, 1400);
         }
       } catch (error) {
         return res.status(404).json(error.message);
@@ -402,13 +399,24 @@ const deleteUser = async (req, res, next) => {
     const { _id, image } = req.user;
     await User.findByIdAndDelete(_id);
     try {
+      await Platform.updateMany({ users: _id }, { $pull: { users: _id } });
       try {
         await Game.updateMany({ players: _id }, { $pull: { players: _id } });
       } catch (error) {
-        return res.status(404).json("error deleting game", error.message);
+        return res
+          .status(404)
+          .json(
+            "error deleting players in game while deleting user",
+            error.message
+          );
       }
     } catch (error) {
-      return res.status(404).json("error deleting platform", error.message);
+      return res
+        .status(404)
+        .json(
+          "error deleting users in platform while deleting user",
+          error.message
+        );
     }
     if (await User.findById(_id)) {
       return res.status(404).json("User not deleted");
@@ -421,13 +429,70 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-//! ADD ACQUIRED GAME
-const addAcquiredGame = async (req, res, next) => {
+//! TOGGLE ACQUIRED GAME
+const toggleAcquiredGame = async (req, res, next) => {
   try {
     const { _id } = req.user;
-  } catch (error) {}
-};
+    const { games } = req.body;
+    const arrayGames = games.split(",");
+    arrayGames.forEach(async (element) => {
+      if (req.user.games.includes(element)) {
+        // si lo incluye lo sacamos
+        try {
+          await User.findByIdAndUpdate(_id, {
+            $pull: { games: element },
+          });
 
+          try {
+            await Game.findByIdAndUpdate(element, {
+              $pull: { players: _id },
+            });
+          } catch (error) {
+            return res.status(404).json({
+              error: "error pulling player from game model",
+              message: error.message,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pulling game from user model",
+            element,
+            message: error.message,
+          });
+        }
+      } else {
+        // si no lo incluye lo metemos
+        try {
+          await User.findByIdAndUpdate(_id, {
+            $push: { games: element },
+          });
+          try {
+            await Game.findByIdAndUpdate(element, {
+              $push: { players: _id },
+            });
+          } catch (error) {
+            return res.status(404).json({
+              error: "error pushing player in game model",
+              message: error.message,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pushing game in user model",
+            element,
+            message: error.message,
+          });
+        }
+      }
+    });
+
+    setTimeout(async () => {
+      return res.status(200).json(await User.findById(_id).populate("games"));
+    }, 400);
+  } catch (error) {
+    return next(error);
+  }
+};
 module.exports = {
   register,
   checkNewUser,
@@ -439,4 +504,5 @@ module.exports = {
   modifyPassword,
   update,
   deleteUser,
+  toggleAcquiredGame,
 };

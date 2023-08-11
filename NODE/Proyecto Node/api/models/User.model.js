@@ -33,6 +33,8 @@ const UserSchema = new mongoose.Schema(
     confirmationCode: { type: Number },
     check: { type: Boolean, default: false },
     image: { type: String },
+    games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
+    platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],
   },
   { timestamps: true }
 );

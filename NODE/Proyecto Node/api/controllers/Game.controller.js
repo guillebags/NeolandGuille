@@ -53,7 +53,7 @@ const getByName = async (req, res, next) => {
     const { name } = req.body;
     const gameByName = await Game.find();
     const filterGame = gameByName.filter((element) =>
-      element.name.includes(name)
+      element.name.toLowerCase().includes(name.toLowerCase())
     );
     if (filterGame.length > 0) {
       return res.status(200).json({ data: filterGame });

@@ -1,6 +1,7 @@
 let testEmailSend = false;
 
 const setTestEmailSend = (data) => {
+  console.log("data", data);
   testEmailSend = data;
 };
 

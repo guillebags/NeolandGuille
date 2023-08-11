@@ -11,6 +11,7 @@ const {
   modifyPassword,
   update,
   deleteUser,
+  toggleAcquiredGame,
 } = require("../controllers/User.controller");
 
 const express = require("express");
@@ -30,6 +31,7 @@ UserRoutes.patch(
   uploadUser.single("image"),
   update
 );
+UserRoutes.patch("/toggleAcquiredGame", [isAuth], toggleAcquiredGame);
 UserRoutes.delete("/", [isAuth], deleteUser);
 
 module.exports = UserRoutes;

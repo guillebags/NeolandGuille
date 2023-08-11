@@ -4,6 +4,7 @@ const {
   getByName,
   getById,
   updatePlatform,
+  toggleGame,
 } = require("../controllers/Platform.controller");
 
 const PlatformRoutes = require("express").Router();
@@ -16,5 +17,6 @@ PlatformRoutes.patch(
   uploadPlatform.single("image"),
   updatePlatform
 );
+PlatformRoutes.patch("/toggle/:id", toggleGame);
 
 module.exports = PlatformRoutes;
