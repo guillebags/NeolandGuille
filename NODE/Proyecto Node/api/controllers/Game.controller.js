@@ -1,6 +1,7 @@
 const { deleteImgCloudinary } = require("../../middleware/files.middleware");
 const Game = require("../models/Game.model");
 const Platform = require("../models/Platform.model");
+const User = require("../models/User.model");
 
 //! CREATE GAME
 
@@ -212,4 +213,47 @@ const togglePlatform = async (req, res, next) => {
   }
 };
 
-module.exports = { postGame, getById, getByName, updateGame, togglePlatform };
+//! DELETE GAME
+const deleteGame = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Game.findByIdAndDelete(id);
+    try {
+      await Platform.updateMany({ games: id }, { $pull: { games: id } });
+      try {
+        await User.updateMany({ favGames: id }, { $pull: { favGames: id } });
+      } catch (error) {
+        return res
+          .status(404)
+          .json(
+            "error deleting fav games in user while deleting game",
+            error.message
+          );
+      }
+    } catch (error) {
+      return res
+        .status(404)
+        .json(
+          "error deleting users in platform while deleting user",
+          error.message
+        );
+    }
+    if (await User.findById(_id)) {
+      return res.status(404).json("Game not deleted");
+    } else {
+      deleteImgCloudinary(image);
+      return res.status(200).json("Game deleted");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = {
+  postGame,
+  getById,
+  getByName,
+  updateGame,
+  togglePlatform,
+  deleteGame,
+};

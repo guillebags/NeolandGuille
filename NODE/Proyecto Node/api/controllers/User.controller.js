@@ -333,7 +333,6 @@ const modifyPassword = async (req, res, next) => {
 //! UPDATE
 const update = async (req, res, next) => {
   let catchImg = req.file?.path;
-  console.log("catchImg", catchImg);
   try {
     await User.syncIndexes();
     const patchUser = new User(req.body);
@@ -347,11 +346,21 @@ const update = async (req, res, next) => {
     patchUser.confirmationCode = req.user.confirmationCode;
     patchUser.check = req.user.check;
     patchUser.email = req.user.email;
+
     try {
       await User.findByIdAndUpdate(req.user._id, patchUser);
       if (req.file) {
         deleteImgCloudinary(req.user.image);
       }
+      /* try {
+        const { platform } = req.body;
+        const { id } = req.params;
+        const acquiredGame = await Object.findById(id);
+        await User.findByIdAndUpdate(_id, {
+          $push: { acquiredGame: { platformsId: platform } },
+        });
+      } catch (error) {}
+ */
       const updateUser = await User.findById(req.user._id);
       const updateKeys = Object.keys(req.body);
 
@@ -429,33 +438,33 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-//! TOGGLE ACQUIRED GAME
-const toggleAcquiredGame = async (req, res, next) => {
+//! TOGGLE FAV GAME
+const toggleFavGame = async (req, res, next) => {
   try {
     const { _id } = req.user;
-    const { games } = req.body;
-    const arrayGames = games.split(",");
-    arrayGames.forEach(async (element) => {
-      if (req.user.games.includes(element)) {
+    const { favGames } = req.body;
+    const arrayFavGames = favGames.split(",");
+    arrayFavGames.forEach(async (element) => {
+      if (req.user.favGames.includes(element)) {
         // si lo incluye lo sacamos
         try {
           await User.findByIdAndUpdate(_id, {
-            $pull: { games: element },
+            $pull: { favGames: element },
           });
 
           try {
             await Game.findByIdAndUpdate(element, {
-              $pull: { players: _id },
+              $pull: { favUsers: _id },
             });
           } catch (error) {
             return res.status(404).json({
-              error: "error pulling player from game model",
+              error: "error pulling  fav user from game model",
               message: error.message,
             });
           }
         } catch (error) {
           return res.status(404).json({
-            error: "error pulling game from user model",
+            error: "error pulling fav game from user model",
             element,
             message: error.message,
           });
@@ -464,7 +473,127 @@ const toggleAcquiredGame = async (req, res, next) => {
         // si no lo incluye lo metemos
         try {
           await User.findByIdAndUpdate(_id, {
-            $push: { games: element },
+            $push: { favGames: element },
+          });
+          try {
+            await Game.findByIdAndUpdate(element, {
+              $push: { favUsers: _id },
+            });
+          } catch (error) {
+            return res.status(404).json({
+              error: "error pushing fav user  in game model",
+              message: error.message,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pushing fav game in user model",
+            element,
+            message: error.message,
+          });
+        }
+      }
+    });
+
+    setTimeout(async () => {
+      return res
+        .status(200)
+        .json(await User.findById(_id).populate("favGames"));
+    }, 400);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! TOGGLE FAV PLATFORM
+
+const toggleFavPlatform = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const { favPlatforms } = req.body;
+    const arrayFavPlatforms = favPlatforms.split(",");
+    arrayFavPlatforms.forEach(async (element) => {
+      if (req.user.favPlatforms.includes(element)) {
+        // si lo incluye lo sacamos
+        try {
+          await User.findByIdAndUpdate(_id, {
+            $pull: { favPlatforms: element },
+          });
+
+          try {
+            await Platform.findByIdAndUpdate(element, {
+              $pull: { favUsers: _id },
+            });
+          } catch (error) {
+            return res.status(404).json({
+              error: "error pulling  fav user from platform model",
+              message: error.message,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pulling fav platform from user model",
+            element,
+            message: error.message,
+          });
+        }
+      } else {
+        // si no lo incluye lo metemos
+        try {
+          await User.findByIdAndUpdate(_id, {
+            $push: { favPlatforms: element },
+          });
+          try {
+            await Platform.findByIdAndUpdate(element, {
+              $push: { favUsers: _id },
+            });
+          } catch (error) {
+            return res.status(404).json({
+              error: "error pushing fav user  in platform model",
+              message: error.message,
+            });
+          }
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pushing fav platform in user model",
+            element,
+            message: error.message,
+          });
+        }
+      }
+    });
+
+    setTimeout(async () => {
+      return res
+        .status(200)
+        .json(await User.findById(_id).populate("favPlatforms"));
+    }, 1500);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! ADD ACQUIRED GAME
+//solo para añadir juegos comprados
+
+const addAcquiredGame = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const { game } = req.body;
+    const { platform } = req.body;
+    if (req.user.acquired.length !== 0) {
+      let acc = 0;
+      req.user.acquired.forEach((element) => {
+        if (game == element.gameId) {
+          acc++;
+        }
+      });
+
+      if (acc === 0) {
+        console.log("entro porque no hay ninguno igual");
+        try {
+          await User.findByIdAndUpdate(_id, {
+            $push: { acquired: { platformsId: [platform], gameId: game } },
           });
           try {
             await Game.findByIdAndUpdate(element, {
@@ -478,21 +607,37 @@ const toggleAcquiredGame = async (req, res, next) => {
           }
         } catch (error) {
           return res.status(404).json({
-            error: "error pushing game in user model",
-            element,
+            error: "error acquiring new game",
             message: error.message,
           });
         }
       }
-    });
+      //! TO DO, MENSAJE DE ERROR: "ya tienes este juego, prueba a actualizarlo en updates"
+    } else {
+      //si no hay ninguno metido, lo metes sí o sí
+
+      try {
+        await User.findByIdAndUpdate(_id, {
+          $push: { acquired: { platformsId: platform, gameId: game } },
+        });
+      } catch (error) {
+        return res.status(404).json({
+          error: "error pushing new game when is 0",
+          message: error.message,
+        });
+      }
+    }
 
     setTimeout(async () => {
-      return res.status(200).json(await User.findById(_id).populate("games"));
-    }, 400);
+      return res
+        .status(200)
+        .json(await User.findById(_id).populate("acquired"));
+    }, 1000);
   } catch (error) {
     return next(error);
   }
 };
+
 module.exports = {
   register,
   checkNewUser,
@@ -504,5 +649,7 @@ module.exports = {
   modifyPassword,
   update,
   deleteUser,
-  toggleAcquiredGame,
+  toggleFavGame,
+  toggleFavPlatform,
+  addAcquiredGame,
 };

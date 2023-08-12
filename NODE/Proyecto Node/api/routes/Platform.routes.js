@@ -5,6 +5,7 @@ const {
   getById,
   updatePlatform,
   toggleGame,
+  deletePlatform,
 } = require("../controllers/Platform.controller");
 
 const PlatformRoutes = require("express").Router();
@@ -18,5 +19,6 @@ PlatformRoutes.patch(
   updatePlatform
 );
 PlatformRoutes.patch("/toggle/:id", toggleGame);
+PlatformRoutes.delete("/", deletePlatform);
 
 module.exports = PlatformRoutes;

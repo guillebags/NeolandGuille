@@ -24,6 +24,7 @@ const PlatformSchema = new Schema(
     year: { type: Number, default: "Unknown" },
     programmed: { type: String, default: "Unknown" },
     image: { type: String },
+    favUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

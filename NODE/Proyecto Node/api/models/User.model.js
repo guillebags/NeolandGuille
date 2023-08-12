@@ -33,8 +33,16 @@ const UserSchema = new mongoose.Schema(
     confirmationCode: { type: Number },
     check: { type: Boolean, default: false },
     image: { type: String },
-    games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
-    platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],
+    favGames: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
+    favPlatforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],
+    acquired: [
+      {
+        gameId: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
+        platformsId: [
+          { type: mongoose.Schema.Types.ObjectId, ref: "Platform" },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );

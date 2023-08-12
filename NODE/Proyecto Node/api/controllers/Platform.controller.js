@@ -212,10 +212,50 @@ const toggleGame = async (req, res, next) => {
   }
 };
 
+//! DELETE PLATFORM
+const deletePlatform = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Platform.findByIdAndDelete(id);
+    try {
+      await Game.updateMany({ platforms: id }, { $pull: { platforms: id } });
+      try {
+        await User.updateMany(
+          { favPlatforms: id },
+          { $pull: { favPlatforms: id } }
+        );
+      } catch (error) {
+        return res
+          .status(404)
+          .json(
+            "error deleting fav platforms in user while deleting platform",
+            error.message
+          );
+      }
+    } catch (error) {
+      return res
+        .status(404)
+        .json(
+          "error deleting platforms in game while deleting platform",
+          error.message
+        );
+    }
+    if (await User.findById(_id)) {
+      return res.status(404).json("Platform not deleted");
+    } else {
+      deleteImgCloudinary(image);
+      return res.status(200).json("Platform deleted");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   postPlatform,
   getById,
   getByName,
   updatePlatform,
   toggleGame,
+  deletePlatform,
 };
