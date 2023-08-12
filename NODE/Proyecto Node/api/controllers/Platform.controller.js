@@ -146,8 +146,6 @@ const toggleGame = async (req, res, next) => {
     const platformById = await Platform.findById(id);
 
     if (platformById) {
-      let updateGame;
-      let updatePlatform;
       arrayGames = games.split(",");
       arrayGames.forEach(async (element) => {
         if (platformById.games.includes(element)) {
@@ -155,14 +153,11 @@ const toggleGame = async (req, res, next) => {
             await Platform.findByIdAndUpdate(id, {
               $pull: { games: element },
             });
-            updateGame = await Game.findById(id);
             //?SOBRA?
             try {
               await Game.findByIdAndUpdate(element, {
                 $pull: { platforms: id },
               });
-
-              updatePlatform = await Platform.findById(element);
             } catch (error) {
               return res.status(404).json({
                 error: "error pulling platform from game model",
@@ -180,12 +175,10 @@ const toggleGame = async (req, res, next) => {
             await Platform.findByIdAndUpdate(id, {
               $push: { games: element },
             });
-            updateGame = await Game.findById(id);
             try {
               await Game.findByIdAndUpdate(element, {
                 $push: { platforms: id },
               });
-              updatePlatform = await Platform.findById(element);
             } catch (error) {
               return res.status(404).json({
                 error: "error pushing platform in game model",

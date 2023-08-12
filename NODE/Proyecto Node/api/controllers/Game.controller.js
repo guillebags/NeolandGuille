@@ -136,77 +136,80 @@ const updateGame = async (req, res, next) => {
 };
 
 //! TOGGLE GAME
-/* const togglePlatform = async (req, res, next) => {
+const togglePlatform = async (req, res, next) => {
   try {
     let arrayPlatforms;
     const { id } = req.params;
-    const { movies } = req.body;
+    const { platforms } = req.body;
 
-    const characterById = await Character.findById(id);
+    const gameById = await Game.findById(id);
 
-    if (characterById) {
-      let updateCharacter;
-      let updateMovie;
-      arrayPlatforms = movies.split(",");
+    if (gameById) {
+      arrayPlatforms = platforms.split(",");
       arrayPlatforms.forEach(async (element) => {
-        if (characterById.movies.includes(element)) {
-          console.log("💅😁");
+        if (gameById.platforms.includes(element)) {
           try {
-            await Character.findByIdAndUpdate(id, {
-              $pull: { movies: element },
+            await Game.findByIdAndUpdate(id, {
+              $pull: { platforms: element },
             });
-            updateCharacter = await Character.findById(id);
             try {
-              await Movie.findByIdAndUpdate(element, {
-                $pull: { characters: id },
+              await Platform.findByIdAndUpdate(element, {
+                $pull: { games: id },
               });
 
-              updateMovie = await Movie.findById(element);
+              updatePlatform = await Platform.findById(element);
             } catch (error) {
-              return res.status(404).json(error);
-              //meter mensaje de movie not found?
+              return res.status(404).json({
+                error: "error pulling game from platform model",
+                message: error.message,
+              });
             }
           } catch (error) {
-            return res.status(404).json(error);
+            return res.status(404).json({
+              error: "error pulling platform from game model",
+              message: error.message,
+            });
           }
         } else {
-          console.log("💙😁");
           try {
-            await Character.findByIdAndUpdate(id, {
-              $push: { movies: element },
+            await Game.findByIdAndUpdate(id, {
+              $push: { platforms: element },
             });
-            updateCharacter = await Character.findById(id);
             try {
-              await Movie.findByIdAndUpdate(element, {
-                $push: { characters: id },
+              await Platform.findByIdAndUpdate(element, {
+                $push: { games: id },
               });
-              updateMovie = await Character.findById(element);
             } catch (error) {
-              return res.status(404).json(error);
+              return res.status(404).json({
+                error: "error pushing game in platform model",
+                message: error.message,
+              });
             }
           } catch (error) {
-            return res.status(404).json(error);
+            return res.status(404).json({
+              error: "error pushing platform in game model",
+              message: error.message,
+            });
           }
         }
       });
 
       setTimeout(async () => {
         return res.status(200).json({
-          update: await Character.findById(id).populate({
-            path: "movies",
+          update: await Game.findById(id).populate({
+            path: "platforms",
             populate: {
-              path: "characters",
+              path: "games",
             },
           }),
         });
       }, 500);
-
     } else {
-      return res.status(404).json("character not found");
+      return res.status(404).json("game not found");
     }
   } catch (error) {
     return next(error);
   }
-}; */
+};
 
-module.exports = { postGame, getById, getByName, updateGame };
+module.exports = { postGame, getById, getByName, updateGame, togglePlatform };
