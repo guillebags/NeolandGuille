@@ -66,6 +66,16 @@ const getByName = async (req, res, next) => {
   }
 };
 
+//! GET WITH SKIP
+const getSkip = async (req, res, next) => {
+  try {
+    const allGames = await Game.find().skip(1);
+    return res.status(200).json({ data: allGames });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //! UPDATE GAME
 const updateGame = async (req, res, next) => {
   let catchImg = req.file?.path;
@@ -256,4 +266,5 @@ module.exports = {
   updateGame,
   togglePlatform,
   deleteGame,
+  getSkip,
 };

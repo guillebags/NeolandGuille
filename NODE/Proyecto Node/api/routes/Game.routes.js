@@ -6,6 +6,7 @@ const {
   updateGame,
   togglePlatform,
   deleteGame,
+  getSkip,
 } = require("../controllers/Game.controller");
 
 const GameRoutes = require("express").Router();
@@ -13,6 +14,7 @@ const GameRoutes = require("express").Router();
 GameRoutes.post("/", uploadGame.single("image"), postGame);
 GameRoutes.get("/:id", getById);
 GameRoutes.get("/getByName/name", getByName);
+GameRoutes.get("/get/all/skip", getSkip);
 GameRoutes.patch("/update/:id", uploadGame.single("image"), updateGame);
 GameRoutes.patch("/toggle/:id", togglePlatform);
 GameRoutes.delete("/", deleteGame);
