@@ -383,6 +383,54 @@ const update = async (req, res, next) => {
   }
 };
 
+//! GET ALL
+const getAllUsers = async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    if (allUsers.length > 0) {
+      return res.status(200).json({ data: allUsers });
+    } else {
+      res.status(404).json("users not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! GET BY NAME
+const getByName = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const userByName = await User.find();
+    const filterUser = userByName.filter((element) =>
+      element.name.toLowerCase().includes(name.toLowerCase()),
+    );
+    if (filterUser.length > 0) {
+      return res.status(200).json({ data: filterUser });
+    } else {
+      res.status(404).json("user not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! GET BY ID
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userById = await User.findById(id);
+
+    if (userById) {
+      return res.status(200).json({ data: userById });
+    } else {
+      res.status(404).json("user not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //! DELETE
 const deleteUser = async (req, res, next) => {
   try {
@@ -643,4 +691,7 @@ module.exports = {
   toggleFavGame,
   toggleFavPlatform,
   addAcquiredGame,
+  getAllUsers,
+  getByName,
+  getById,
 };

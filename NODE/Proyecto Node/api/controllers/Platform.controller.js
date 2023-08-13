@@ -54,7 +54,7 @@ const getByName = async (req, res, next) => {
     const { name } = req.body;
     const platformByName = await Platform.find();
     const filterPlatform = platformByName.filter((element) =>
-      element.name.includes(name),
+      element.name.toLowerCase().includes(name.toLowerCase()),
     );
     if (filterPlatform.length > 0) {
       return res.status(200).json({ data: filterPlatform });

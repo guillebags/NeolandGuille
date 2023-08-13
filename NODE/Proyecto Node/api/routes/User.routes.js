@@ -14,6 +14,9 @@ const {
   toggleFavGame,
   addAcquiredGame,
   toggleFavPlatform,
+  getAllUsers,
+  getByName,
+  getById,
 } = require("../controllers/User.controller");
 
 const express = require("express");
@@ -24,6 +27,9 @@ UserRoutes.post("/check", checkNewUser);
 UserRoutes.post("/resend", resendCode);
 UserRoutes.post("/login", login);
 UserRoutes.post("/login/autologin", autoLogin);
+UserRoutes.get("/", getAllUsers);
+UserRoutes.get("/getByName", getByName);
+UserRoutes.get("/:id", getById);
 UserRoutes.patch("/forgotpassword/forgotpassword", changePassword);
 UserRoutes.patch("/sendPassword/:id", sendPassword);
 UserRoutes.patch("/changepassword", [isAuth], modifyPassword);
