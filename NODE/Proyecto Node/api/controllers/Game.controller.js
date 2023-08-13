@@ -225,6 +225,7 @@ const togglePlatform = async (req, res, next) => {
 
 //! DELETE GAME
 const deleteGame = async (req, res, next) => {
+  //! TO DO BORRAR DEL ACQUIRED
   try {
     const { id } = req.params;
     await Game.findByIdAndDelete(id);

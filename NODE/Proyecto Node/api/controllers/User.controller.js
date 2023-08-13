@@ -352,15 +352,7 @@ const update = async (req, res, next) => {
       if (req.file) {
         deleteImgCloudinary(req.user.image);
       }
-      /* try {
-        const { platform } = req.body;
-        const { id } = req.params;
-        const acquiredGame = await Object.findById(id);
-        await User.findByIdAndUpdate(_id, {
-          $push: { acquiredGame: { platformsId: platform } },
-        });
-      } catch (error) {}
- */
+
       const updateUser = await User.findById(req.user._id);
       const updateKeys = Object.keys(req.body);
 
@@ -582,21 +574,15 @@ const addAcquiredGame = async (req, res, next) => {
     const { game } = req.body;
     const { platform } = req.body;
     if (req.user.acquired.length !== 0) {
-      let acc = 0;
-      req.user.acquired.forEach((element) => {
-        if (game == element.gameId) {
-          acc++;
-        }
-      });
+      const hasGame = req.user.acquired.some(({ gameId }) => gameId == game);
 
-      if (acc === 0) {
-        console.log("entro porque no hay ninguno igual");
+      if (!hasGame) {
         try {
           await User.findByIdAndUpdate(_id, {
             $push: { acquired: { platformsId: [platform], gameId: game } },
           });
           try {
-            await Game.findByIdAndUpdate(element, {
+            await Game.findByIdAndUpdate(game, {
               $push: { players: _id },
             });
           } catch (error) {
@@ -611,8 +597,25 @@ const addAcquiredGame = async (req, res, next) => {
             message: error.message,
           });
         }
+      } else {
+        //cuando sí tiene el juego
+        const patchUser = req.user;
+        const patchGame = patchUser.acquired.find(
+          ({ gameId }) => gameId == game
+        );
+        if (!patchGame.platformsId.includes(platform)) {
+          patchGame.platformsId.push(platform);
+        }
+        console.log(patchGame);
+        try {
+          await User.findByIdAndUpdate(req.user._id, patchUser);
+        } catch (error) {
+          return res.status(404).json({
+            error: "error pushing new platform in game",
+            message: error.message,
+          });
+        }
       }
-      //! TO DO, MENSAJE DE ERROR: "ya tienes este juego, prueba a actualizarlo en updates"
     } else {
       //si no hay ninguno metido, lo metes sí o sí
 
@@ -632,7 +635,7 @@ const addAcquiredGame = async (req, res, next) => {
       return res
         .status(200)
         .json(await User.findById(_id).populate("acquired"));
-    }, 1000);
+    }, 1400);
   } catch (error) {
     return next(error);
   }
