@@ -66,6 +66,20 @@ const getByName = async (req, res, next) => {
   }
 };
 
+//! GET ALL
+const getAllPlatforms = async (req, res, next) => {
+  try {
+    const allPlatforms = await Platform.find();
+    if (allPlatforms.length > 0) {
+      return res.status(200).json({ data: allPlatforms });
+    } else {
+      res.status(404).json("platform not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //! UPDATE PLATFORM
 const updatePlatform = async (req, res, next) => {
   let catchImg = req.file?.path;
@@ -258,4 +272,5 @@ module.exports = {
   updatePlatform,
   toggleGame,
   deletePlatform,
+  getAllPlatforms,
 };

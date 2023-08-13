@@ -6,6 +6,7 @@ const {
   updatePlatform,
   toggleGame,
   deletePlatform,
+  getAllPlatforms,
 } = require("../controllers/Platform.controller");
 
 const PlatformRoutes = require("express").Router();
@@ -13,6 +14,7 @@ const PlatformRoutes = require("express").Router();
 PlatformRoutes.post("/", uploadPlatform.single("image"), postPlatform);
 PlatformRoutes.get("/:id", getById);
 PlatformRoutes.get("/getByName/name", getByName);
+PlatformRoutes.get("/", getAllPlatforms);
 PlatformRoutes.patch(
   "/update/:id",
   uploadPlatform.single("image"),

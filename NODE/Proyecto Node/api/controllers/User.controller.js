@@ -606,7 +606,6 @@ const addAcquiredGame = async (req, res, next) => {
         if (!patchGame.platformsId.includes(platform)) {
           patchGame.platformsId.push(platform);
         }
-        console.log(patchGame);
         try {
           await User.findByIdAndUpdate(req.user._id, patchUser);
         } catch (error) {

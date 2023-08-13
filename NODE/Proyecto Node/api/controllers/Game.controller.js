@@ -66,6 +66,20 @@ const getByName = async (req, res, next) => {
   }
 };
 
+//! GET ALL
+const getAllGames = async (req, res, next) => {
+  try {
+    const allGames = await Game.find();
+    if (allGames.length > 0) {
+      return res.status(200).json({ data: allGames });
+    } else {
+      return res.status(404).json("games not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //! GET WITH SKIP
 const getSkip = async (req, res, next) => {
   try {
@@ -225,21 +239,26 @@ const togglePlatform = async (req, res, next) => {
 
 //! DELETE GAME
 const deleteGame = async (req, res, next) => {
-  //! TO DO BORRAR DEL ACQUIRED
   try {
     const { id } = req.params;
     await Game.findByIdAndDelete(id);
     try {
       await Platform.updateMany({ games: id }, { $pull: { games: id } });
       try {
-        await User.updateMany({ favGames: id }, { $pull: { favGames: id } });
+        const allUsers = await User.find();
+        allUsers.forEach(async (user) => {
+          const patchGame = user.acquired?.find(({ gameId }) => gameId == id);
+          if (patchGame.gameId.includes(id)) {
+            patchGame.gameId.remove(id);
+          }
+          if (user.favGames.includes(id)) {
+            user.favGames.remove(id);
+          }
+        });
       } catch (error) {
         return res
           .status(404)
-          .json(
-            "error deleting fav games in user while deleting game",
-            error.message
-          );
+          .json("error removing deleted games from user", error.message);
       }
     } catch (error) {
       return res
@@ -268,4 +287,5 @@ module.exports = {
   togglePlatform,
   deleteGame,
   getSkip,
+  getAllGames,
 };
