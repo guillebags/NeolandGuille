@@ -35,7 +35,7 @@ const GameSchema = new Schema(
     image: { type: String },
     platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Game = mongoose.model("Game", GameSchema);

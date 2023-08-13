@@ -26,7 +26,7 @@ const PlatformSchema = new Schema(
     image: { type: String },
     favUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Platform = mongoose.model("Platform", PlatformSchema);

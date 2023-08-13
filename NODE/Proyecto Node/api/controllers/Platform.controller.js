@@ -54,7 +54,7 @@ const getByName = async (req, res, next) => {
     const { name } = req.body;
     const platformByName = await Platform.find();
     const filterPlatform = platformByName.filter((element) =>
-      element.name.includes(name)
+      element.name.includes(name),
     );
     if (filterPlatform.length > 0) {
       return res.status(200).json({ data: filterPlatform });
@@ -229,6 +229,7 @@ const toggleGame = async (req, res, next) => {
 //! DELETE PLATFORM
 const deletePlatform = async (req, res, next) => {
   try {
+    const { image } = await Platform.findById(id).image;
     const { id } = req.params;
     await Platform.findByIdAndDelete(id);
     try {
@@ -236,14 +237,14 @@ const deletePlatform = async (req, res, next) => {
       try {
         await User.updateMany(
           { favPlatforms: id },
-          { $pull: { favPlatforms: id } }
+          { $pull: { favPlatforms: id } },
         );
       } catch (error) {
         return res
           .status(404)
           .json(
             "error deleting fav platforms in user while deleting platform",
-            error.message
+            error.message,
           );
       }
     } catch (error) {
@@ -251,10 +252,10 @@ const deletePlatform = async (req, res, next) => {
         .status(404)
         .json(
           "error deleting platforms in game while deleting platform",
-          error.message
+          error.message,
         );
     }
-    if (await User.findById(_id)) {
+    if (await Platform.findById(id)) {
       return res.status(404).json("Platform not deleted");
     } else {
       deleteImgCloudinary(image);

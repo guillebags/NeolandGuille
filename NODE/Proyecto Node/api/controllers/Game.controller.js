@@ -54,7 +54,7 @@ const getByName = async (req, res, next) => {
     const { name } = req.body;
     const gameByName = await Game.find();
     const filterGame = gameByName.filter((element) =>
-      element.name.toLowerCase().includes(name.toLowerCase())
+      element.name.toLowerCase().includes(name.toLowerCase()),
     );
     if (filterGame.length > 0) {
       return res.status(200).json({ data: filterGame });
@@ -181,8 +181,6 @@ const togglePlatform = async (req, res, next) => {
               await Platform.findByIdAndUpdate(element, {
                 $pull: { games: id },
               });
-
-              updatePlatform = await Platform.findById(element);
             } catch (error) {
               return res.status(404).json({
                 error: "error pulling game from platform model",
@@ -240,6 +238,7 @@ const togglePlatform = async (req, res, next) => {
 //! DELETE GAME
 const deleteGame = async (req, res, next) => {
   try {
+    const { image } = await Game.findById(id).image;
     const { id } = req.params;
     await Game.findByIdAndDelete(id);
     try {
@@ -247,13 +246,18 @@ const deleteGame = async (req, res, next) => {
       try {
         const allUsers = await User.find();
         allUsers.forEach(async (user) => {
-          const patchGame = user.acquired?.find(({ gameId }) => gameId == id);
+          let userId = user._id;
+          const patchUser = await User.findById(userId);
+          const patchGame = patchUser.acquired?.find(
+            ({ gameId }) => gameId == id,
+          );
           if (patchGame.gameId.includes(id)) {
             patchGame.gameId.remove(id);
           }
-          if (user.favGames.includes(id)) {
-            user.favGames.remove(id);
+          if (patchUser.favGames.includes(id)) {
+            patchUser.favGames.remove(id);
           }
+          await User.findByIdAndUpdate(userId, patchUser);
         });
       } catch (error) {
         return res
@@ -265,10 +269,10 @@ const deleteGame = async (req, res, next) => {
         .status(404)
         .json(
           "error deleting users in platform while deleting user",
-          error.message
+          error.message,
         );
     }
-    if (await User.findById(_id)) {
+    if (await Game.findById(id)) {
       return res.status(404).json("Game not deleted");
     } else {
       deleteImgCloudinary(image);

@@ -30,7 +30,7 @@ const register = async (req, res, next) => {
     //aqui ponemos el email y el name por separado porque ambos son unique 💅, si no, {email:req.body.email, name:req.body.name}
     const userExist = await User.findOne(
       { email: req.body.email },
-      { name: req.body.name }
+      { name: req.body.name },
     );
 
     if (!userExist) {
@@ -101,20 +101,7 @@ const checkNewUser = async (req, res, next) => {
           return res.status(404).json(error.message);
         }
       } else {
-        /// si se equivoca de codigo lo borramos de la base datos y lo mandamos al registro
-        const deleteUser = await User.findByIdAndDelete(userExists._id);
-
-        // borramos la imagen
-        deleteImgCloudinary(userExists.image);
-
-        // devolvemos un 200 con el test de ver si el delete se ha hecho correctamente
-        return res.status(200).json({
-          userExists,
-          check: false,
-          delete: (await User.findById(userExists._id))
-            ? "error delete user"
-            : "ok delete user",
-        });
+        return res.status(404).json("invalid code");
       }
     }
   } catch (error) {
@@ -226,12 +213,14 @@ const changePassword = async (req, res, next) => {
     if (userDb) {
       return res.redirect(
         307,
-        `${BASE_URL_COMPLETE}/api/v1/users/sendPassword/${userDb._id}`
+        `${BASE_URL_COMPLETE}/api/v1/users/sendPassword/${userDb._id}`,
       );
     } else {
       return res.status(404).json("User not registered");
     }
-  } catch (error) {}
+  } catch (error) {
+    return next(error);
+  }
 };
 
 const sendPassword = async (req, res, next) => {
@@ -408,7 +397,7 @@ const deleteUser = async (req, res, next) => {
           .status(404)
           .json(
             "error deleting players in game while deleting user",
-            error.message
+            error.message,
           );
       }
     } catch (error) {
@@ -416,7 +405,7 @@ const deleteUser = async (req, res, next) => {
         .status(404)
         .json(
           "error deleting users in platform while deleting user",
-          error.message
+          error.message,
         );
     }
     if (await User.findById(_id)) {
@@ -601,7 +590,7 @@ const addAcquiredGame = async (req, res, next) => {
         //cuando sí tiene el juego
         const patchUser = req.user;
         const patchGame = patchUser.acquired.find(
-          ({ gameId }) => gameId == game
+          ({ gameId }) => gameId == game,
         );
         if (!patchGame.platformsId.includes(platform)) {
           patchGame.platformsId.push(platform);

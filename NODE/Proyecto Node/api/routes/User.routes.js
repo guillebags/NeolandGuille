@@ -1,4 +1,4 @@
-const { isAuth, isAuthAdmin } = require("../../middleware/auth.middleware");
+const { isAuth } = require("../../middleware/auth.middleware");
 const { uploadUser } = require("../../middleware/files.middleware");
 const {
   register,
@@ -31,7 +31,7 @@ UserRoutes.patch(
   "/update/update/:id",
   [isAuth],
   uploadUser.single("image"),
-  update
+  update,
 );
 UserRoutes.patch("/toggleFavGame", [isAuth], toggleFavGame);
 UserRoutes.patch("/toggleFavPlatform", [isAuth], toggleFavPlatform);

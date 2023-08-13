@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
+    "format": "prettier --check --ignore-path .gitignore ./",
+    "format:fix": "prettier --write --ignore-path .gitignore ./"
   },
   "keywords": [],
   "author": "",

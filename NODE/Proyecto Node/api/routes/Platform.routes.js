@@ -18,7 +18,7 @@ PlatformRoutes.get("/", getAllPlatforms);
 PlatformRoutes.patch(
   "/update/:id",
   uploadPlatform.single("image"),
-  updatePlatform
+  updatePlatform,
 );
 PlatformRoutes.patch("/toggle/:id", toggleGame);
 PlatformRoutes.delete("/", deletePlatform);
