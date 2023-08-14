@@ -436,18 +436,12 @@ const deleteUser = async (req, res, next) => {
   try {
     const { _id, image } = req.user;
     await User.findByIdAndDelete(_id);
+    //delete users from platform model
     try {
-      await Platform.updateMany({ users: _id }, { $pull: { users: _id } });
-      try {
-        await Game.updateMany({ players: _id }, { $pull: { players: _id } });
-      } catch (error) {
-        return res
-          .status(404)
-          .json(
-            "error deleting players in game while deleting user",
-            error.message,
-          );
-      }
+      await Platform.updateMany(
+        { favUsers: _id, customers: _id },
+        { $pull: { favUsers: _id, customers: _id } },
+      );
     } catch (error) {
       return res
         .status(404)
@@ -456,6 +450,21 @@ const deleteUser = async (req, res, next) => {
           error.message,
         );
     }
+
+    try {
+      await Game.updateMany(
+        { players: _id, favUsers: _id },
+        { $pull: { players: _id, favUsers: _id } },
+      );
+    } catch (error) {
+      return res
+        .status(404)
+        .json(
+          "error deleting users in game while deleting user",
+          error.message,
+        );
+    }
+
     if (await User.findById(_id)) {
       return res.status(404).json("User not deleted");
     } else {
@@ -610,68 +619,108 @@ const addAcquiredGame = async (req, res, next) => {
     const { _id } = req.user;
     const { game } = req.body;
     const { platform } = req.body;
-    if (req.user.acquired.length !== 0) {
-      const hasGame = req.user.acquired.some(({ gameId }) => gameId == game);
 
-      if (!hasGame) {
-        try {
-          await User.findByIdAndUpdate(_id, {
-            $push: { acquired: { platformsId: [platform], gameId: game } },
-          });
+    const allGames = await Game.find();
+    const allPlatforms = await Platform.find();
+
+    //funcion para comprobar si la plataforma está disponible en el juego
+    const isPlatformInGame = async (id) => {
+      let check = false;
+      let gameForCheck = await Game.findById(game);
+      if (gameForCheck.platforms.includes(platform)) {
+        check = true;
+      }
+      return check;
+    };
+
+    //compruebo si existen los juegos/plataformas
+    if (allGames.includes(game) && allPlatforms.includes(platform)) {
+      //compruebo si la plataforma está disponible
+      if (isPlatformInGame(game)) {
+        //compruebo si el user ya tiene algún juego, si no, lo meto directamente
+        if (req.user.acquired.length !== 0) {
+          //si ya tiene algún juego, compruebo que tenga este juego o no
+          const hasGame = req.user.acquired.some(
+            ({ gameId }) => gameId == game,
+          );
+
+          if (!hasGame) {
+            //si no tiene este juego, lo meto entero
+            try {
+              await User.findByIdAndUpdate(_id, {
+                $push: { acquired: { platformsId: [platform], gameId: game } },
+              });
+              try {
+                await Game.findByIdAndUpdate(game, {
+                  $push: { players: _id },
+                });
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pushing player in game model",
+                  message: error.message,
+                });
+              }
+              try {
+                await Platform.findByIdAndUpdate(platform, {
+                  $push: { users: _id },
+                });
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pushing user in platform model",
+                });
+              }
+            } catch (error) {
+              return res.status(404).json({
+                error: "error acquiring new game",
+                message: error.message,
+              });
+            }
+          } else {
+            //si sí que tiene este juego, compruebo si lo tiene en la misma plataforma o es otra
+            const patchUser = req.user;
+            const patchGame = patchUser.acquired.find(
+              ({ gameId }) => gameId == game,
+            );
+            if (!patchGame.platformsId.includes(platform)) {
+              patchGame.platformsId.push(platform);
+            }
+            try {
+              await User.findByIdAndUpdate(req.user._id, patchUser);
+            } catch (error) {
+              return res.status(404).json({
+                error: "error pushing new platform in game",
+                message: error.message,
+              });
+            }
+          }
+        } else {
+          //si no hay ninguno metido, lo metes sí o sí
+
           try {
-            await Game.findByIdAndUpdate(game, {
-              $push: { players: _id },
+            await User.findByIdAndUpdate(_id, {
+              $push: { acquired: { platformsId: platform, gameId: game } },
             });
           } catch (error) {
             return res.status(404).json({
-              error: "error pushing player in game model",
+              error: "error pushing new game when is 0",
               message: error.message,
             });
           }
-        } catch (error) {
-          return res.status(404).json({
-            error: "error acquiring new game",
-            message: error.message,
-          });
         }
+
+        setTimeout(async () => {
+          return res
+            .status(200)
+            .json(await User.findById(_id).populate("acquired"));
+        }, 1400);
       } else {
-        //cuando sí tiene el juego
-        const patchUser = req.user;
-        const patchGame = patchUser.acquired.find(
-          ({ gameId }) => gameId == game,
-        );
-        if (!patchGame.platformsId.includes(platform)) {
-          patchGame.platformsId.push(platform);
-        }
-        try {
-          await User.findByIdAndUpdate(req.user._id, patchUser);
-        } catch (error) {
-          return res.status(404).json({
-            error: "error pushing new platform in game",
-            message: error.message,
-          });
-        }
+        return res
+          .status(404)
+          .json("this game cannot be acquired in this platform");
       }
     } else {
-      //si no hay ninguno metido, lo metes sí o sí
-
-      try {
-        await User.findByIdAndUpdate(_id, {
-          $push: { acquired: { platformsId: platform, gameId: game } },
-        });
-      } catch (error) {
-        return res.status(404).json({
-          error: "error pushing new game when is 0",
-          message: error.message,
-        });
-      }
+      return res.status(404).json("game or platform not existing in database");
     }
-
-    setTimeout(async () => {
-      return res
-        .status(200)
-        .json(await User.findById(_id).populate("acquired"));
-    }, 1400);
   } catch (error) {
     return next(error);
   }
