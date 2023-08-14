@@ -267,7 +267,21 @@ const getNewGames = async (req, res, next) => {
     const platformToNewGames = await Platform.findById(id);
 
     if (platformToNewGames.games.length > 0) {
-      return res.status(200).json({ data: sortedPlatforms });
+      try {
+        const gamesToNew = [];
+        for (let i = 0; i < platformToNewGames.games.length; i++) {
+          let game = await Game.findById(platformToNewGames.games[i]);
+          gamesToNew.push(game);
+        }
+        console.log(gamesToNew);
+
+        const sortedNewGames = gamesToNew.sort((a, b) => b.year - a.year);
+
+        console.log(sortedNewGames, "sorted");
+        return res.status(200).json({ data: sortedNewGames });
+      } catch (error) {
+        res.status(404).json({ error: "not pushed", message: error.message });
+      }
     } else {
       return res.status(404).json("platforms not found");
     }
@@ -323,4 +337,5 @@ module.exports = {
   getAllPlatforms,
   getPopularPlatforms,
   getAmountPlatforms,
+  getNewGames,
 };
