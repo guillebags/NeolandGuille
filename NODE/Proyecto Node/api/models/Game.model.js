@@ -34,6 +34,11 @@ const GameSchema = new Schema(
     favUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     image: { type: String },
     platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true },
 );

@@ -236,16 +236,18 @@ const togglePlatform = async (req, res, next) => {
   }
 };
 
-//! DELETE GAME FROM EVERYWHERE
-//Este controlador permite al usuario con rol admin borrar un juego y que se vea reflejado en los registros del resto de usuarios.
+//! DELETE GAME
+//Este controlador permite al usuario con rol admin o author borrar un juego y que se vea reflejado en los registros del resto de usuarios.
 const deleteGame = async (req, res, next) => {
   try {
     const { _id } = req.user;
     const { id } = req.params;
+    const { author } = req.body;
     const gameToDelete = await Game.findById(id);
+    const isAuthor = gameToDelete.author;
     const { image } = gameToDelete;
     const isAdmin = await User.findById(_id);
-    if (isAdmin.rol === "admin") {
+    if (isAdmin.rol === "admin" || isAuthor == author) {
       await Game.findByIdAndDelete(id);
       try {
         const allUsers = await User.find();
@@ -296,6 +298,16 @@ const deleteGameUser = async (req, res, next) => {
     const { id } = req.params;
     const userToDelete = await User.findById(_id);
     await Game.findByIdAndDelete(id);
+    try {
+      await Platform.updateMany({ games: id }, { $pull: { games: id } });
+    } catch (error) {
+      return res
+        .status(404)
+        .json(
+          "error deleting games in platform while deleting game",
+          error.message,
+        );
+    }
     if (userToDelete.favGames.includes(id)) {
       try {
         await User.findByIdAndUpdate(_id, {

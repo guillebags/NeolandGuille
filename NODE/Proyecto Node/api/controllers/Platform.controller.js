@@ -229,8 +229,9 @@ const toggleGame = async (req, res, next) => {
 //! DELETE PLATFORM
 const deletePlatform = async (req, res, next) => {
   try {
-    const { image } = await Platform.findById(id).image;
     const { id } = req.params;
+    const { image } = await Platform.findById(id);
+
     await Platform.findByIdAndDelete(id);
     try {
       await Game.updateMany({ platforms: id }, { $pull: { platforms: id } });

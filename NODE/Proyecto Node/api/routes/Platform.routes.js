@@ -21,6 +21,6 @@ PlatformRoutes.patch(
   updatePlatform,
 );
 PlatformRoutes.patch("/toggle/:id", toggleGame);
-PlatformRoutes.delete("/", deletePlatform);
+PlatformRoutes.delete("/:id", deletePlatform);
 
 module.exports = PlatformRoutes;
