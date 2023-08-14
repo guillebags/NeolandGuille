@@ -249,22 +249,7 @@ const deleteGame = async (req, res, next) => {
     const isAdmin = await User.findById(_id);
     if (isAdmin.rol === "admin" || isAuthor == author) {
       await Game.findByIdAndDelete(id);
-      try {
-        const allUsers = await User.find();
-        allUsers.forEach(async (user) => {
-          let userId = user._id;
-          const patchUser = await User.findById(userId);
-          patchUser.acquired.forEach((element) => {
-            if (element.gameId == id) {
-              patchUser.acquired.remove(element);
-            }
-          });
-        });
-      } catch (error) {
-        return res
-          .status(404)
-          .json("error removing deleted games from user", error.message);
-      }
+
       try {
         await Platform.updateMany({ games: id }, { $pull: { games: id } });
       } catch (error) {
@@ -289,42 +274,6 @@ const deleteGame = async (req, res, next) => {
   }
 };
 
-//! DELETE GAME (just for the user library)
-//Este controlador permite al usuario borrar de sus registros el juego sin que afecte a los demás.
-
-const deleteGameUser = async (req, res, next) => {
-  try {
-    const { _id } = req.user;
-    const { id } = req.params;
-    const userToDelete = await User.findById(_id);
-    await Game.findByIdAndDelete(id);
-    try {
-      await Platform.updateMany({ games: id }, { $pull: { games: id } });
-    } catch (error) {
-      return res
-        .status(404)
-        .json(
-          "error deleting games in platform while deleting game",
-          error.message,
-        );
-    }
-    if (userToDelete.favGames.includes(id)) {
-      try {
-        await User.findByIdAndUpdate(_id, {
-          $pull: { favGames: id },
-        });
-      } catch (error) {
-        return res.status(404).json({
-          error: "error pulling game from user model",
-          message: error.message,
-        });
-      }
-    }
-  } catch (error) {
-    return next(error);
-  }
-};
-
 module.exports = {
   postGame,
   getById,
@@ -334,5 +283,4 @@ module.exports = {
   deleteGame,
   getSkip,
   getAllGames,
-  deleteGameUser,
 };

@@ -26,6 +26,7 @@ const PlatformSchema = new Schema(
     image: { type: String },
     favUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     customers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true },
 );

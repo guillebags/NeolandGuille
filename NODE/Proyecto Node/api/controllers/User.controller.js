@@ -636,7 +636,6 @@ const addAcquiredGame = async (req, res, next) => {
     if (gameExists && platformExists) {
       //compruebo si la plataforma está disponible
       if (await isPlatformInGame(game)) {
-        console.log(isPlatformInGame(game));
         //compruebo si el user ya tiene algún juego, si no, lo meto directamente
         if (req.user.acquired.length !== 0) {
           //si ya tiene algún juego, compruebo que tenga este juego o no
@@ -662,7 +661,7 @@ const addAcquiredGame = async (req, res, next) => {
               }
               try {
                 await Platform.findByIdAndUpdate(platform, {
-                  $push: { users: _id },
+                  $push: { customers: _id },
                 });
               } catch (error) {
                 return res.status(404).json({
@@ -683,14 +682,44 @@ const addAcquiredGame = async (req, res, next) => {
             );
             if (!patchGame.platformsId.includes(platform)) {
               patchGame.platformsId.push(platform);
-            }
-            try {
-              await User.findByIdAndUpdate(req.user._id, patchUser);
-            } catch (error) {
-              return res.status(404).json({
-                error: "error pushing new platform in game",
-                message: error.message,
-              });
+              try {
+                await User.findByIdAndUpdate(req.user._id, patchUser);
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pushing new platform in game",
+                  message: error.message,
+                });
+              }
+            } else {
+              try {
+                await User.findByIdAndUpdate(_id, {
+                  $pull: { acquired: { platformsId: platform, gameId: game } },
+                });
+                try {
+                  await Game.findByIdAndUpdate(game, {
+                    $pull: { players: _id },
+                  });
+                } catch (error) {
+                  return res.status(404).json({
+                    error: "error pulling player from game model",
+                    message: error.message,
+                  });
+                }
+                try {
+                  await Platform.findByIdAndUpdate(platform, {
+                    $pull: { customers: _id },
+                  });
+                } catch (error) {
+                  return res.status(404).json({
+                    error: "error pulling user from platform model",
+                  });
+                }
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pulling game from user",
+                  message: error.message,
+                });
+              }
             }
           }
         } else {
@@ -712,7 +741,7 @@ const addAcquiredGame = async (req, res, next) => {
             }
             try {
               await Platform.findByIdAndUpdate(platform, {
-                $push: { users: _id },
+                $push: { customers: _id },
               });
             } catch (error) {
               return res.status(404).json({

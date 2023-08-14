@@ -226,41 +226,36 @@ const toggleGame = async (req, res, next) => {
   }
 };
 
-//! DELETE PLATFORM
 const deletePlatform = async (req, res, next) => {
   try {
+    const { _id } = req.user;
     const { id } = req.params;
-    const { image } = await Platform.findById(id);
+    const { author } = req.body;
+    const platformToDelete = await Platform.findById(id);
+    const isAuthor = platformToDelete.author;
+    const { image } = platformToDelete;
+    const isAdmin = await User.findById(_id);
+    if (isAdmin.rol === "admin" || isAuthor == author) {
+      await Platform.findByIdAndDelete(id);
 
-    await Platform.findByIdAndDelete(id);
-    try {
-      await Game.updateMany({ platforms: id }, { $pull: { platforms: id } });
       try {
-        await User.updateMany(
-          { favPlatforms: id },
-          { $pull: { favPlatforms: id } },
-        );
+        await Game.updateMany({ platforms: id }, { $pull: { platforms: id } });
       } catch (error) {
         return res
           .status(404)
           .json(
-            "error deleting fav platforms in user while deleting platform",
+            "error deleting platform in game while deleting platform",
             error.message,
           );
       }
-    } catch (error) {
-      return res
-        .status(404)
-        .json(
-          "error deleting platforms in game while deleting platform",
-          error.message,
-        );
-    }
-    if (await Platform.findById(id)) {
-      return res.status(404).json("Platform not deleted");
+      if (await Platform.findById(id)) {
+        return res.status(404).json("Pllatform not deleted");
+      } else {
+        deleteImgCloudinary(image);
+        return res.status(200).json("Platform deleted");
+      }
     } else {
-      deleteImgCloudinary(image);
-      return res.status(200).json("Platform deleted");
+      return res.status(404).json("You're not authorized");
     }
   } catch (error) {
     return next(error);
