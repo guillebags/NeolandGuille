@@ -242,7 +242,7 @@ const getPopularGames = async (req, res, next) => {
     const allGames = await Game.find();
     if (allGames.length > 0) {
       const sortedGames = allGames.sort(
-        (a, b) => a.players.length - b.players.length,
+        (a, b) => b.players.length - a.players.length,
       );
       return res.status(200).json({ data: sortedGames });
     } else {
@@ -256,10 +256,10 @@ const getPopularGames = async (req, res, next) => {
 //! GET BY GENRE
 const getByGenre = async (req, res, next) => {
   try {
-    const { name } = req.body;
-    const gameByName = await Game.find();
-    const filterGame = gameByName.filter((element) =>
-      element.name.toLowerCase().includes(name.toLowerCase()),
+    const { genre } = req.body;
+    const gameByGenre = await Game.find();
+    const filterGame = gameByGenre.filter((element) =>
+      element.genre.toLowerCase().includes(genre.toLowerCase()),
     );
     if (filterGame.length > 0) {
       return res.status(200).json({ data: filterGame });

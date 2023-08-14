@@ -226,6 +226,57 @@ const toggleGame = async (req, res, next) => {
   }
 };
 
+//! SORT POPULAR PLATFORMS
+const getPopularPlatforms = async (req, res, next) => {
+  try {
+    const allPlatforms = await Platform.find();
+    if (allPlatforms.length > 0) {
+      const sortedPlatforms = allPlatforms.sort(
+        (a, b) => b.customers.length - a.customers.length,
+      );
+      return res.status(200).json({ data: sortedPlatforms });
+    } else {
+      return res.status(404).json("platforms not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! SORT PLATFORMS BY NUMBER OF GAMES
+const getAmountPlatforms = async (req, res, next) => {
+  try {
+    const allPlatforms = await Platform.find();
+    if (allPlatforms.length > 0) {
+      const sortedPlatforms = allPlatforms.sort(
+        (a, b) => b.games.length - a.games.length,
+      );
+      return res.status(200).json({ data: sortedPlatforms });
+    } else {
+      return res.status(404).json("platforms not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! SORT GAMES BY YEAR
+const getNewGames = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const platformToNewGames = await Platform.findById(id);
+
+    if (platformToNewGames.games.length > 0) {
+      return res.status(200).json({ data: sortedPlatforms });
+    } else {
+      return res.status(404).json("platforms not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! DELETE PLATFORM
 const deletePlatform = async (req, res, next) => {
   try {
     const { _id } = req.user;
@@ -270,4 +321,6 @@ module.exports = {
   toggleGame,
   deletePlatform,
   getAllPlatforms,
+  getPopularPlatforms,
+  getAmountPlatforms,
 };

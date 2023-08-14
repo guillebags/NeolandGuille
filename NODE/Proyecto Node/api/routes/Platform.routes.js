@@ -7,6 +7,8 @@ const {
   toggleGame,
   deletePlatform,
   getAllPlatforms,
+  getPopularPlatforms,
+  getAmountPlatforms,
 } = require("../controllers/Platform.controller");
 
 const PlatformRoutes = require("express").Router();
@@ -22,5 +24,7 @@ PlatformRoutes.patch(
 );
 PlatformRoutes.patch("/toggle/:id", toggleGame);
 PlatformRoutes.delete("/:id", deletePlatform);
+PlatformRoutes.get("/get/popular/platforms/sorted", getPopularPlatforms);
+PlatformRoutes.get("/get/platforms/by/amount/of/games", getAmountPlatforms);
 
 module.exports = PlatformRoutes;
