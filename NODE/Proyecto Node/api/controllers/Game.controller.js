@@ -236,6 +236,41 @@ const togglePlatform = async (req, res, next) => {
   }
 };
 
+//! SORT POPULAR GAMES
+const getPopularGames = async (req, res, next) => {
+  try {
+    const allGames = await Game.find();
+    if (allGames.length > 0) {
+      const sortedGames = allGames.sort(
+        (a, b) => a.players.length - b.players.length,
+      );
+      return res.status(200).json({ data: sortedGames });
+    } else {
+      return res.status(404).json("games not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! GET BY GENRE
+const getByGenre = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const gameByName = await Game.find();
+    const filterGame = gameByName.filter((element) =>
+      element.name.toLowerCase().includes(name.toLowerCase()),
+    );
+    if (filterGame.length > 0) {
+      return res.status(200).json({ data: filterGame });
+    } else {
+      res.status(404).json("game not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 //! DELETE GAME
 //Este controlador permite al usuario con rol admin o author borrar un juego y que se vea reflejado en los registros del resto de usuarios.
 const deleteGame = async (req, res, next) => {
@@ -283,4 +318,6 @@ module.exports = {
   deleteGame,
   getSkip,
   getAllGames,
+  getPopularGames,
+  getByGenre,
 };

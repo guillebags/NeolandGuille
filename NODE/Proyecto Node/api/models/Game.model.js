@@ -30,7 +30,9 @@ const GameSchema = new Schema(
     },
     year: { type: Number },
     theme: [{ type: String, default: "" }],
-    players: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    players: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "User", default: "" },
+    ],
     favUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     image: { type: String },
     platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Platform" }],

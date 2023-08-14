@@ -9,6 +9,7 @@ const {
   deleteGame,
   getSkip,
   getAllGames,
+  getPopularGames,
 } = require("../controllers/Game.controller");
 
 const GameRoutes = require("express").Router();
@@ -20,6 +21,7 @@ GameRoutes.get("/get/all/skip", getSkip);
 GameRoutes.get("/", getAllGames);
 GameRoutes.patch("/update/:id", uploadGame.single("image"), updateGame);
 GameRoutes.patch("/toggle/:id", togglePlatform);
+GameRoutes.get("/get/popular/games/sorted", getPopularGames);
 GameRoutes.delete("/:id", [isAuth], deleteGame);
 
 module.exports = GameRoutes;
