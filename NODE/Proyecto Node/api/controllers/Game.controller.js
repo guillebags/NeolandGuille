@@ -2,7 +2,8 @@ const { deleteImgCloudinary } = require("../../middleware/files.middleware");
 const Game = require("../models/Game.model");
 const Platform = require("../models/Platform.model");
 const User = require("../models/User.model");
-
+const dotenv = require("dotenv");
+dotenv.config();
 //! CREATE GAME
 
 const postGame = async (req, res, next) => {
@@ -235,48 +236,77 @@ const togglePlatform = async (req, res, next) => {
   }
 };
 
-//! DELETE GAME
+//! DELETE GAME FROM EVERYWHERE
+//Este controlador permite al usuario con rol admin borrar un juego y que se vea reflejado en los registros del resto de usuarios.
 const deleteGame = async (req, res, next) => {
   try {
-    const { image } = await Game.findById(id).image;
+    const { _id } = req.user;
     const { id } = req.params;
-    await Game.findByIdAndDelete(id);
-    try {
-      await Platform.updateMany({ games: id }, { $pull: { games: id } });
+    const gameToDelete = await Game.findById(id);
+    const { image } = gameToDelete;
+    const isAdmin = await User.findById(_id);
+    if (isAdmin.rol === "admin") {
+      await Game.findByIdAndDelete(id);
       try {
         const allUsers = await User.find();
         allUsers.forEach(async (user) => {
           let userId = user._id;
           const patchUser = await User.findById(userId);
-          const patchGame = patchUser.acquired?.find(
-            ({ gameId }) => gameId == id,
-          );
-          if (patchGame.gameId.includes(id)) {
-            patchGame.gameId.remove(id);
-          }
-          if (patchUser.favGames.includes(id)) {
-            patchUser.favGames.remove(id);
-          }
-          await User.findByIdAndUpdate(userId, patchUser);
+          patchUser.acquired.forEach((element) => {
+            if (element.gameId == id) {
+              patchUser.acquired.remove(element);
+            }
+          });
         });
       } catch (error) {
         return res
           .status(404)
           .json("error removing deleted games from user", error.message);
       }
-    } catch (error) {
-      return res
-        .status(404)
-        .json(
-          "error deleting users in platform while deleting user",
-          error.message,
-        );
-    }
-    if (await Game.findById(id)) {
-      return res.status(404).json("Game not deleted");
+      try {
+        await Platform.updateMany({ games: id }, { $pull: { games: id } });
+      } catch (error) {
+        return res
+          .status(404)
+          .json(
+            "error deleting users in platform while deleting user",
+            error.message,
+          );
+      }
+      if (await Game.findById(id)) {
+        return res.status(404).json("Game not deleted");
+      } else {
+        deleteImgCloudinary(image);
+        return res.status(200).json("Game deleted");
+      }
     } else {
-      deleteImgCloudinary(image);
-      return res.status(200).json("Game deleted");
+      return res.status(404).json("You're not authorized");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! DELETE GAME (just for the user library)
+//Este controlador permite al usuario borrar de sus registros el juego sin que afecte a los demás.
+
+const deleteGameUser = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const { id } = req.params;
+    const userToDelete = await User.findById(_id);
+    await Game.findByIdAndDelete(id);
+    if (userToDelete.favGames.includes(id)) {
+      try {
+        await User.findByIdAndUpdate(_id, {
+          $pull: { favGames: id },
+        });
+      } catch (error) {
+        return res.status(404).json({
+          error: "error pulling game from user model",
+          message: error.message,
+        });
+      }
     }
   } catch (error) {
     return next(error);
@@ -292,4 +322,5 @@ module.exports = {
   deleteGame,
   getSkip,
   getAllGames,
+  deleteGameUser,
 };

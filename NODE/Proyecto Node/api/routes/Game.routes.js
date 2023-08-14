@@ -1,3 +1,4 @@
+const { isAuth } = require("../../middleware/auth.middleware");
 const { uploadGame } = require("../../middleware/files.middleware");
 const {
   postGame,
@@ -8,6 +9,7 @@ const {
   deleteGame,
   getSkip,
   getAllGames,
+  deleteGameUser,
 } = require("../controllers/Game.controller");
 
 const GameRoutes = require("express").Router();
@@ -19,6 +21,7 @@ GameRoutes.get("/get/all/skip", getSkip);
 GameRoutes.get("/", getAllGames);
 GameRoutes.patch("/update/:id", uploadGame.single("image"), updateGame);
 GameRoutes.patch("/toggle/:id", togglePlatform);
-GameRoutes.delete("/", deleteGame);
+GameRoutes.delete("/:id", [isAuth], deleteGame);
+GameRoutes.delete("/delete/:id", [isAuth], deleteGameUser);
 
 module.exports = GameRoutes;
