@@ -17,6 +17,8 @@ const {
   getAllUsers,
   getByName,
   getById,
+  getPegi,
+  getBestUser,
 } = require("../controllers/User.controller");
 
 const express = require("express");
@@ -44,5 +46,7 @@ UserRoutes.patch("/toggleFavPlatform", [isAuth], toggleFavPlatform);
 
 UserRoutes.delete("/", [isAuth], deleteUser);
 UserRoutes.patch("/addAcquiredGame/add", [isAuth], addAcquiredGame);
+UserRoutes.get("/get/pegi", [isAuth], getPegi);
+UserRoutes.get("/get/users/more/games", getBestUser);
 
 module.exports = UserRoutes;

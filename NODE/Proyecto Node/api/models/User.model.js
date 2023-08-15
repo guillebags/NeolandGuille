@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema(
       validate: [validator.isStrongPassword],
       minlength: [8, "Min 8 characters"],
     },
+    year: { type: Number, required: true },
     gender: {
       type: String,
       enum: ["mujer", "hombre", "no binarie", "otros"], //enumeracion de los diferentes valores que puede tener

@@ -15,13 +15,18 @@ const {
 
 const GameRoutes = require("express").Router();
 
-GameRoutes.post("/", uploadGame.single("image"), postGame);
+GameRoutes.post("/", [isAuth], uploadGame.single("image"), postGame);
 GameRoutes.get("/:id", getById);
 GameRoutes.get("/getByName/name", getByName);
 GameRoutes.get("/get/all/skip", getSkip);
 GameRoutes.get("/", getAllGames);
-GameRoutes.patch("/update/:id", uploadGame.single("image"), updateGame);
-GameRoutes.patch("/toggle/:id", togglePlatform);
+GameRoutes.patch(
+  "/update/:id",
+  [isAuth],
+  uploadGame.single("image"),
+  updateGame,
+);
+GameRoutes.patch("/toggle/:id", [isAuth], togglePlatform);
 GameRoutes.get("/get/popular/games/sorted", getPopularGames);
 GameRoutes.get("/get/games/by/genre/sorted", getByGenre);
 GameRoutes.delete("/:id", [isAuth], deleteGame);

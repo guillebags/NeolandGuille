@@ -4,32 +4,46 @@ const Platform = require("../models/Platform.model");
 const User = require("../models/User.model");
 const dotenv = require("dotenv");
 dotenv.config();
-//! CREATE GAME
 
+//! CREATE GAME
 const postGame = async (req, res, next) => {
   let catchImage = req.file?.path;
+
   try {
-    await Game.syncIndexes();
+    const { _id } = req.user;
 
-    const newGame = new Game(req.body);
+    const isAdmin = await User.findById(_id);
+    if (isAdmin.rol === "admin") {
+      try {
+        await Game.syncIndexes();
 
-    if (req.file) {
-      newGame.image = catchImage;
+        const newGame = new Game(req.body);
+
+        if (req.file) {
+          newGame.image = catchImage;
+        } else {
+          newGame.image =
+            "https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/Hub%20App/pokedex1_nofgat.png";
+        }
+
+        const savedGame = await newGame.save();
+
+        if (savedGame) {
+          return res.status(200).json(savedGame);
+        } else {
+          return res.status(404).json("Game not saved in database");
+        }
+      } catch (error) {
+        req.file?.path && deleteImgCloudinary(catchImage);
+        return next(error);
+      }
     } else {
-      newGame.image =
-        "https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/Hub%20App/pokedex1_nofgat.png";
-    }
-
-    const savedGame = await newGame.save();
-
-    if (savedGame) {
-      return res.status(200).json(savedGame);
-    } else {
-      return res.status(404).json("Game not saved in database");
+      return res.status(403).json("You're not authorized");
     }
   } catch (error) {
-    req.file?.path && deleteImgCloudinary(catchImage);
-    return next(error);
+    return res
+      .status(404)
+      .json({ error: "user not found", message: error.message });
   }
 };
 
@@ -95,65 +109,70 @@ const getSkip = async (req, res, next) => {
 const updateGame = async (req, res, next) => {
   let catchImg = req.file?.path;
   try {
-    const { id } = req.params;
+    const { rol } = req.user;
+    if (rol === "admin") {
+      const { id } = req.params;
 
-    const gameById = await Game.findById(id);
-    if (gameById) {
-      const oldImg = gameById.image;
-      const customBody = {
-        _id: gameById._id,
-        name: gameById.name,
-        image: req.file?.path ? req.file?.path : oldImg,
-        genre: req.body?.genre ? req.body?.genre : gameById.genre,
-        theme: req.body?.theme ? req.body?.theme : gameById.theme,
-        year: req.body?.year ? req.body?.year : gameById.year,
-      };
-      await Game.findByIdAndUpdate(id, customBody);
-      if (req.file?.path) {
-        deleteImgCloudinary(oldImg);
-      }
+      const gameById = await Game.findById(id);
+      if (gameById) {
+        const oldImg = gameById.image;
+        const customBody = {
+          _id: gameById._id,
+          name: gameById.name,
+          image: req.file?.path ? req.file?.path : oldImg,
+          genre: req.body?.genre ? req.body?.genre : gameById.genre,
+          theme: req.body?.theme ? req.body?.theme : gameById.theme,
+          year: req.body?.year ? req.body?.year : gameById.year,
+        };
+        await Game.findByIdAndUpdate(id, customBody);
+        if (req.file?.path) {
+          deleteImgCloudinary(oldImg);
+        }
 
-      const updatedNewGame = await Game.findById(id);
-      const keysUpdate = Object.keys(req.body);
+        const updatedNewGame = await Game.findById(id);
+        const keysUpdate = Object.keys(req.body);
 
-      let test = {};
-      keysUpdate.forEach((item) => {
-        if (gameById[item] !== updatedNewGame[item]) {
-          test[item] = true;
+        let test = {};
+        keysUpdate.forEach((item) => {
+          if (gameById[item] !== updatedNewGame[item]) {
+            test[item] = true;
+          } else {
+            test[item] = false;
+          }
+
+          if (req.file) {
+            updatedNewGame.image == req.file?.path
+              ? (test = { ...test, file: true })
+              : (test = { ...test, file: false });
+          }
+        });
+
+        if (req.body?._id || req.body?.name) {
+          test._id = "id cannot be changed";
+          test.name = "name cannot be changed";
+        }
+
+        let acc = 0;
+        for (let key in test) {
+          if (test[key] == false) acc++;
+        }
+
+        if (acc > 0) {
+          return res.status(404).json({
+            dataTest: test,
+            update: "some items have not updated",
+          });
         } else {
-          test[item] = false;
+          return res.status(200).json({
+            dataTest: test,
+            update: updatedNewGame,
+          });
         }
-
-        if (req.file) {
-          updatedNewGame.image == req.file?.path
-            ? (test = { ...test, file: true })
-            : (test = { ...test, file: false });
-        }
-      });
-
-      if (req.body?._id || req.body?.name) {
-        test._id = "id cannot be changed";
-        test.name = "name cannot be changed";
-      }
-
-      let acc = 0;
-      for (let key in test) {
-        if (test[key] == false) acc++;
-      }
-
-      if (acc > 0) {
-        return res.status(404).json({
-          dataTest: test,
-          update: "some items have not updated",
-        });
       } else {
-        return res.status(200).json({
-          dataTest: test,
-          update: updatedNewGame,
-        });
+        return res.status(404).json("game not found");
       }
     } else {
-      return res.status(404).json("game not found");
+      return res.status(404).json("platforms not found");
     }
   } catch (error) {
     if (req.file) deleteImgCloudinary(catchImg);
@@ -164,72 +183,78 @@ const updateGame = async (req, res, next) => {
 //! TOGGLE GAME
 const togglePlatform = async (req, res, next) => {
   try {
-    let arrayPlatforms;
-    const { id } = req.params;
-    const { platforms } = req.body;
+    const { rol } = req.user;
+    if (rol === "admin") {
+      let arrayPlatforms;
 
-    const gameById = await Game.findById(id);
+      const { id } = req.params;
+      const { platforms } = req.body;
 
-    if (gameById) {
-      arrayPlatforms = platforms.split(",");
-      arrayPlatforms.forEach(async (element) => {
-        if (gameById.platforms.includes(element)) {
-          try {
-            await Game.findByIdAndUpdate(id, {
-              $pull: { platforms: element },
-            });
+      const gameById = await Game.findById(id);
+
+      if (gameById) {
+        arrayPlatforms = platforms.split(",");
+        arrayPlatforms.forEach(async (element) => {
+          if (gameById.platforms.includes(element)) {
             try {
-              await Platform.findByIdAndUpdate(element, {
-                $pull: { games: id },
+              await Game.findByIdAndUpdate(id, {
+                $pull: { platforms: element },
               });
+              try {
+                await Platform.findByIdAndUpdate(element, {
+                  $pull: { games: id },
+                });
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pulling game from platform model",
+                  message: error.message,
+                });
+              }
             } catch (error) {
               return res.status(404).json({
-                error: "error pulling game from platform model",
+                error: "error pulling platform from game model",
                 message: error.message,
               });
             }
-          } catch (error) {
-            return res.status(404).json({
-              error: "error pulling platform from game model",
-              message: error.message,
-            });
-          }
-        } else {
-          try {
-            await Game.findByIdAndUpdate(id, {
-              $push: { platforms: element },
-            });
+          } else {
             try {
-              await Platform.findByIdAndUpdate(element, {
-                $push: { games: id },
+              await Game.findByIdAndUpdate(id, {
+                $push: { platforms: element },
               });
+              try {
+                await Platform.findByIdAndUpdate(element, {
+                  $push: { games: id },
+                });
+              } catch (error) {
+                return res.status(404).json({
+                  error: "error pushing game in platform model",
+                  message: error.message,
+                });
+              }
             } catch (error) {
               return res.status(404).json({
-                error: "error pushing game in platform model",
+                error: "error pushing platform in game model",
                 message: error.message,
               });
             }
-          } catch (error) {
-            return res.status(404).json({
-              error: "error pushing platform in game model",
-              message: error.message,
-            });
           }
-        }
-      });
-
-      setTimeout(async () => {
-        return res.status(200).json({
-          update: await Game.findById(id).populate({
-            path: "platforms",
-            populate: {
-              path: "games",
-            },
-          }),
         });
-      }, 500);
+
+        setTimeout(async () => {
+          return res.status(200).json({
+            update: await Game.findById(id).populate({
+              path: "platforms",
+              populate: {
+                path: "games",
+              },
+            }),
+          });
+        }, 500);
+      } else {
+        return res.status(404).json("game not found");
+      }
     } else {
-      return res.status(404).json("game not found");
+      return res.status(403).json("You're not authorized");
     }
   } catch (error) {
     return next(error);

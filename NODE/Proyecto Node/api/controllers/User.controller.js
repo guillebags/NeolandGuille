@@ -536,8 +536,8 @@ const toggleFavGame = async (req, res, next) => {
     setTimeout(async () => {
       return res
         .status(200)
-        .json(await User.findById(_id).populate("favGames"));
-    }, 400);
+        .json(await User.findById(_id).populate({ path: "favGames" }));
+    }, 1000);
   } catch (error) {
     return next(error);
   }
@@ -649,24 +649,30 @@ const addAcquiredGame = async (req, res, next) => {
               await User.findByIdAndUpdate(_id, {
                 $push: { acquired: { platformsId: [platform], gameId: game } },
               });
-              try {
-                await Game.findByIdAndUpdate(game, {
-                  $push: { players: _id },
-                });
-              } catch (error) {
-                return res.status(404).json({
-                  error: "error pushing player in game model",
-                  message: error.message,
-                });
+              const gameToCheck = await Game.findById(game);
+              if (!gameToCheck.players.includes(_id)) {
+                try {
+                  await Game.findByIdAndUpdate(game, {
+                    $push: { players: _id },
+                  });
+                } catch (error) {
+                  return res.status(404).json({
+                    error: "error pushing player in game model",
+                    message: error.message,
+                  });
+                }
               }
-              try {
-                await Platform.findByIdAndUpdate(platform, {
-                  $push: { customers: _id },
-                });
-              } catch (error) {
-                return res.status(404).json({
-                  error: "error pushing user in platform model",
-                });
+              const platformToCheck = await Platform.findById(platform);
+              if (!platformToCheck.customers.includes(_id)) {
+                try {
+                  await Platform.findByIdAndUpdate(platform, {
+                    $push: { customers: _id },
+                  });
+                } catch (error) {
+                  return res.status(404).json({
+                    error: "error pushing user in platform model",
+                  });
+                }
               }
             } catch (error) {
               return res.status(404).json({
@@ -774,6 +780,44 @@ const addAcquiredGame = async (req, res, next) => {
   }
 };
 
+//! GET PEGI
+const getPegi = async (req, res, next) => {
+  try {
+    const { year } = req.user;
+    const getAge = (year) => {
+      const today = new Date();
+      const thisYear = today.getFullYear();
+      const age = thisYear - year;
+      return age;
+    };
+    const age = getAge(year);
+    const allGames = await Game.find();
+    if (allGames.length > 0) {
+      const pegiGames = allGames.filter((element) => element.pegi <= age);
+      return res.status(200).json({ data: pegiGames });
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+//! GET BEST USER
+const getBestUser = async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    if (allUsers.length > 0) {
+      const sortedUsers = allUsers.sort(
+        (a, b) => b.acquired.length - a.acquired.length,
+      );
+      return res.status(200).json({ data: sortedUsers });
+    } else {
+      return res.status(404).json("users not found");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   register,
   checkNewUser,
@@ -791,4 +835,6 @@ module.exports = {
   getAllUsers,
   getByName,
   getById,
+  getPegi,
+  getBestUser,
 };

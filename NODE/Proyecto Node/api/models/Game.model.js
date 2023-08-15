@@ -40,6 +40,7 @@ const GameSchema = new Schema(
       ref: "User",
       required: true,
     },
+    pegi: { type: Number, enum: [3, 7, 12, 16, 18], required: true },
   },
   { timestamps: true },
 );
