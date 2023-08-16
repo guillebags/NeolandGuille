@@ -697,6 +697,7 @@ const addAcquiredGame = async (req, res, next) => {
                 });
               }
             } else {
+              //si es el primer juego, lo meto directamente
               try {
                 await User.findByIdAndUpdate(_id, {
                   $pull: { acquired: { platformsId: platform, gameId: game } },
@@ -784,6 +785,8 @@ const addAcquiredGame = async (req, res, next) => {
 const getPegi = async (req, res, next) => {
   try {
     const { year } = req.user;
+
+    //función para conseguir la edad de un user
     const getAge = (year) => {
       const today = new Date();
       const thisYear = today.getFullYear();
@@ -794,7 +797,11 @@ const getPegi = async (req, res, next) => {
     const allGames = await Game.find();
     if (allGames.length > 0) {
       const pegiGames = allGames.filter((element) => element.pegi <= age);
-      return res.status(200).json({ data: pegiGames });
+      if (pegiGames.length > 0) {
+        return res.status(200).json({ data: pegiGames });
+      } else {
+        return res.status(404).json("game not found");
+      }
     }
   } catch (error) {
     return next(error);
@@ -802,6 +809,7 @@ const getPegi = async (req, res, next) => {
 };
 
 //! GET BEST USER
+//te da el usuario con más juegos comprados
 const getBestUser = async (req, res, next) => {
   try {
     const allUsers = await User.find();
@@ -809,7 +817,7 @@ const getBestUser = async (req, res, next) => {
       const sortedUsers = allUsers.sort(
         (a, b) => b.acquired.length - a.acquired.length,
       );
-      return res.status(200).json({ data: sortedUsers });
+      return res.status(200).json({ data: sortedUsers[0] });
     } else {
       return res.status(404).json("users not found");
     }
