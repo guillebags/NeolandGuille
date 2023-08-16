@@ -320,6 +320,29 @@ const deleteGame = async (req, res, next) => {
             error.message,
           );
       }
+
+      //! TO DO, corregir los delete que no me borran los acquired
+      const allUsers = await User.find();
+      if (allUsers.length > 0) {
+        console.log("entro 325", allUsers);
+        for (let i = 0; i < allUsers.length; i++) {
+          if (allUsers[i].acquired.length > 0) {
+            console.log(allUsers[i], "bucle i");
+            for (let j = 0; j < allUsers[i].acquired.length; j++) {
+              if (allUsers[i].acquired[j].gameId == id) {
+                console.log(allUsers[i].acquired[j], "bucle j");
+                allUsers[i].acquired.splice(j, 1);
+
+                console.log(
+                  allUsers[i].acquired[j],
+                  "bucle j después de spliced",
+                );
+              }
+            }
+          }
+        }
+      }
+
       if (await Game.findById(id)) {
         return res.status(404).json("Game not deleted");
       } else {

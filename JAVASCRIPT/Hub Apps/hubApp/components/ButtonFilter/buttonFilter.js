@@ -39,5 +39,3 @@ export const PrintButton = (types) => {
     addListeners(types);
   }
 };
-
-//? to do: si no ha cambiado el tamaño, que no vuelva a pintar

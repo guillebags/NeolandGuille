@@ -328,6 +328,12 @@ const deletePlatform = async (req, res, next) => {
             error.message,
           );
       }
+      //?to do: borrar acquired de user
+      /*  try {
+        
+      } catch (error) {
+        
+      } */
       if (await Platform.findById(id)) {
         return res.status(404).json("Pllatform not deleted");
       } else {

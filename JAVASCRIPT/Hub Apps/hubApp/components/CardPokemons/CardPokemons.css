@@ -24,11 +24,11 @@
     background-size: cover;
     border: none;
     background-color: transparent;
-    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/fav1_ypc2gz.png");
+    background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690232973/Hub%20App/fav1_ypc2gz.png");
     &.isFavorite {
-      background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690387399/fav0_ofulwn.png");
+      background-image: url("https://res.cloudinary.com/dluwybogp/image/upload/v1690387399/Hub%20App/fav0_ofulwn.png");
     }
-
+    /*seguir continue revisando imagenes cloudinary*/
     &:hover {
       transform: scale(1.05);
     }
