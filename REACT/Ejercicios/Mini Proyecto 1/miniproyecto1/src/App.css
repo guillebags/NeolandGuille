@@ -1,0 +1,16 @@
+#root {
+  width: 100vw;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #deedff;
+  & h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    background-color: white;
+  }
+  & p {
+    letter-spacing: 1px;
+  }
+}
