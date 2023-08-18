@@ -10,9 +10,6 @@ const NavBar = () => {
         <NavLink to="heroes">Heroes</NavLink>
         <NavLink to="about">About</NavLink>
       </nav>
-      <div>
-        <Outlet />
-      </div>
     </>
   );
 };

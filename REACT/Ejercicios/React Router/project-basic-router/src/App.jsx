@@ -6,9 +6,12 @@ const App = () => {
     <div className="App">
       <header className="header">
         <h1>React Router v6 🧪</h1>
+        <NavBar />
       </header>
       <main>
-        <NavBar />
+        <div>
+          <Outlet />
+        </div>
       </main>
     </div>
   );
