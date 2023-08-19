@@ -1,0 +1,9 @@
+h2 {
+  height: 300px;
+  background-color: #c3ef3c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  border-radius: 200px;
+}

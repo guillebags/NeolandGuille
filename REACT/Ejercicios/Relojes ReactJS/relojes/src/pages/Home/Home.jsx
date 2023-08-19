@@ -1,15 +1,28 @@
+import { Link } from "react-router-dom";
+import "./Home.css";
+
 const Home = () => {
   return (
     <>
       <h2>Home Page</h2>
 
-      <p>App ejemplo sobre React Router</p>
-
       <ul>
         <li>
           <p>
-            <span>Visita la página de héroes 🦸‍♀️:</span>
-            {/* <Link to="heroes">Heroes</Link> */}
+            <span>Check our: </span>
+            <Link to="clock">Digital Clock</Link>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Check our: </span>
+            <Link to="countdown">Count down</Link>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Check our: </span>
+            <Link to="timer">Timer</Link>
           </p>
         </li>
       </ul>
