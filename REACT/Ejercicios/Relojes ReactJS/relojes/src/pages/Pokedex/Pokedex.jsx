@@ -30,6 +30,7 @@ const Pokedex = () => {
           attack: res.data.stats[1].base_stat,
           defense: res.data.stats[2].base_stat,
           speed: res.data.stats[5].base_stat,
+          //en tipos, si tiene un segundo tipo, devolverá un array con ambos tipos separados por /, si no, solo devuelve la primera posicion
           type: res.data.types[1]
             ? [res.data.types[0].type.name, "/", res.data.types[1]?.type.name]
             : res.data.types[0].type.name,
