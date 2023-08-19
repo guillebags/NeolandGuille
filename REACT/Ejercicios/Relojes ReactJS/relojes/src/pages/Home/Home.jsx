@@ -25,6 +25,14 @@ const Home = () => {
             <Link to="timer">Timer</Link>
           </p>
         </li>
+        <li>
+          <p>
+            <span>
+              <span class="new">(new) </span> Check our:{" "}
+            </span>
+            <Link to="pokedex">Pokedex</Link>
+          </p>
+        </li>
       </ul>
     </>
   );

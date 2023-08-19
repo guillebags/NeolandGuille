@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.TitleSection {
+  background-color: #6ea4bb;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f7f7f6;
+  border-radius: 50px;
+  margin-bottom: 1em;
+}
+
+.TitleSection input {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #5e98b1;
+  font-size: 18px;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+
+.TitleSection button {
+  width: 180px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  padding-left: 10px;
+  border: none;
+  color: #e7e7e6;
+  background-color: #006cbf;
+}
+
+.TitleSection button:hover {
+  cursor: pointer;
+}
+
+.DisplaySection {
+  background-color: #e89a90a3;
+  padding: 1em;
+  text-transform: capitalize;
+  border-radius: 50px;
+}
+
+.mainstats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: #e5e5e5;
+  border-radius: 15px;
+}
