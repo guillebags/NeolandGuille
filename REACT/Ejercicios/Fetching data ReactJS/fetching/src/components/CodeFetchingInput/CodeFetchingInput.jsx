@@ -18,7 +18,7 @@ export const CodeFetchingInput = () => {
     <>
       <h1>Write the name of your fav pokemon!</h1>
       <input value={filter} onChange={(e) => setFilter(e.target.value)} />
-
+      <p>{debounceFilter}</p>
       <ul>
         {pokemonCollection.map((pokemon) => (
           <li key={pokemon.name}>
