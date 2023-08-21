@@ -1,9 +1,9 @@
-import React from "react";
+import { useState } from "react";
 
 export const usePokemonCollection = () => {
-  const [filter, setFilter] = React.useState("ditto");
+  const [filter, setFilter] = useState("ditto");
 
-  const [pokemonCollection, setPokemonCollection] = React.useState([]);
+  const [pokemonCollection, setPokemonCollection] = useState([]);
 
   const loadPokemon = () => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${filter}`)
