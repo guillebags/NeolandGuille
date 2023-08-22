@@ -7,15 +7,15 @@ import "./index.css";
 import Characters from "./routes/Characters.jsx";
 import Spells from "./routes/Spells.jsx";
 import Home from "./routes/Home.jsx";
-import AuthForm from "./routes/AuthForm.jsx";
 import Login from "./routes/Login.jsx";
+import Register from "./routes/Register.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/authform", element: <AuthForm /> },
+      { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
       { path: "/", element: <Home /> },
       {

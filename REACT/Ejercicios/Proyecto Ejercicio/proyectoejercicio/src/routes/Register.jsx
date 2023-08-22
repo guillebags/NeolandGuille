@@ -1,23 +1,20 @@
 import { useForm } from "react-hook-form";
+import { registerUser } from "../services/user.service";
 
-const AuthForm = () => {
+const Register = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const onFormSubmit = (values) => {
-    localStorage.setItem("user", JSON.stringify(values));
-  };
-
   return (
-    <form onSubmit={handleSubmit(onFormSubmit)}>
+    <form onSubmit={handleSubmit(registerUser)}>
       <label>
         <span>Username:</span>
         {/* Invocamos register y pasamos sus atributos en un spread */}
         <input
-          {...register("username", {
+          {...register("name", {
             required: true,
             minLength: 2,
           })}
@@ -72,7 +69,7 @@ const AuthForm = () => {
   );
 };
 
-export default AuthForm;
+export default Register;
 
 /*Otro aspecto a tener en cuenta es que si queremos usar el `onChange` o `onBlur` tienes que pasar `mode` como una propiedad del Hook. 
  const { register, handleSubmit, errors } = useForm({
