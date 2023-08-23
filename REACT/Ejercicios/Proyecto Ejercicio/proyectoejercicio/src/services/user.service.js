@@ -2,7 +2,7 @@ import { APIUser } from "./service.config";
 
 //user provisional hasta que meta todos los campos en el componente
 const defaultUser = {
-  email: "default@gmail.com",
+  email: "default2@gmail.com",
   name: "default",
   password: "default",
   year: 2013,
