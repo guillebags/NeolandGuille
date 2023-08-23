@@ -2,6 +2,8 @@ import axios, { Axios } from "axios";
 import { useEffect, useState } from "react";
 import "./CharacterList.css";
 import FilterDiv from "../FilterDiv/FilterDiv";
+import { Link, NavLink } from "react-router-dom";
+import Detail from "../Detail/Detail";
 
 const CharacterList = () => {
   const [characterCollection, setCharacterCollection] = useState([]);
@@ -32,7 +34,9 @@ const CharacterList = () => {
               }
               alt={character.name}
             />
-            <p>Name: {character.name}</p>
+            <p>
+              <Link to="/characters/detail">{character.name}</Link>
+            </p>
           </li>
         ))}
       </ul>

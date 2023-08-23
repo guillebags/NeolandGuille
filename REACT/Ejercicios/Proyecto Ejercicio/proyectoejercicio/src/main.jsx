@@ -9,6 +9,8 @@ import Spells from "./routes/Spells.jsx";
 import Home from "./routes/Home.jsx";
 import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
+import DetailPage from "./components/Detail/Detail.jsx";
+import Detail from "./components/Detail/Detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,16 @@ const router = createBrowserRouter([
       {
         path: "/characters",
         element: <Characters />,
+        children: [
+          {
+            path: "/characters/detail",
+            element: (
+              <DetailPage>
+                <Detail />
+              </DetailPage>
+            ),
+          },
+        ],
       },
       { path: "/spells", element: <Spells /> },
     ],
