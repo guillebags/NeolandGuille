@@ -1,11 +1,12 @@
 import React from "react";
 import Section from "../components/UI/Section/Section";
+import CharacterList from "../components/CharacterList/CharacterList";
 
 const Characters = () => {
   return (
-    <Section>
-      <p>aquí mapeados los character segun houses</p>
-    </Section>
+    <section>
+      <CharacterList />
+    </section>
   );
 };
 

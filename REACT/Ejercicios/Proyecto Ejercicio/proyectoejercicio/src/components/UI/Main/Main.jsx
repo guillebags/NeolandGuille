@@ -1,7 +1,7 @@
 import React from "react";
 
 const Main = ({ children }) => {
-  return <div className="mainContainer">{children}</div>;
+  return <main className="mainContainer">{children}</main>;
 };
 
 export default Main;

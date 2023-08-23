@@ -1,0 +1,27 @@
+body {
+  font-family: "Yusei Magic", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & main {
+    height: 70vh;
+    width: 100vw;
+  }
+  & header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 10vh;
+    width: 100vw;
+  }
+  & footer {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 15vh;
+    & a {
+      text-decoration: none;
+    }
+  }
+}

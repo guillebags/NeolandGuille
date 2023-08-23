@@ -1,0 +1,71 @@
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.btnFilter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100vw;
+  & button {
+    width: 110px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    &.btnGryf {
+      background-color: #66151eaa;
+    }
+    &.btnRave {
+      background-color: #0d1c59aa;
+    }
+    &.btnHuff {
+      background-color: #eab722aa;
+    }
+    &.btnSlyt {
+      background-color: #083413aa;
+    }
+  }
+}
+
+.characterList {
+  & li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 200px;
+    height: 275px;
+    padding: 1em;
+    border-radius: 10px;
+
+    &.Gryffindor {
+      background-color: #66151ebb;
+    }
+
+    &.Hufflepuff {
+      background-color: #eab722bb;
+    }
+
+    &.Slytherin {
+      background-color: #083413bb;
+    }
+
+    &.Ravenclaw {
+      background-color: #0d1c59bb;
+    }
+
+    & img {
+      width: 175px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+}

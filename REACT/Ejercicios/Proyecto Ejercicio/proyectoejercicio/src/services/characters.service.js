@@ -1,19 +1,17 @@
-export const getAll = async () => {
-  const characterList = await fetch(
-    "https://hp-api.onrender.com/api/characters"
-  );
+/* export const getAll = () => {
+  const characterList = Axios.get("https://hp-api.onrender.com/api/characters");
 
-  const characterListJson = await characterList.json();
+  const characterListJson = characterList.json();
 
   return characterListJson;
 };
 
-export const getByHouse = async (filter) => {
-  const characterList = await fetch(
+export const getByHouse = (filter) => {
+  const characterList = Axios.get(
     `https://hp-api.onrender.com/api/characters/house/${filter}`
   );
   return characterList;
-};
+}; */
 
 /* export const characterService = {
   getAll: getAll(),

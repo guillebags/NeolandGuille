@@ -1,10 +1,11 @@
 import React from "react";
 import Section from "../components/UI/Section/Section";
+import SpellList from "../components/SpellsList/SpellList";
 
 const Spells = () => {
   return (
     <Section>
-      <p>aquí irán mapeados los spells</p>
+      <SpellList />
     </Section>
   );
 };

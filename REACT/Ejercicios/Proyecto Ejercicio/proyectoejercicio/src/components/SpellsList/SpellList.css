@@ -1,0 +1,21 @@
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.spellList {
+  & li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff9cb;
+    width: 200px;
+    height: 275px;
+    padding: 1em;
+    border-radius: 10px;
+    border: solid 10px #977157;
+  }
+}
