@@ -35,7 +35,9 @@ const CharacterList = () => {
               alt={character.name}
             />
             <p>
-              <Link to="/characters/detail">{character.name}</Link>
+              <Link to={`/characters/detail/${character.id}`}>
+                {character.name}
+              </Link>
             </p>
           </li>
         ))}

@@ -13,8 +13,17 @@ export const getByHouse = (filter) => {
   return characterList;
 }; */
 
+import axios from "axios";
+
 /* export const characterService = {
   getAll: getAll(),
   getByHouse: getByHouse(),
 };
  */
+
+export const getById = (id) => {
+  const characterById = axios.get(
+    `https://hp-api.onrender.com/api/character/${id}`
+  );
+  return characterById;
+};

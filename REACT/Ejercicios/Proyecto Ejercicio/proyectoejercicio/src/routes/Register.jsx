@@ -8,6 +8,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  //! ... Meter campos requeridos del backend
   return (
     <form onSubmit={handleSubmit(registerUser)}>
       <label>
@@ -39,7 +40,7 @@ const Register = () => {
             minLength: 6,
             pattern: /^\S*$/,
             validate: {
-              // Comprobamos que hay mayúsculas, minúsculas y números
+              //! igualar esta validación con la del backend
               format: (password) => {
                 return (
                   /[A-Z]/g.test(password) &&

@@ -1,6 +1,19 @@
-const Detail = ({ character }) => {
-  const { alternate_names, house, dateOfBirth, patronus, name, image } =
-    character;
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getById } from "../../services/characters.service";
+
+const Detail = () => {
+  const { id } = useParams();
+
+  const [character, setCharacter] = useState({});
+  const { image, name, alternate_names, house, dateOfBirth, patronus } =
+    character.data[0];
+
+  useEffect(() => {
+    (async () => {
+      setCharacter(await getById(id));
+    })();
+  }, []);
   return (
     <section>
       <figure>
@@ -21,6 +34,7 @@ const Detail = ({ character }) => {
         </li>
         <li>Their patronus is a {patronus}</li>
       </ul>
+      {console.log(character)}
     </section>
   );
 };

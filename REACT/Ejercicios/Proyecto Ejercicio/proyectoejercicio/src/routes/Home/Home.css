@@ -1,0 +1,9 @@
+.homeContainer {
+  width: 100vw;
+}
+
+img {
+  width: 100vw;
+  height: 80vh;
+  object-fit: cover;
+}
