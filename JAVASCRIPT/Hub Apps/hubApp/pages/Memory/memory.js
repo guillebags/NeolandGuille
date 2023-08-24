@@ -14,7 +14,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -26,7 +26,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -39,7 +39,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -51,7 +51,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -64,7 +64,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -76,7 +76,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -89,7 +89,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -101,7 +101,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -114,7 +114,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -126,7 +126,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -139,7 +139,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>
@@ -151,7 +151,7 @@ const template = () => `
         />
         <img
           class="back-face"
-          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
+          src="https://res.cloudinary.com/dluwybogp/image/upload/v1690376176/Hub%20App/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-pre_wcedyp.png"
           alt="Card Pokemon"
         />
       </div>

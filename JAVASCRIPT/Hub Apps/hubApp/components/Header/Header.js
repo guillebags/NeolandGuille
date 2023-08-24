@@ -17,11 +17,11 @@ const template = () => `
     </figure>
     <nav class="navHeader">
       <img
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/pokedex1_nofgat.png"
+        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/Hub%20App/pokedex1_nofgat.png"
         alt="navigate to dashboard"
         id="buttonDashboard"
       /><img
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/huevo1_jxk7d4.png"
+        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232499/Hub%20App/huevo1_jxk7d4.png"
         alt="disabled for now"
         id="buttonEgg"
       />
@@ -32,7 +32,7 @@ const template = () => `
       />
 
       <img
-        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232724/logout1_tm5olv.png"
+        src="https://res.cloudinary.com/dluwybogp/image/upload/v1690232724/Hub%20App/logout1_tm5olv.png"
         alt="log out"
         id="buttonLogout"
       />

@@ -8,7 +8,7 @@ export const changeTeam = (e) => {
       PrintTemplateFooter();
       document.getElementById("changeTeamInstinct").style.display = "none";
       document.getElementById("logoRotom").src =
-        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/yellow_bzc7g6.png";
+        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/Hub%20App/yellow_bzc7g6.png";
       document.getElementById("logoText").innerText = "Team Instinct";
       document.getElementById("footer").style.backgroundColor = "#ffffb3";
       document.getElementById("dashboard").style.backgroundColor = "#FBDF53";
@@ -24,7 +24,7 @@ export const changeTeam = (e) => {
 
       document.getElementById("changeTeamMystic").style.display = "none";
       document.getElementById("logoRotom").src =
-        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/blue_sbdpmg.png";
+        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/Hub%20App/blue_sbdpmg.png";
       document.getElementById("logoText").innerText = "Team Mystic";
       document.getElementById("footer").style.backgroundColor = "#cce0ff";
       document.getElementById("dashboard").style.backgroundColor = "#99c2ff";
@@ -40,7 +40,7 @@ export const changeTeam = (e) => {
 
       document.getElementById("changeTeamValor").style.display = "none";
       document.getElementById("logoRotom").src =
-        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/red_qi3wpb.png";
+        "https://res.cloudinary.com/dluwybogp/image/upload/v1690328105/Hub%20App/red_qi3wpb.png";
       document.getElementById("logoText").innerText = "Team Valor";
       document.getElementById("footer").style.backgroundColor = "#f0a8a9";
       document.getElementById("dashboard").style.backgroundColor = "#ff8080";
