@@ -14,13 +14,12 @@ const App = () => {
   //Almacenamos en una constante la URL de la NASA
   const NASA_URL = "https://api.nasa.gov/";
   //Almacenamos en una constante nuestra API Key, esto es recomendable almacenarlo en una variable de entorno
+  const NASA_API_KEY = import.meta.env.VITE_APIKEY;
 
   useEffect(() => {
     const getApod = async () => {
       const data = await axios.get(
-        `${NASA_URL}planetary/apod?date=${date}&api_key=${
-          import.meta.env.VITE_APIKEY
-        }`
+        `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
         //! ----------------hay que poner la api key personal aquí----------------
       );
       setApod(data.data);
