@@ -1,0 +1,11 @@
+header {
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  padding: 10px;
+}
+
+main {
+  margin-top: 10vh;
+}
