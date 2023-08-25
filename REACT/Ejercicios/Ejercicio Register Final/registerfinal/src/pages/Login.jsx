@@ -19,11 +19,12 @@ export const Login = () => {
     <>
       <Flex width="full" align="center" justifyContent="center">
         <Box
-          p={8}
+          p="8"
           maxWidth="500px"
           borderWidth={1}
           borderRadius={8}
           boxShadow="lg"
+          color="pink.700"
         >
           <Box textAlign="center">
             <Heading as="h1" size="4xl">
@@ -31,7 +32,7 @@ export const Login = () => {
             </Heading>
           </Box>
           <form onSubmit={handleSubmit(login)}>
-            <FormControl isRequired mt={6}>
+            <FormControl isRequired mt={10}>
               <label>
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -56,18 +57,19 @@ export const Login = () => {
             </FormControl>
           </form>
         </Box>
-        <Center>
-          <Button
-            variantColor="teal"
-            variant="outline"
-            type="submit"
-            width="full"
-            mt={4}
-          >
-            Login
-          </Button>
-        </Center>
       </Flex>
+      <Center>
+        <Button
+          colorScheme="pink"
+          variant="outline"
+          type="submit"
+          minW="2xs"
+          mt={4}
+          size="lg"
+        >
+          Login
+        </Button>
+      </Center>
     </>
   );
 };

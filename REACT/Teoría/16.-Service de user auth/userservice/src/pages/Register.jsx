@@ -27,23 +27,23 @@ export const Register = () => {
     if (inputFile.length !== 0) {
       // cuando me han hayan puesto una imagen por el input
 
-      const custonFormData = {
+      const customFormData = {
         ...formData,
         image: inputFile[0],
       };
 
       setSend(true);
-      setRes(await registerUser(custonFormData));
+      setRes(await registerUser(customFormData));
       setSend(false);
 
       //! me llamo al servicio
     } else {
-      const custonFormData = {
+      const customFormData = {
         ...formData,
       };
 
       setSend(true);
-      setRes(await registerUser(custonFormData));
+      setRes(await registerUser(customFormData));
       setSend(false);
 
       ///! me llamo al servicio
