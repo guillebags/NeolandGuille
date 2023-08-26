@@ -1,3 +1,12 @@
-#logoFooter {
-  width: fit-content;
+a {
+  display: flex;
+
+  & p {
+    color: #90a4ae;
+    padding: 0 5px;
+  }
+  & img {
+    width: 30px;
+    height: 30px;
+  }
 }
