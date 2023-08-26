@@ -16,7 +16,7 @@ export const Header = () => {
         >
           <LogoResize />
 
-          <Stack direction="row">
+          <Stack direction="row" mr="4">
             <Button
               className="register"
               borderRadius="3xl"
