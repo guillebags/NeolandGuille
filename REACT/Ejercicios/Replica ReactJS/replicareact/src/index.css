@@ -7,8 +7,11 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-bottom: 1px solid #f0f3f5;
+  background-color: white;
 }
 
 main {
   margin-top: 10vh;
+  height: 80vh;
 }

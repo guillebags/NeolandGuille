@@ -1,5 +1,10 @@
 import "./Footer.css";
+import FooterLinks from "./FooterLinks";
 
 export const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer>
+      <FooterLinks />
+    </footer>
+  );
 };

@@ -8,7 +8,7 @@ const useWidth = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("reset", handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);

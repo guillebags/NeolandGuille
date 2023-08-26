@@ -1,16 +1,9 @@
-import { useEffect } from "react";
 import "./Header.css";
-import { Image, Button, Stack, Flex } from "@chakra-ui/react";
+import { Button, Stack, Flex } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import useWidth from "../../hooks/useWidth";
+import { LogoResize } from "../../components";
 
 export const Header = () => {
-  const { width } = useWidth();
-
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
-
   return (
     <>
       <header>
@@ -21,13 +14,7 @@ export const Header = () => {
           justify="space-between"
           gap={10}
         >
-          <Image
-            src={
-              width < 800
-                ? "https://es.wallapop.com/next-assets/images/mobile-logo-wallapop-home-v2.svg"
-                : "https://es.wallapop.com/next-assets/images/logo-wallapop-home-v2.svg"
-            }
-          />
+          <LogoResize />
 
           <Stack direction="row">
             <Button
