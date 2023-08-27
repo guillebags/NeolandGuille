@@ -4,9 +4,12 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Button,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import useWidth from "../../hooks/useWidth";
 const Welcome = () => {
+  const { width } = useWidth();
   return (
     <Container
       centerContent
@@ -35,6 +38,23 @@ const Welcome = () => {
           fontWeight={"100"}
           _hover={{ border: "solid 1px black", color: "white" }}
         />
+
+        {width > 1000 ? (
+          <Button
+            fontWeight="800"
+            h="10"
+            ml="5"
+            pl="7"
+            pr="7"
+            backgroundColor="#13c1ac"
+            borderRadius="3xl"
+            variant="solid"
+            color="white"
+            _hover={{ bg: "#0f9989ff" }}
+          >
+            Buscar
+          </Button>
+        ) : null}
       </InputGroup>
     </Container>
   );

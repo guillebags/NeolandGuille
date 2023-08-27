@@ -24,4 +24,6 @@ main {
   margin-top: 10vh;
   padding-top: 64px;
   height: 80vh;
+  padding-left: 64px;
+  padding-right: 64px;
 }
