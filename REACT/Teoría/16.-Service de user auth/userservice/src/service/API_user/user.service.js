@@ -8,3 +8,27 @@ export const registerUser = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//! ------------------------------- CHECK CODE ---------------------------------
+
+export const checkCodeConfirmationUser = async (formData) => {
+  return APIuser.post("/users/check", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
+
+//!  ------------------------------- RESEND CODE -------------------------------
+
+export const resendCodeConfirmationUser = async (formData) => {
+  return APIuser.post("/users/resend", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
+
+//! -------------------------------- AUTOLOGIN ----------------------------------
+
+export const autologinUser = async (formData) => {
+  return APIuser.post("/users/login/autologin", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
