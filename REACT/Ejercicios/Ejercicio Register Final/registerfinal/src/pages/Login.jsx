@@ -24,7 +24,7 @@ export const Login = () => {
           borderWidth={1}
           borderRadius={8}
           boxShadow="lg"
-          color="pink.700"
+          color={"#c3ef3cff"}
         >
           <Box textAlign="center">
             <Heading as="h1" size="4xl">

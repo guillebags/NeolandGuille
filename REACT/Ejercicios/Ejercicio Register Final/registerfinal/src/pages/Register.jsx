@@ -117,6 +117,14 @@ export const Register = () => {
               email
             </label>
 
+            <input
+              type="number"
+              id="year"
+              name="year"
+              {...register("year", { required: true })}
+            ></input>
+            <label>year</label>
+
             <div className="sexo">
               <input
                 type="radio"

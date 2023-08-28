@@ -76,7 +76,7 @@ export const useRegisterError = (res, setRegisterOk, setRes) => {
   //! -------------------- 404: 'error, resend code'
   if (
     res?.response?.status == 404 &&
-    res?.response?.data?.confirmationCode.includes("error, resend code")
+    res?.response?.data?.confirmationCode?.includes("error, resend code")
   ) {
     Swal.fire({
       icon: "error",

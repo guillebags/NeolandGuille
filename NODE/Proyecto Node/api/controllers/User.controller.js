@@ -22,6 +22,7 @@ const Platform = require("../models/Platform.model");
 
 //! REGISTER
 const register = async (req, res, next) => {
+  console.log("ENTRO MOTHERFUCKER");
   let catchImg = req.file?.path;
   try {
     await User.syncIndexes();
@@ -62,7 +63,7 @@ const register = async (req, res, next) => {
                 confirmationCode: "error, resend code",
               });
             }
-          }, 1400);
+          }, 5000);
         }
       } catch (error) {
         return res.status(404).json(error.message);
@@ -205,7 +206,7 @@ const autoLogin = async (req, res, next) => {
   }
 };
 
-//! CAMBIO DE CONTRASEÑA ANTES DE ESTAR LOGADO
+//! OLVIDO DE CONTRASEÑA ANTES DE ESTAR LOGADO
 const changePassword = async (req, res, next) => {
   try {
     const { email } = req.body;
