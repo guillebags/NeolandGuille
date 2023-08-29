@@ -24,6 +24,8 @@ export const CheckCode = () => {
   const { register, handleSubmit } = useForm();
   const handleReSend = () => {};
 
+  console.log(allUser);
+
   const formSubmit = async ({ confirmationCode }) => {
     const userLocal = localStorage.getItem("user");
 
@@ -76,28 +78,29 @@ export const CheckCode = () => {
     <>
       <Heading>Verify your code 👌</Heading>
 
-      <FormControl onSubmit={handleSubmit(formSubmit)}>
-        <FormLabel>Registration code</FormLabel>
-        <Input
-          type="text"
-          {...register("confirmationCode", { required: false })}
-        />
-        <FormHelperText>Write the code sent to your email</FormHelperText>
-
-        <HStack m="2">
+      <form onSubmit={handleSubmit(formSubmit)}>
+        <FormControl>
+          <FormLabel>Registration code</FormLabel>
+          <Input
+            type="text"
+            {...register("confirmationCode", { required: false })}
+          />
+          <FormHelperText>Write the code sent to your email</FormHelperText>
           <Button type="submit" isLoading={isLoading}>
             Verify Code
           </Button>
           <Button onClick={() => handleReSend()} isLoading={isLoading}>
             Resend Code
           </Button>
-        </HStack>
-
-        <FormHelperText>
-          If the code is not correct ❌, your user will be deleted from the
-          database and you will need to register again.
-        </FormHelperText>
-      </FormControl>
+          {/*    <HStack m="2">
+        
+          </HStack> */}
+          <FormHelperText>
+            If the code is not correct ❌, your user will be deleted from the
+            database and you will need to register again.
+          </FormHelperText>
+        </FormControl>
+      </form>
     </>
   );
 };
