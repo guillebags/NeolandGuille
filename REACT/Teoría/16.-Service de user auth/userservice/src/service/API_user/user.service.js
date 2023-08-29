@@ -32,3 +32,19 @@ export const autologinUser = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//! -------------------------------- LOGIN -------------------------------------
+
+export const loginUserService = async (formData) => {
+  return APIuser.post("/users/login", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
+
+//! ------------------------------------ CAMBIO CONTRASEÑA SIN TOKEN-------------
+
+export const forgotPasswordUser = async (formData) => {
+  return APIuser.patch("/users/forgotpassword", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};
