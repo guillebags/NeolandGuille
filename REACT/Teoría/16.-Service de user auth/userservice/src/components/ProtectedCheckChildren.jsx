@@ -6,7 +6,7 @@ const ProtectedCheckChildren = ({ children }) => {
   if (allUser?.data?.user?.check == true || user?.check == true) {
     return <Navigate to="/dashboard" />;
   }
-  if (user == null) {
+  if (user == null && allUser.data.confirmationCode === "") {
     return <Navigate to="/login" />;
   }
   return children;
